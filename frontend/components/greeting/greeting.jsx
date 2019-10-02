@@ -6,10 +6,12 @@ import LogInFormContainer from '../session_form/login_form_container';
 
 
 const Greeting = ({ currentUser, logout }) => {
+  
   const sessionLinks = () => (
     <nav className="login-signup">
       <div className="navhead"></div>
       <div className="butterflyr">butterflyr</div>
+      <img src={window.butterFree}/>
       <LogInFormContainer/>
       <SignUpFormContainer/> 
       

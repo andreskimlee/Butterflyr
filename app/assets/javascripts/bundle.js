@@ -351,7 +351,9 @@ var Greeting = function Greeting(_ref) {
       className: "navhead"
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "butterflyr"
-    }, "butterflyr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+    }, "butterflyr"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: window.butterFree
+    }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_login_form_container__WEBPACK_IMPORTED_MODULE_3__["default"], null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_signup_form_container__WEBPACK_IMPORTED_MODULE_2__["default"], null));
   };
 
   var navBar = function navBar() {
