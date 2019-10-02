@@ -13,3 +13,269 @@
  *= require_tree .
  *= require_self
  */
+
+ html, body, div, span, h1, h2, h3, h4, a, ol, ul, li, form, label, article, aside, figure, figcaption, footer, header, nav {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+  }
+  
+  body {
+    line-height: 1.5;
+  }
+  
+  ol, ul {
+    list-style: none;
+  }
+  
+  
+
+  .navhead {
+  height: 80px; 
+  background: linear-gradient(#76c9b8 ,#1ba187);
+  font-size: 30px;    
+  font-weight: 1000px; 
+  border-bottom: 2px solid #1faa8c;
+ }
+
+ .butterflyr {
+    font-size: 43px;
+    position: fixed;
+    color: white;
+    font-family: Klavika;
+    top: 22px;
+    left: 227px;
+    z-index: 10;
+    position: absolute;
+}
+ 
+
+ .movingbutterfly {
+     width: 100px;
+     height: 100px; 
+     position: absolute
+ }
+
+
+ .submit {
+    font-size: 43px;
+    position: fixed;
+    top: 32px;
+    left: 1163px;
+    width: 50px;
+    z-index: 10;
+    font-size: 13px;
+    box-sizing: border-box;
+    font-family: Klavika; 
+    background-color: #1ba187;
+    color: white;   
+    padding: 0px; 
+    height: 25px; 
+    position: absolute;
+ }
+
+
+ .email {
+     display: flex; 
+     flex-direction: column;
+     font-family: sans-serif;
+     position: fixed;
+     top: 15px;
+     left: 830px;
+     width: 50px;
+     z-index: 10;
+     font-size: 12px; 
+     color: white; 
+     position: absolute;
+     
+ }
+ .password {
+    display: flex; 
+    flex-direction: column;
+    font-family: sans-serif;
+    
+    top: 15px;
+    left: 997px;
+    width: 50px;
+    z-index: 10;
+    font-size: 12px; 
+    color: white; 
+    position: absolute;
+ }
+
+.email > input {
+    width: 149px;
+    height: 20px;
+    border: 1px solid #186656; 
+    
+}
+
+.password > input {
+    width: 149px;
+    height: 20px;
+    border: 1px solid #186656; 
+    
+}
+
+
+
+.greeting {
+    font-family: Klavika; 
+    font-size: 39px;
+    margin: 0px; 
+    top: 95px;
+    left: 810px;
+    position: absolute;
+}
+
+h3 {
+    font-family: Klavika; 
+    top: 150px;
+    left: 810px;
+    position: absolute;
+    font-size: 20px; 
+}
+
+
+
+
+.sign-up-form{
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+ #box-1  {
+    font-family: Klavika;
+    top: 192px;
+    left: 810px;
+    position: absolute;
+    height: 35px;
+    width: 183px;
+    border-width: 1px; 
+    border-radius: 5px; 
+    font-size: 20px; 
+}
+
+#box-2 {
+    font-family: Klavika;
+    top: 192px;
+    left: 1011px;
+    border-width: 1px;
+    position: absolute;
+    height: 35px;
+    width: 183px;
+    border-radius: 5px;
+    font-size: 20px; 
+}
+
+
+#box-3 {
+    border-radius: 5px;
+    font-size: 20px;
+    border-width: 1px;
+    top: 239px;
+    left: 810px;
+    position: absolute;
+    font-family: Klavika;
+
+}
+
+#box-4 {
+    border-radius: 5px;
+    font-size: 20px;
+    border-width: 1px;
+    top: 285px;
+    left: 810px;
+    position: absolute;
+    font-family: Klavika; 
+}
+
+#box-5 {
+    border-radius: 5px;
+    font-size: 20px;
+    border-width: 1px;
+    top: 330px;
+    left: 810px;
+    position: absolute;
+    font-family: Klavika; 
+}
+
+#box-6 {
+    border-radius: 5px;
+    font-size: 20px;
+    border-width: 1px;
+    top: 420px;
+    left: 810px;
+    position: absolute;
+    font-family: Klavika; 
+    color: rgb(194, 194, 194);
+}
+
+#birth {
+    top: 380px;
+    left: 810px;
+    font-size: 15px; 
+    position: absolute;
+    font-family: Klavika; 
+}
+
+#gen {
+    top: 460px;
+    left: 810px;
+    font-size: 15px; 
+    position: absolute;
+    font-family: Klavika; 
+}
+
+
+
+#pickgen {
+    top: 503px;
+    left: 810px;
+    font-size: 17px;
+    position: absolute;
+    font-family: Klavika;
+}
+
+body {
+    background-color: #e9ebee;
+}
+
+
+ /* .login-form  {
+    border: 5px solid black;
+    justify-content: flex-end;
+ } */
+
+ .terms {
+     width: 300px;
+     font-size: 8px; 
+     top: 520px;
+     left: 810px;
+    font-size: 10px;
+    position: absolute;
+    font-family: Klavika;
+    color: rgb(192, 192, 192);
+ }
+
+ .session-submit {
+    top: 600px;
+    left: 810px;
+     width: 200px;
+     height: 40px;
+     font-size: 10px;
+    position: absolute;
+    font-family: Klavika;
+    border: none;
+    border-radius: 5px;
+    background-color: #1ba187;
+    color: white; 
+    font-size: 20px; 
+    text-shadow: 2px 2px #19352f;
+
+
+ }

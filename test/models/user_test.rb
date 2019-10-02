@@ -3,14 +3,14 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
-#  DOB             :integer          not null
+#  DOB             :string           not null
 #  cover_photo_url :string
 #  email           :string           not null
 #  first_name      :string           not null
 #  gender          :string           not null
 #  last_name       :string           not null
 #  password_digest :string           not null
-#  phone_number    :integer          not null
+#  phone_number    :string           not null
 #  prof_photo_url  :string
 #  session_token   :string           not null
 #  created_at      :datetime         not null

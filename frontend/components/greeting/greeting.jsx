@@ -8,18 +8,21 @@ import LogInFormContainer from '../session_form/login_form_container';
 const Greeting = ({ currentUser, logout }) => {
   const sessionLinks = () => (
     <nav className="login-signup">
+      <div className="navhead"></div>
+      <div className="butterflyr">butterflyr</div>
       <LogInFormContainer/>
       <SignUpFormContainer/> 
+      
     </nav>
   );
-  const personalGreeting = () => (
+  const navBar = () => (
     <hgroup className="header-group">
-      <h2 className="header-name">Hi, {currentUser.username}!</h2>
+      <h2 className="header-name">Hi, {currentUser.email}!</h2>
       <button className="header-button" onClick={logout}>Log Out</button>
     </hgroup>
   )
 
-  return currentUser ? personalGreeting() : sessionLinks();
+  return currentUser ? navBar() : sessionLinks();
 };
 
 
