@@ -25,11 +25,9 @@ ActiveRecord::Schema.define(version: 2019_10_01_032521) do
     t.string "gender", null: false
     t.string "password_digest", null: false
     t.string "session_token", null: false
-    t.string "phone_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["phone_number"], name: "index_users_on_phone_number", unique: true
     t.index ["session_token"], name: "index_users_on_session_token", unique: true
   end
 

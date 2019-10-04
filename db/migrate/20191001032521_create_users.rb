@@ -10,11 +10,9 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :gender, null:false
       t.string :password_digest, null: false
       t.string :session_token, null: false
-      t.string :phone_number, null:false
       t.timestamps
     end
     add_index :users, :email, unique: true
-    add_index :users, :phone_number, unique: true
     add_index :users, :session_token, unique: true
   end
 end

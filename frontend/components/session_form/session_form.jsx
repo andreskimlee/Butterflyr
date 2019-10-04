@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Redirect}  from 'react-router-dom'
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
@@ -8,6 +8,14 @@ class SessionForm extends React.Component {
       password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handlebutton = this.handlebutton.bind(this); 
+    this.showErrors.bind = this.showErrors.bind(this); 
+    
+  }
+
+  componentDidMount(){
+    () => document.getElementsByClassName("popup").addEventListener("change", this.showErrors())
+
   }
 
   update(field) {
@@ -17,51 +25,67 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault(); 
     const user = Object.assign({}, this.state);
+ 
     this.props.processForm(user)
+  
+  } 
+
+  handlebutton(e) { 
+    e.preventDefault();
+    this.state.email = 'abc@gmail.com'
+    this.state.password = 'password'
+    this.handleSubmit()
+
   }
 
-  renderErrors() {
+  showErrors() {
+    const popup = document.getElementsByClassName("popup")
+    if (popup.length < 1 ) return popup.style.display = "block" 
+    debugger
+  }
+
+
+  renderErrors() { 
     return(
-      <ul>
+      <ul className='popup'> 
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
-            {error}
+            {error} 
           </li>
-        ))}
+        ))} 
+         
       </ul>
     );
   }
 
+
   render() {
     return (
       <div className="login-form-container">
+        <div className="textpe">
+        <div>Email</div> 
+        <div>Password</div>    
+        </div>
         <form onSubmit={this.handleSubmit} className="login-form-box">
-                
+
           {this.renderErrors()}
-          <div className="abc">
-            <label className="email">
-              <div>Email</div> 
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
-                className="login-input"
-                
+                className="login-input" 
+                style={{width:"150px", height:"20px"}}
               />
-            </label>
-            
-            <label className="password">
-            <div>Password</div>
+
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 className="login-input"
+                style={{width:"150px", height:"20px"}}
               />
-            </label>
-            <br/>
             <input className="submit" type="submit" value="Log in" />
-          </div>
+            <button className="demo-button" onClick={this.handlebutton} >Demo</button>
         </form>
       </div>
     );

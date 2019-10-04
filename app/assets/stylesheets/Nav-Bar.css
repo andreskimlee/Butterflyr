@@ -1,0 +1,32 @@
+.Nav-Bar {
+    display: flex; 
+    justify-content: space-evenly;
+    height: 41px; 
+    background: linear-gradient(#73aca1 ,#1ba187);
+    border-bottom: 1px solid #356157;
+    font-family: Klavika;
+    color: white;
+}
+
+
+.butterfly-Logo {
+    width: 11%;
+    margin-left: 68px;
+    margin-top: 0px;
+}
+
+
+.CoverPhoto {
+    width: 850px;
+    height: 315px;
+    
+}
+
+.TopBox {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    width: 850px;
+    height: 360px; 
+    margin:0px; 
+}

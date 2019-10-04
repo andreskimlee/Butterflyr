@@ -6,13 +6,15 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
-    "react": "^16.10.1",
+    "react": "^16.10.2",
     "react-dom": "^16.10.1",
+    "react-dropzone": "^10.1.9",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "redux": "^4.0.4",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "superagent": "^5.1.0",
     "webpack": "^4.41.0",
     "webpack-cli": "^3.3.9"
   },
@@ -28,7 +30,6 @@
     "node": "10.13.0",
     "npm": "6.4.1"
   },
-  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --mode=development --watch",
@@ -37,6 +38,4 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
-  
 }
-

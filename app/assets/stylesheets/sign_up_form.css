@@ -1,0 +1,209 @@
+.exclamation-mark:before {
+    visibility: hidden;
+    position: relative;
+    right: -157px;
+    top: 10px;
+    content: "!";
+    background: #ff8080;
+    border-radius: 50%;
+    text-align: center;
+    padding: 3px;
+    box-sizing: border-box;
+    color: white;
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.genm {
+    margin-left: 10px;
+}
+
+
+
+/* .error-arrow-shadow {
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(136, 54, 54);
+    left: 140.1px;
+    top: 13px;
+    z-index: 1;
+} */
+
+.box-1 + div {
+    visibility: hidden;
+    position: absolute;
+    background-color: #27836c;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    width: 115px;
+    left: 654px;
+    top: 195px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    font-family: SF Pro Display;
+}
+
+.box-1.Invalid:focus + div {
+    visibility: visible;
+}
+
+.box-1.Invalid:not(:focus) ~ span {
+    visibility: visible;
+}
+
+.box-2.Invalid:focus + div {
+    visibility: visible;
+}
+
+.box-2.Invalid:not(:focus) ~ span {
+    visibility: visible;
+}
+
+.box-4.Invalid:focus ~ div {
+    visibility: visible;
+}
+
+.box-5.Invalid:focus ~ div {
+    visibility: visible;
+}
+
+.box-1 {
+    font-family: SF Pro Display;
+    margin-right: 7px;
+    height: 35px;
+    width: 190px;
+    border: 1px solid #b7c0ce;
+    border-radius: 5px;
+    font-size: 20px;
+    position: absolute;
+    top: 198px;
+}
+
+
+
+.error-arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #27836c; 
+    position: absolute;
+    z-index: 2;
+    left: 134px;
+    top: 4px;
+}
+
+.email-error-arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #27836c;
+    position: absolute;
+    z-index: 2;
+    left: 344px;
+    top: 4px;
+}
+
+.box-2 {
+    font-family: SF Pro Display;
+    margin-left: 12px;
+    border-width: 1px;
+    height: 35px;
+    border: 1px solid #b7c0ce;
+    border-radius: 5px;
+    font-size: 20px;
+    position: relative;
+    top: 0px;
+    left: 174px;
+}
+
+.box-2 + div {
+    visibility: hidden;
+    position: absolute;
+    background-color: #27836c;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    width: 115px;
+    left: 1048px;
+    top: 251px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    font-family: SF Pro Display;
+}
+.ln-error-arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #27836c;
+    position: absolute;
+    z-index: 26;
+    left: 63px;
+    top: -20px;
+    transform: rotate(-90deg);
+}
+
+
+.pw-error-arrow-right {
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #27836c;
+    position: absolute;
+    z-index: 26;
+    left: 346px;
+    top: 3px;
+    transform: rotate(-360deg);
+}
+
+
+.box-4 + div {
+    visibility: hidden;
+    position: absolute;
+    background-color: #27836c;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    left: 442px;
+    top: 243px;
+    top: 244px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: left;
+    border-radius: 2px;
+    font-family: SF Pro Display;
+    width: 322px;
+}
+
+.box-5 + div {
+    visibility: hidden;
+    position: absolute;
+    background-color: #27836c;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    width: 328px;
+    left: 442px;
+    top: 294px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: left;
+    border-radius: 2px;
+    font-family: SF Pro Display;
+}
+

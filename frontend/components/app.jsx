@@ -9,16 +9,18 @@ import {
 } from 'react-router-dom';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
-
 import GreetingContainer from './greeting/greeting_container';
-import UserShowContainer from './UserShow/users_show_container';
+import ProfilePageContainer from './profile_page/profile_page_container'
+
 
 
 const App = () => (
   <div>
-    <GreetingContainer/>
-    <AuthRoute exact path="/users/:userId" component={UserShowContainer} />
+    <Route  path="/" component={GreetingContainer}/>
+    <ProtectedRoute path="/users/:userId" component={ProfilePageContainer}/>
     </div> 
 );
 
 export default App;
+
+
