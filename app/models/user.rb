@@ -31,6 +31,11 @@ class User < ApplicationRecord
   
     after_initialize :ensure_session_token
 
+    has_many :posts,
+      foreign_key: :author_id,
+      class_name: :Post
+
+
     has_one_attached :prof_photo
     has_one_attached :cover_photo
   

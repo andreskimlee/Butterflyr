@@ -4,3 +4,10 @@ export const createPost = (userId) => {
         url: `api/users/${userId}/posts`
     })
 }
+
+export const fetchAllPosts = userId => {
+    return $.ajax({
+        method: "GET",
+        url: `api/users/${userId}/posts`
+    })
+}
