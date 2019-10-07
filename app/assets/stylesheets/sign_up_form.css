@@ -1,10 +1,9 @@
-.exclamation-mark:before {
-    visibility: hidden;
-    position: relative;
-    right: -157px;
-    top: 10px;
+.fname-not-focus-invalid:before {
+    position: absolute;
+    right: 446px;
+    top: 206px;
     content: "!";
-    background: #ff8080;
+    background: #489e7f;
     border-radius: 50%;
     text-align: center;
     padding: 3px;
@@ -17,23 +16,38 @@
     font-weight: 700;
 }
 
-.genm {
-    margin-left: 10px;
+.box-1:focus + div {
+    visibility: visible; 
+}
+
+.box-2:focus + div {
+    visibility: visible; 
+}
+.box-4:focus + div {
+    visibility: visible; 
+}
+
+.box-5:focus + div {
+    visibility: visible;    
+}
+
+.error-arrow-right {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-left: 15px solid #27836c;
+    position: absolute;
+    z-index: 2;
+    left: 791px;
+    top: 201px;
 }
 
 
 
-/* .error-arrow-shadow {
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid rgb(136, 54, 54);
-    left: 140.1px;
-    top: 13px;
-    z-index: 1;
-} */
-
-.box-1 + div {
-    visibility: hidden;
+.fname-focus-invalid:after {
+    content: "What's your name?"; 
     position: absolute;
     background-color: #27836c;
     border: rgb(16, 59, 48) 1px solid;
@@ -50,29 +64,115 @@
     font-family: SF Pro Display;
 }
 
-.box-1.Invalid:focus + div {
-    visibility: visible;
+.lname-not-focus-invalid:before {
+    position: absolute;
+    content: "!";
+    background: #489e7f;
+    border-radius: 50%;
+    text-align: center;
+    padding: 3px;
+    box-sizing: border-box;
+    color: white;
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    top: 207px;
+    right: 239px;
 }
 
-.box-1.Invalid:not(:focus) ~ span {
-    visibility: visible;
+.lname-focus-invalid:after{
+    content: "What's Your Name?"; 
+    position: absolute;
+    background-color: #27836c;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    width: 115px;
+    left: 1050px;
+    top: 245px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    font-family: SF Pro Display;
+}
+.email-focus-invalid:after{
+    text-align: left; 
+    content:"You'll use this when you log in and if you ever need to reset your password";
+    position: absolute;
+    background-color: #27836c;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    width: 300px;
+    left: 470px;
+    top: 245px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    font-family: SF Pro Display;
 }
 
-.box-2.Invalid:focus + div {
-    visibility: visible;
+.email-not-focus-invalid:before {
+    text-align: left;
+    position: absolute;
+    right: 240px;
+    top: 254px;
+    content: "!";
+    background: #489e7f;
+    border-radius: 50%;
+    text-align: center;
+    padding: 3px;
+    box-sizing: border-box;
+    color: white;
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
 }
 
-.box-2.Invalid:not(:focus) ~ span {
-    visibility: visible;
+.password-focus-invalid:after{
+    content: "Enter a combination of at least six numbers, letters and punctuations marks (like ! and &)."; 
+    position: absolute;
+    background-color: #27836c;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    width: 300px;
+    left: 465px;
+    top: 290px;
+    padding: 12px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    border-radius: 2px;
+    font-family: SF Pro Display;
 }
 
-.box-4.Invalid:focus ~ div {
-    visibility: visible;
+.password-not-focus-invalid:after {
+    position: absolute;
+    right: 240px;
+    top: 302px;
+    content: "!";
+    background: #489e7f;
+    border-radius: 50%;
+    text-align: center;
+    padding: 3px;
+    box-sizing: border-box;
+    color: white;
+    height: 22px;
+    width: 22px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
 }
 
-.box-5.Invalid:focus ~ div {
-    visibility: visible;
-}
 
 .box-1 {
     font-family: SF Pro Display;
@@ -88,19 +188,8 @@
 
 
 
-.error-arrow-right {
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-left: 15px solid #27836c; 
-    position: absolute;
-    z-index: 2;
-    left: 134px;
-    top: 4px;
-}
-
 .email-error-arrow-right {
+    visibility: hidden;
     width: 0;
     height: 0;
     border-top: 15px solid transparent;
@@ -108,8 +197,8 @@
     border-left: 15px solid #27836c;
     position: absolute;
     z-index: 2;
-    left: 344px;
-    top: 4px;
+    left: 794px;
+    top: 252px;
 }
 
 .box-2 {
@@ -121,28 +210,12 @@
     border-radius: 5px;
     font-size: 20px;
     position: relative;
-    top: 0px;
-    left: 174px;
+    top: 1px;
+    left: 196px;
 }
 
-.box-2 + div {
-    visibility: hidden;
-    position: absolute;
-    background-color: #27836c;
-    border: rgb(16, 59, 48) 1px solid;
-    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
-    z-index: 2;
-    width: 115px;
-    left: 1048px;
-    top: 251px;
-    padding: 12px;
-    font-size: 12px;
-    color: white;
-    text-align: center;
-    border-radius: 2px;
-    font-family: SF Pro Display;
-}
 .ln-error-arrow-right {
+    visibility: hidden;
     width: 0;
     height: 0;
     border-top: 15px solid transparent;
@@ -150,13 +223,15 @@
     border-left: 15px solid #27836c;
     position: absolute;
     z-index: 26;
-    left: 63px;
-    top: -20px;
+    left: 1111px;
+    top: 229px;
     transform: rotate(-90deg);
 }
 
 
+
 .pw-error-arrow-right {
+    visibility: hidden; 
     width: 0;
     height: 0;
     border-top: 15px solid transparent;
@@ -164,46 +239,18 @@
     border-left: 15px solid #27836c;
     position: absolute;
     z-index: 26;
-    left: 346px;
-    top: 3px;
+    left: 786px;
+    top: 291px;
     transform: rotate(-360deg);
 }
 
 
-.box-4 + div {
-    visibility: hidden;
-    position: absolute;
-    background-color: #27836c;
-    border: rgb(16, 59, 48) 1px solid;
-    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
-    z-index: 2;
-    left: 442px;
-    top: 243px;
-    top: 244px;
-    padding: 12px;
-    font-size: 12px;
-    color: white;
-    text-align: left;
-    border-radius: 2px;
-    font-family: SF Pro Display;
-    width: 322px;
-}
 
-.box-5 + div {
-    visibility: hidden;
-    position: absolute;
-    background-color: #27836c;
-    border: rgb(16, 59, 48) 1px solid;
-    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
-    z-index: 2;
-    width: 328px;
-    left: 442px;
-    top: 294px;
-    padding: 12px;
-    font-size: 12px;
-    color: white;
-    text-align: left;
-    border-radius: 2px;
-    font-family: SF Pro Display;
-}
 
+
+
+
+
+.genm {
+    margin-left: 10px;
+}

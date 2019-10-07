@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-
-import { logout } from '../../actions/session_actions';
 import ProfilePage from './profile_page';
+import { updateUserAction, fetchUser } from '../../actions/user_actions'
+
 
 const mapStateToProps = ({ session, entities: { users } }) => {
     return {
@@ -9,8 +9,12 @@ const mapStateToProps = ({ session, entities: { users } }) => {
     };
   };
 
-const mapDispatchToProps = ({
- 
+
+const mapDispatchToProps = dispatch => ({
+  updateUserAction: (userId, formData) => dispatch(updateUserAction(userId, formData)),
+  fetchUser: (userId) => dispatch(fetchUser(userId))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProfilePage)
+
+

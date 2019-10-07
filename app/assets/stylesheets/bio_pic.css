@@ -1,0 +1,89 @@
+.bio-container {
+    width: 335px;
+    height: 570px;
+    background-color: white;
+    border: 1px solid #d6e8e6;
+    margin-top: 15px;
+}
+
+.globe-icon {
+    height: 20px;
+    width: 20px;
+    border: 4px solid #2a8e7c;
+    border-radius: 50%;
+    margin-right: 7px;
+}
+
+.intro {
+    height: fit-content;
+    margin-top: 16px;
+    margin-left: 16px;
+    align-items: center;
+    display: flex;
+    margin-right: 10px;
+    font-family: SF Pro Display;
+    font-size: 17px;
+}
+
+.bio 
+    {
+        margin-top: 15px;
+        width: 285px;
+        height: 40px;
+        font-size: 12px;
+        font-family: sans-serif;
+        margin-left: 33px;
+    }
+    .edit-bio {
+        margin-top: 11px;
+        width: 285px;
+        height: 27px;
+        background-color: #efefef;
+        margin-left: 24px;
+        border: 1px solid #c7c7c7;
+        /* font-weight: 100; */
+    }
+
+    .bioedit {
+        font-weight: 600;
+        color: #464646;
+    }
+
+    .house, .geo, .clock {
+        width: 15px;
+        height: 15px;
+        margin-right: 5px;
+        margin-top: -1px;
+    }
+
+
+.h, .g, .c {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 12px;
+    font-family: sans-serif;
+    color: #3a3a3a;
+}
+
+.image-1 {
+    object-fit: cover;
+    width: 291px;
+    height: 210px;
+    margin: 3px;
+}
+
+.image-2, .image-3, .image-4 {
+    object-fit: cover;
+    width: 93px;
+    height: 93px;
+    margin: 3px;
+}
+
+
+.user-info {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 12px;
+    width: 285px;
+    margin-left: 24px;
+}

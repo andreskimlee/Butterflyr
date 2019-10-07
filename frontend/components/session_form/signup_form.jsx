@@ -1,5 +1,6 @@
 import React from 'react';
-
+import { merge } from "lodash"
+// questions to ask how to delete key. 
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
@@ -7,23 +8,21 @@ class SignUpForm extends React.Component {
       first_name: '',  
       last_name: '',
       email: '',
-      DOB: { DOB: {month: '', day: '', year: ' '}},
+      DOB: { month: '', day: '', year: ' '},
       gender:'',
       password:'',
+      inputs: { fname: { focus:"", blur:"" }, lname: { focus:"", blur:"" }, password: { focus:"", blur:"" }, email: { focus:"", blur:"" } }
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dateUpdate = this.dateUpdate.bind(this);
     this.touch = this.touch.bind(this); 
+    this.validate = this.validate.bind(this) 
   }
 
   update(field) {
-    if (this.state[field].length < 1 ) {
-
-    } 
     return e => this.setState({
       [field]: e.target.value
     });
-    
   }
 
 
@@ -43,14 +42,24 @@ class SignUpForm extends React.Component {
   e.target.classList.remove("Invalid");
   }
 
-  validate(e) { 
-    e.preventDefault
-    if (e.target.value.length < 1) {
-      e.target.classList.add("Invalid")
-    } else {
-      e.target.classList.remove("Invalid")
-    }
-
+  
+  validate(field) { 
+    // this.setState({ someProperty: { ...this.state.someProperty, flag: false} }); this.state.inputs
+    return e => {  // merge({} this.state.input, { [field]: { [e.type]: "focus-invalid" })
+      console.log(this.state) 
+      // debugger
+      if (e.type === "focus" && e.target.value.length < 1) {
+        const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "focus-invalid", ["blur"]:"" }})   
+        this.setState({inputs: newInput})
+    } else if (e.type === "blur" && e.target.value.length < 1) {
+        const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "not-focus-invalid", ["focus"]: "" }, }, )
+        // newInput.inputs[field]['focus'] = "" 
+        this.setState({inputs: newInput})
+    } else if (e.target.value.length > 1) {
+        const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "" }})
+        this.setState({inputs: newInput})
+      
+    }}
   }
 
   handleSubmit(e) {
@@ -61,13 +70,13 @@ class SignUpForm extends React.Component {
     str += user['DOB'].month; 
     str += user['DOB'].day; 
     str += user['DOB'].year; 
-    user['DOB'] = str 
+    user['DOB'] = str  
+    delete user.inputs
+    debugger
+   
     this.props.processForm(user)
   }
 
-  errorsDisplay () {
-   
-  }
 
   dateUpdate(field) {
       
@@ -75,7 +84,7 @@ class SignUpForm extends React.Component {
   } 
 
   render() { 
-   
+    // debugger 
     return (
       <div className="sign-up-form">
         <form onSubmit={this.handleSubmit} >
@@ -88,15 +97,15 @@ class SignUpForm extends React.Component {
                     value={this.state.firstName}
                     onChange={this.update('first_name')}
                     placeholder="  First Name"
-                    onInput={this.touch}
-                    onClick={this.clear}
-                    onClick={this.validate}/> 
-                <div>
-                    What's your name?
-                    <div className="error-arrow-right"></div>    
-                    <div className="error-arrow-right error-arrow-shadow"></div>    
+                    onFocus={this.validate("fname")}
+                    onBlur={this.validate("fname")}
+                    /> 
+                <div className="error-arrow-right"></div> 
+                <div className={`fname-${this.state.inputs.fname.focus}`}>
+                       
+         
                 </div>
-                <i className="exclamation-mark"></i>
+                <i className={`fname-${this.state.inputs.fname.blur}`}></i>
               </span>
            
               <span className="user-errors-lname">
@@ -104,14 +113,16 @@ class SignUpForm extends React.Component {
                 value={this.state.lastName}
                 onChange={this.update('last_name')}
                 placeholder="   Last Name"
-                onClick={this.validate}
+                onFocus={this.validate("lname")}
+                onBlur={this.validate("lname")}
               />
-              <div>
-                    What's your name?
-                    <div className="ln-error-arrow-right"></div>    
+              <div className="ln-error-arrow-right"></div>  
+              <div className={`lname-${this.state.inputs.lname.focus}`}>
+        
+                      
                     <div className="ln-error-arrow-right error-arrow-shadow"></div>    
                 </div>
-                <i className="exclamation-mark"></i>
+                <i className={`lname-${this.state.inputs.lname.blur}`}></i>
                 </span>
               </div>
 
@@ -123,15 +134,16 @@ class SignUpForm extends React.Component {
                 onChange={this.update('email')}
                 placeholder="   Email"
                 style={{width: 398, height: 35}}
-                onClick={this.validate}
+                onFocus={this.validate("email")}
+                onBlur={this.validate("email")}
               />
-              <div>
-                    You'll use this when you log in and if you ever 
-                    need to reset your password 
-                    <div className="email-error-arrow-right"></div>    
+               <div className="email-error-arrow-right"></div>
+              <div className={`email-${this.state.inputs.email.focus}`}>
+                
+                       
                     <div className="email-error-arrow-right error-arrow-shadow"></div>    
                 </div>
-                <i className="exclamation-mark"></i>
+                <i className={`email-${this.state.inputs.email.blur}`}></i>
               </div>
               
              </div>
@@ -146,13 +158,16 @@ class SignUpForm extends React.Component {
                 onClick={this.validate}
                 required
                 pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" 
+                onFocus={this.validate("password")}
+                onBlur={this.validate("password")}
               />
-              <div>
-                    Enter a combination of at least 6 numbers, letters and punctuation marks (like ! and &). 
+              <div className="pw-error-arrow-right"></div>
+              <div className={`password-${this.state.inputs.password.focus}`}>
+   
                     <div className="pw-error-arrow-right"></div>    
                     <div className="pw-error-arrow-right error-arrow-shadow"></div>    
                 </div>
-                <i className="exclamation-mark"></i> 
+                <i className={`password-${this.state.inputs.password.blur}`}></i> 
             </label>
             <p id="birth">Birthday</p>
             <div className="birthdate">

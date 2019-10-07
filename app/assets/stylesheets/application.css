@@ -252,13 +252,12 @@ body {
     margin-top: 18px; 
  }
 
- .popup {
-    display: none;
-    background-color: rgb(9, 125, 120);
-    font-size: 15px;
+ /* .popup {
+    
+    background-color: #27836c;
+    font-size: 12px;
     top: 61px;
     left: 835px;
-    font-family: Klavika;
     position: absolute;
     width: 280px;
     color: white;
@@ -266,7 +265,12 @@ body {
     text-align: center;
     height: 16px;
     border-radius: 9px;
-}
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    z-index: 2;
+    text-align: center;
+    border-radius: 2px;
+    font-family: SF Pro Display;
+} */
 
 .demo-button {
     width: 50px;

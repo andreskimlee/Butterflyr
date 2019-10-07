@@ -1,6 +1,6 @@
 .Nav-Bar {
     display: flex; 
-    justify-content: space-evenly;
+    justify-content: center;
     height: 41px; 
     background: linear-gradient(#73aca1 ,#1ba187);
     border-bottom: 1px solid #356157;
@@ -9,24 +9,121 @@
 }
 
 
+
 .butterfly-Logo {
-    width: 11%;
+    width: 6%;
+    /* height: 11%; */
     margin-left: 68px;
-    margin-top: 0px;
+    margin-top: 3px;
 }
 
 
-.CoverPhoto {
-    width: 850px;
-    height: 315px;
-    
-}
 
 .TopBox {
     display: flex;
-    flex-direction: column; 
-    justify-content: center;
+    flex-direction: column;     
     width: 850px;
     height: 360px; 
-    margin:0px; 
+    margin:auto;  
+    height:1000px;   
 }
+
+.drop-down-btn {
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    border-left: 7px solid #105a48;
+    z-index: 2;
+    transform: rotate(90deg);
+    /* margin-top: 10px; */
+    align-self: center;
+    margin-left: 22px;
+}
+
+.drop-down-btn:hover {
+    border-left: 7px solid #dcf0eb;
+    cursor: hand; 
+    cursor: pointer;
+}
+
+
+.visible {
+    width: 83px;
+    height: 20px;
+    transform: rotate(-90deg);
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    border: 1px solid black;
+    position: absolute; 
+    top: -10px;
+    left: -20px;
+    color: black;
+
+}
+
+.visible:hover {
+    background-color: teal;
+}
+
+.visible:after {
+    content: "Log Out"; 
+
+
+}
+
+.profile-small {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 23px;
+    height: 23px;
+    align-self: center;
+    margin-right: 7px;
+    
+}
+
+.showpage {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    width: 89px;
+    height: 25px;
+    /* margin-top: 8px; */
+    align-self: center;
+}
+
+.home {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    width: 41px;
+    height: 25px;
+    /* margin-top: 8px; */
+    align-self: center;
+    /* margin-left: 9px; */
+    padding-left: 9px;
+}
+
+.showpage:hover, .home:hover {
+    background-color: #319a81;
+    
+}
+
+
+
+.Name {
+    font-size: 13px;
+    margin-top: 2px;
+    border-right: 1px solid #57908b;
+    padding-right: 16px;
+    align-self: center;
+}   
+
+.homeLink {
+    font-size: 13px;
+    margin-top: 2px;
+    border-right: 1px solid #57908b;
+    padding-right: 9px;
+    align-self: center;
+}   
+

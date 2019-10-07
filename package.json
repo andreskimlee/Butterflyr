@@ -6,6 +6,7 @@
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
+    "immutability-helper": "^3.0.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.1",
     "react-dropzone": "^10.1.9",

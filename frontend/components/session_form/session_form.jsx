@@ -9,7 +9,7 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlebutton = this.handlebutton.bind(this); 
-    this.showErrors.bind = this.showErrors.bind(this); 
+    
     
   }
 
@@ -36,20 +36,16 @@ class SessionForm extends React.Component {
     e.preventDefault();
     this.state.email = 'abc@gmail.com'
     this.state.password = 'password'
+     
     this.handleSubmit()
 
   }
 
-  showErrors() {
-    const popup = document.getElementsByClassName("popup")
-    if (popup.length < 1 ) return popup.style.display = "block" 
-    debugger
-  }
 
 
   renderErrors() { 
     return(
-      <ul className='popup'> 
+      <ul> 
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error} 
