@@ -10,7 +10,7 @@
 #  gender          :string           not null
 #  last_name       :string           not null
 #  password_digest :string           not null
-#  prof_photo_url  :string
+#  prof_photo_url  :string                          //edit out dont need. we do need a photos [] 
 #  session_token   :string           not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

@@ -42,6 +42,7 @@ class ProfilePage extends React.Component {
     }
                     
     render () {
+        debugger 
         return (
             <div className="TopBox">
                  <img className="CoverPhoto" src="https://www.jakpost.travel/wimages/large/134-1340745_pickle-rick-hd-wallpaper-hey-morty-im-a.png" alt=""/>

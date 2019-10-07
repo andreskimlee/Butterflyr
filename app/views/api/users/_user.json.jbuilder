@@ -1,7 +1,8 @@
-debugger
+# debugger
 json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_photo_url, :gender
  
 if user.prof_photo.attached? 
+    debugger 
     json.prof_photo url_for(user.prof_photo)
 end
 

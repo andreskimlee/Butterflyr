@@ -11,13 +11,13 @@ class Api::UsersController < ApplicationController
     end
       
     def show 
-        debugger
+        # debugger
         @user = User.find(params[:id])
         render "api/users/show"
     end
 
     def update
-        debugger
+        # debugger
         @user = User.find(params[:id])
         if @user.update_attributes(user_params)
         render "api/users/show"
