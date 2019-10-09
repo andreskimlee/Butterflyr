@@ -12,11 +12,13 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import GreetingContainer from './greeting/greeting_container';
 import ProfilePageContainer from './profile_page/profile_page_container'
 import AboutPage from './profile_page/about_page'
+import Modal from "../components/modal/modal"
 
 
 
 const App = () => (
   <div>
+    <Modal/> 
     <Route  path="/" component={GreetingContainer}/>
     <ProtectedRoute path="/users/:userId" component={ProfilePageContainer}/>
     </div> 

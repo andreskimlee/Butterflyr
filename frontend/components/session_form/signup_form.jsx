@@ -72,7 +72,7 @@ class SignUpForm extends React.Component {
     str += user['DOB'].year; 
     user['DOB'] = str  
     delete user.inputs
-    debugger
+    // debugger
    
     this.props.processForm(user)
   }

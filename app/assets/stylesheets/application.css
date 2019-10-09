@@ -329,6 +329,82 @@ input:focus {
 }
 
 
+/* home page feed!!!! */
+
+.home-page-containers {
+    display: flex; 
+    justify-content: center; 
+}
+
+.birthday-friend-column {
+    width: 310px;
+    height: 90px;
+    background-color: white;
+    margin-top: 17px;
+    border: 1px solid #dddfe2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: sans-serif;
+}
+
+.sponsored-ads {
+    width: 310px; 
+    height:555px;
+    background-color: white;
+    margin-top: 10px; 
+    font-family: sans-serif;
+    color: #616161;
+
+}
+
+.ad-2-a {
+    width: 310px; 
+    height:300px;
+    background-color: white;
+    margin-top: 10px; 
+    font-family: sans-serif;
+    color: #616161;
+
+}
 
 
+
+.request-tab {
+    width: 310px;
+    height: auto; 
+    margin-left: 7px;
+}
+
+.picklecostume {
+    object-fit: cover; 
+    width: 284px;
+    height: 150px; 
+    margin-left: 11px;
+    margin-top: 11px;
+}
+
+.azy {
+    width: fit-content;
+}
+
+.adstuff {
+    font-family: sans-serif;
+    color: #616161;
+    margin-left: 11px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    margin-top: 11px;
+    font-size: 13px; 
+    width:284px;
+
+}
+
+.sponsor-text, .ad-2-text {
+    font-size: 13px;
+    color: #199c7b;
+    margin-top: 11px;
+    margin-left: 11px; 
+}
 

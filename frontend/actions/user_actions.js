@@ -9,7 +9,7 @@ export const receiveUser = user => ({
 
 
 export const fetchUser = id => dispatch => {
-    debugger 
+    // debugger 
     return USERUtil.fetchUser(id)
         .then(user => dispatch(receiveUser(user)))
 }

@@ -13,10 +13,10 @@
 .butterfly-Logo {
     width: 6%;
     /* height: 11%; */
-    margin-left: 68px;
+    /* margin-left: 68px; */
     margin-top: 3px;
+    margin-right: 120px;
 }
-
 
 
 .TopBox {
@@ -59,8 +59,12 @@
     top: -10px;
     left: -20px;
     color: black;
-
+    
 }
+
+ 
+
+
 
 .visible:hover {
     background-color: teal;
@@ -69,8 +73,15 @@
 .visible:after {
     content: "Log Out"; 
 
-
 }
+
+
+
+
+
+
+
+
 
 .profile-small {
     object-fit: cover;

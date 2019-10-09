@@ -1,0 +1,15 @@
+
+    .present, .calendar {
+        width: 20px;
+        height: 20px;
+        /* margin: -3px; */
+        margin-left: 25px;
+        margin-right: 10px;
+    }
+
+
+.axx, .ayy {
+    text-size-adjust: 12px; 
+    font-weight: 700px;
+    color: rgb(68, 150, 129)
+}

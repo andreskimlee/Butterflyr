@@ -2,10 +2,13 @@
 json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_photo_url, :gender
  
 if user.prof_photo.attached? 
-    debugger 
+    # debugger 
     json.prof_photo url_for(user.prof_photo)
 end
 
+if user.cover_photo.attached?
+    json.cover_photo url_for(user.prof_photo) 
+end 
 # t.string "first_name", null: false
 # t.string "last_name", null: false
 # t.string "email", null: false

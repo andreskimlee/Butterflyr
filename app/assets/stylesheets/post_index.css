@@ -1,0 +1,131 @@
+.post-index-container {
+    width: 500px; 
+    height: auto; 
+    background-color: white; 
+    margin-top: 13px;
+    margin-left: 13px;
+    border: 1px solid #dddfe2;
+    display: flex;
+    flex-direction: column; 
+}
+
+.photo-on-post {
+    object-fit: cover;
+    width: 500px;
+    height: 300px;
+    
+}
+
+
+
+.prof-name-ind {
+    display: flex;
+    height: 50px;
+}
+
+.prof-photo-ind {
+    object-fit: cover; 
+    border-radius: 50%;
+    width: 40px;
+    height: 40px; 
+    margin: 13px;
+}
+
+.comment-like-container {
+    display: flex; 
+    flex-direction: row;
+    border-top: 1px solid #dddfe2;
+    width: 468px;
+    margin-left: 14px;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.write-comm {
+    display: flex;
+    /* margin: 10px; */
+    margin: 10px; 
+}
+.write-comm-prof {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px; 
+    
+}
+
+.like-button {
+    height: 20px;
+    width: 20px; 
+}
+
+.post-date-name {
+    display:flex;
+    flex-direction: column;
+    margin-left: 0px;
+    margin-top: 12px;
+}
+
+.author-name {
+    font-family: sans-serif;
+    font-weight: 500;
+    color: #2a8e7c;
+    margin-top: 4px;
+}
+
+.date-made {
+    
+    color: #636972;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 3px;
+}
+
+.body-of-post { 
+    color: #797f86; 
+    margin: 10px;
+    font-family: sans-serif;
+
+}
+
+.commenticon {
+    width: 20px; 
+    height: 20px; 
+}
+
+.comment-text, .likes { 
+        font-family: sans-serif;
+        font-weight: 500;
+        color: #797f86;
+        margin-top: 2px;
+        margin-left: 5px;
+    
+}
+
+.ctii, .cti {
+    display: flex;
+    margin-left: 65px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.write-comment-box {
+    margin-left: 8px;
+    border-radius: 10px;
+    border: 1px solid #c5c5c5;
+    background-color: #f2f3f5;
+    width: 437px;
+}
+
+.write-comment-box::placeholder {
+    padding-left: 10px;
+    font-family: sans-serif;
+    font-size: 13px; 
+    color: #a5a5a5
+    
+
+}
+
+.like-button:hover {
+    
+}

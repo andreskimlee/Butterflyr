@@ -3,24 +3,22 @@ import {withRouter} from 'react-router-dom'
 import {createPost, getUsersPosts } from '../../actions/posts_actions'
 import { connect } from "react-redux"
 import UserPosts from './user_posts'
-
+import { openModal, closeModal } from '../../actions/modal_actions';
 
 class CreatePost extends React.Component {
     constructor(props) {
     super(props) 
     this.state = {
-            body: "hello",
-            author_id: 2,
+            body: "",
+            author_id: this.props.currentUser.id,
+            photoFile: null,
         }
-    // console.log(this.props)
     this.update = this.update.bind(this) 
-    console.log(this.state)
+    // console.log(this.props)
+    this.props = props 
     }
 
-    componentDidMount() {
-        // console.log(this.props) 
-        // this.props.getUsersPosts(this.props.match.params.userId)
-    }
+
 
     update(field) {
         return e => this.setState({
@@ -30,8 +28,19 @@ class CreatePost extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault() 
-        debugger 
-        this.props.createPost(this.state.author_id, this.state) 
+        // debugger 
+        const formData = new FormData(); // formdata is sort of holding 
+        formData.append('post[photo]', this.state.photoFile) // key of photo... 
+        formData.append('post[body]', this.state.body)
+        formData.append('post[author_id]', this.state.author_id)
+        this.props.createPost(this.props.currentUser.id, formData) 
+    }
+
+    handleFile(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        this.setState({photoFile: e.currentTarget.files[0]})
     }
 
 
@@ -47,28 +56,37 @@ class CreatePost extends React.Component {
                                 </div>
                                 <div className="textbox-container">
                                 <img className="textbox-prof" src="https://miro.medium.com/max/3840/1*1QJzJiri8js9PqwqlcOOCw.png"/>
-                                <input className="create-textbox" onChange={this.update("body")} type="textarea" placeholder="What's on your mind?"/>
+                                <input onClick={() => this.props.openModal("createPost")} className="create-textbox" onChange={this.update("body")} type="textarea" placeholder="What's on your mind?"/>
+                                
+                                <div className="bottom-container">
+                                <input id="file" name="file" type="file" onChange={this.handleFile.bind(this)} className="upload-photo-post"/>
+                                <label htmlFor="file"><img className ="photo-pic-up hvr-sink" src="https://image.flaticon.com/icons/svg/185/185293.svg" /><div className="upt" > Photo </div></label>
                                 </div>
-                                <div className="post-bottom-container">
-                                    <div className="photo-sub">Photos</div>
+            
                                 </div>
-                            </form>
                             
+                            </form>             
                        </div>
          
         )
     }
 }
 const mapStateToProps = (state) => {
-    debugger 
+     
     return {
+      modal: state.modal, 
       currentUser: state.entities.users[state.session.id], 
     };
   };
   
   const mapDispatchToProps = dispatch => ({
-    createPost: (userId, post) => dispatch(createPost(userId, post)),
-    getUsersPosts: (userId) => dispatch(getUsersPosts(userId))
+    createPost: (userId, formData) => dispatch(createPost(userId, formData)),
+    closeModal: () => dispatch(closeModal()),
+    openModal: (abc) => dispatch(openModal(abc))   
+    // getUsersPosts: (userId) => dispatch(getUsersPosts(userId))
   })
   
   export default connect(mapStateToProps,mapDispatchToProps)(CreatePost)
+
+
+

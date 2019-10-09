@@ -6,13 +6,16 @@ display: flex;
 .create-post {
     margin-top: 15px;
     margin-left: 14px;
-    width: 518px;
+    width: 500px;
+
     height: 154px;
     background-color: white;
     display: flex;
     flex-direction: column;
-
+    border: 1px solid #dddfe2;
 }
+
+
 
 .top-create {
     height: 33px; 
@@ -21,7 +24,7 @@ display: flex;
 
 .textbox-container {
     margin-top: 15px;
-    border-bottom: 1px solid #e9ebee;   
+       
 }
 
 .textbox-prof {
@@ -59,6 +62,15 @@ display: flex;
     font-family: sans-serif;
     /* color: black; */
 }
+
+.create-textbox::placeholder {
+    position: relative;
+    top: -10px; 
+    left: 0px; 
+    color: #b1b1b1;
+    font-size: 15px; 
+    font-family: sans-serif;
+}
 .pencil {
     width: 25px;
     height:20px; 
@@ -66,18 +78,7 @@ display: flex;
 
 
 
-.photo-sub {  
-    font-family: sans-serif;
-    border-radius: 1px solid black;
-    border: 1px solid white;
-    width: 80px;
-    height: 24px;
-    text-align: center;
-    border-radius: 10px;
-    background-color: #f5f6f7;
-    font-size: 12px;
-    font-weight: 600;
-}
+
 
 .post-bottom-container {
     margin-top: 13px;
@@ -85,4 +86,52 @@ display: flex;
     font-family: sans-serif;
     color: #535766;
     height: 37px;
+}
+
+.upload-photo-post {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    
+}
+
+.upload-photo-post + label {
+    font-family: sans-serif;
+    border: 1px solid white;
+    width: 90px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #f5f6f7;
+    font-size: 12px;
+    font-weight: 400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    margin-top: 6px;
+}
+
+.upload-photo-post:focus + label,
+.upload-photo-post + label:hover {
+    background-color: rgb(170, 170, 170);
+    cursor: pointer; 
+}
+
+.upt {
+    margin: 10px; 
+}
+
+.photo-pic-up {
+    width: 20px;
+    height: 20px; 
+} 
+
+.bottom-container {
+    border-top: 1px solid #dbdbdb;
+    width: 480px;
+    margin-left: 10px;
+    margin-top: 5px;
 }
