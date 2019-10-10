@@ -13,8 +13,8 @@ class Api::PostsController < ApplicationController
   end
 
   def index 
-    # debugger 
-    @posts = User.find(params[:user_id]).posts
+    @user  = User.find(params[:user_id])
+    @posts = @user.posts
     render :index
   end 
 
@@ -30,7 +30,7 @@ class Api::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    render :show 
+    render json: {id: @post.id}
   end
   
 

@@ -7,75 +7,77 @@ import CreatePost from './create_post'
 import { connect } from 'react-redux'   
 import { fetchUser } from '../../actions/user_actions'
 import { getUsersPosts, editUsersPost, deleteUsersPost } from '../../actions/posts_actions'
+import { requestFriendship } from "../../actions/friendship_actions"
 import  UsersPosts  from './user_posts'
 
 class ProfilePage extends React.Component {
     constructor(props) {
         super(props) 
-        this.state = { photoFile: null, dropDown: "false", posts: "", Fetchuser: ""} // because set to null put a if condition to append only if not null. 
+        this.state = { photoFile: null, dropDown: "false", friendStatus: "true", profPic: "", coverPhoto:""} // because set to null put a if condition to append only if not null. 
         this.props = props 
-        this.handleCoverPhotoSubmit = this.handleCoverPhotoSubmit.bind(this) 
-        console.log(this.props)
+    
+        debugger 
     }   
 
     componentDidMount() {
-       this.props.getUsersPosts(this.props.match.params.userId).then(posts => this.setState({ posts: posts}))
-       debugger 
-       this.props.fetchUser(this.props.match.params.userId)
-       debugger 
+       this.props.getUsersPosts(this.props.match.params.userId).then(({user}) => this.setState({profPic: user[this.props.match.params.userId].prof_photo, coverPhoto: user[this.props.match.params.userId].cover_photo }) )
     }
 
-   
-   
-    editCoverPhoto(e) {
-        e.preventDefault()
-        this.setState({photoFile: e.currentTarget.files[0]})
-        
+    sendFriendshipRequest (e) {
+        this.props.requestFriendship({requester_id: 16, requested_id: 2, status: "pending"})    
     }
 
+    // friendship {requesting, receieved, status}
 
-    handleCoverPhotoSubmit(e) {
-        e.preventDefault()
-        // debugger 
-        e.type === "focus" ? this.setState({ dropDown: "true"}) : this.setState({ dropDown: "false"})
-    }
-
-    handleProfPhotoSubmit(e) {
-        e.preventDefault() 
-
-    }
+    //(:requester_id, :requested_id, :status)
 
     handleFile(e) {
         e.stopPropagation();
         e.preventDefault();
         const formData = new FormData();
-        if (!e.currentTarget.files[0]) {  
-        formData.append('user[prof_photo]', this.state.photoFile) //  
-        }
-        this.props.updateUserAction(this.state.user.id, formData)
-        this.setState({photoFile: e.currentTarget.files[0]})
+        formData.append('user[prof_photo]', e.currentTarget.files[0]) //  
+        this.props.updateUserAction(this.props.currentUser.id, formData)
     }
 
+    handleSubmitCover(e) {
+        debugger
+        e.stopPropagation();
+        e.preventDefault();
+        const formData = new FormData();
+        if (!e.currentTarget.files[0]) {        
+        formData.append('user[cover_photo]', e.currentTarget.files[0]) //  
+        this.props.updateUserAction(this.props.currentUser.id, formData)
+        }
+         
+        
+    }
     
                     
     render () {
         let profPhoto; 
-        let renderPosts; 
-        debugger 
+        let renderPosts;  
             if (typeof this.props.posts !== "undefined" ) {
-                    renderPosts = () => Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts key={idx} post={post}/>) )}
-            if (this.state.Fetchuser !== "" ) {
-                debugger 
-                profPhoto = this.state.user.user.prof_photo; 
+                    renderPosts = () => Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={this.props.posts.user}/>) )}
+            if (typeof this.props.user !== 'undefined') {
+                profPhoto = this.props.user[this.props.match.params.userId].prof_photo 
             }
+        
+        // if (this.props.currentUser.id === this.props.user[this.props.match.params.userId] ) {
+        //     this.setState({friendStatus:"false"}) } 
+        // else {
+        //     this.setState({friendStatus:"true"}) 
+        // }
+
 
         return (
             
             <div className="TopBox">
                  <img className="CoverPhoto" src="https://www.jakpost.travel/wimages/large/134-1340745_pickle-rick-hd-wallpaper-hey-morty-im-a.png" alt=""/>
+                                <div onClick={this.sendFriendshipRequest.bind(this)} className={`friendButton-${this.state.friendStatus}`}> <img className="addfriendicon" src="https://banner2.kisspng.com/20180901/otz/kisspng-computer-icons-scalable-vector-graphics-like-butto-profile-addfriend-svg-png-icon-free-download-519-5b8b4a5af052e8.3625273415358551949844.jpg"/>Add Friend</div>
                     <div>
-                    <div tabIndex={3} onFocus={this.handleCoverPhotoSubmit} onBlur={this.handleCoverPhotoSubmit} className="upload-cover-photo hvr-pulse-grow">
+                    <div className="upload-cover-photo hvr-pulse-grow">
                         <div className="container-up">
+                            <input onChange={this.handleSubmitCover.bind(this)} className= "hoo" type="file"/>
                         <img className="camera-icon" src="https://icon-library.net/images/camera-icon-png-white/camera-icon-png-white-8.jpg" alt=""/>
                         <div>
                         <div className="text-cover-prof">Update Cover Photo</div>
@@ -83,12 +85,12 @@ class ProfilePage extends React.Component {
                         </div>
                         </div>
                     </div>
-                    <div className={`drop-down-upload-${this.state.dropDown}`}><div className="arrowup"></div>Upload Photo...</div>
+
 
                     </div> 
                     <div className="sectional">
                         <div className="outerborder"></div>
-                        <img className="main-prof-pic" src={profPhoto}/>    
+                        <img className="main-prof-pic" src={this.state.profPic}/>    
                         <div className="update-prof-pic">
                             <img className="camera-icon-prof" src="https://icon-library.net/images/camera-icon-png-white/camera-icon-png-white-8.jpg" />
                             <div className="up-text">Update</div>   
@@ -124,8 +126,9 @@ const mapStateToProps = (state) => {
     // debugger 
     return {
       currentUser: state.entities.users[state.session.id],
-      posts: state.posts.posts, 
+      posts: state.entities.posts, 
       friendships: state.friendships || [] 
+
     };
   };
 
@@ -135,8 +138,9 @@ const mapStateToProps = (state) => {
     getUsersPosts: (userId) => dispatch(getUsersPosts(userId)),
     editUsersPost: (post) => dispatch(editUsersPost(post)),
     deleteUsersPost: (post ) => dispatch(deleteUsersPost(post)),
-    fetchUser: userId => dispatch(fetchUser(userId))
-
+    fetchUser: userId => dispatch(fetchUser(userId)),
+    requestFriendship: friendship => dispatch(requestFriendship(friendship))
+    
   })
   
   export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ProfilePage))

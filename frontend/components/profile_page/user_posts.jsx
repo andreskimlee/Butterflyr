@@ -7,7 +7,7 @@ class UsersPost extends React.Component {
     super(props) 
     this.state = { dropDown: "falseDropDown" }
     this.props = props 
-    // console.log(props) 
+    console.log(props) 
   }
   
   handleDropDownFocus(e) {
@@ -15,11 +15,6 @@ class UsersPost extends React.Component {
       this.setState({ dropDown: "trueDropDown"})
   }
   
-  componentDidUpdate (prevProps) {
-      console.log(prevProps) 
-      console.log(this.props) 
-  }
-
 
   handleDropDownBlur(e) {
     e.preventDefault()
@@ -34,7 +29,7 @@ class UsersPost extends React.Component {
 
   handlePostDelete(e) {
     e.preventDefault()
-    debugger 
+    // debugger 
     this.props.deleteUsersPost(this.props.post.id).then(this.setState({dropDown: "falseDropDown"}))
     
   }
@@ -53,9 +48,9 @@ class UsersPost extends React.Component {
     <div className="post-index-container">
       <div className="post-top-portion">
         <div className="prof-name-ind">
-          <img className="prof-photo-ind" src="https://miro.medium.com/max/3840/1*1QJzJiri8js9PqwqlcOOCw.png" alt=""/>
+          <img className="prof-photo-ind" src={this.props.currentUser.prof_photo} alt=""/>
           <div className="post-date-name">
-            <div className="author-name">Rick</div>
+            <div className="author-name">{this.props.user}</div>
             <div className="date-made">{n}</div>
           </div>
           <div  id="drpdwn" tabIndex={3} onFocus={this.handleDropDownFocus.bind(this)} className="edit-post-button">...</div>
@@ -78,7 +73,7 @@ class UsersPost extends React.Component {
             </div>
           </div>
           <div className="write-comm">
-            <img className="write-comm-prof" src="https://miro.medium.com/max/3840/1*1QJzJiri8js9PqwqlcOOCw.png"/>
+            <img className="write-comm-prof" src={this.props.currentUser.prof_photo}/>
             <input className="write-comment-box" type="text" placeholder="Write a comment..."/>
           </div>
       </div>
@@ -91,7 +86,8 @@ const mapStateToProps = (state) => {
   // debugger 
   return {
     currentUser: state.entities.users[state.session.id],
-    posts: state.posts.posts 
+    posts: state.entities.posts, 
+    user: state.entities.user 
   };
 };
 

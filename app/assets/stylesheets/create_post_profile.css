@@ -58,18 +58,19 @@ display: flex;
     padding-left: 15px;
     padding-bottom: 3px;
     text-align: justify;
-    font-size: 16px;
+    font-size: 17px;
     font-family: sans-serif;
     /* color: black; */
 }
 
 .create-textbox::placeholder {
     position: relative;
-    top: -10px; 
+    top: 0px; 
     left: 0px; 
     color: #b1b1b1;
-    font-size: 15px; 
+    font-size: 17px; 
     font-family: sans-serif;
+    
 }
 .pencil {
     width: 25px;

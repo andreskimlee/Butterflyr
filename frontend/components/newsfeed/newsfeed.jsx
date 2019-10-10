@@ -13,3 +13,17 @@ componentDidMount() {
 }
 
 
+
+const mapStateToProps = ({ session, entities: { users } }) => {
+    return {
+      currentUser: users[session.id]
+    };
+  };
+  
+  const mapDispatchToProps = dispatch => ({
+    fetchAllPosts: () => dispatch(fetchAllPosts())
+  });
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar) 
+
+

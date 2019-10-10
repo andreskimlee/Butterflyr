@@ -115,10 +115,12 @@
     border: 1px solid #c5c5c5;
     background-color: #f2f3f5;
     width: 437px;
+    font-size: 12px;
+    text-indent: 11px;
 }
 
 .write-comment-box::placeholder {
-    padding-left: 10px;
+    margin-left: 10px;
     font-family: sans-serif;
     font-size: 13px; 
     color: #a5a5a5

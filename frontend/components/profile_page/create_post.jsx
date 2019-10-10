@@ -34,7 +34,7 @@ class CreatePost extends React.Component {
         }  
         formData.append('post[body]', this.state.body)
         formData.append('post[author_id]', this.state.author_id)
-        debugger 
+        // debugger 
         this.props.createPost(this.props.currentUser.id, formData).then(this.props.closeModal)
         
     }
@@ -58,7 +58,7 @@ class CreatePost extends React.Component {
                                     </div> 
                                 </div>
                                 <div className="textbox-container">
-                                <img className="textbox-prof" src="https://miro.medium.com/max/3840/1*1QJzJiri8js9PqwqlcOOCw.png"/>
+                                <img className="textbox-prof" src={this.props.currentUser.prof_photo}/>
                                 <input onClick={() => this.props.openModal("createPost")} className="create-textbox" onChange={this.update("body")} type="textarea" placeholder="What's on your mind?"/>
                                 
                                 <div className="bottom-container">

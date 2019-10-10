@@ -6,13 +6,13 @@ export default (state=[], action) => {
     switch (action.type) {
         case RECEIVE_POST:
             debugger   
-            const newPosts = merge({}, state["posts"], action.post.post)
+            const newPosts = merge({}, state, action.post)
             return newPosts; 
         case RECEIVE_ALL_POSTS: 
-            return merge({}, action.posts)
+            return merge({}, state, action.posts)
         case DELETE_POST: 
         const newState = merge({}, state);
-        delete newState.posts[Object.values(action.postId.post)[0]["id"]]
+        delete newState[action.id]
         return newState;
         default:
             return state;

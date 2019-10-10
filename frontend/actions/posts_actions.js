@@ -3,21 +3,25 @@ export const RECEIVE_POST = "RECEIVE_POST";
 export const RECEIVE_ALL_POSTS = "RECEIVE_ALL_POSTS"
 export const DELETE_POST = "DELETE_POST";
 
-export const receivePost = post => ({
+export const receivePost = ({post}) => ({
     type: RECEIVE_POST,
     post
 })
 
-export const deletePost = postId => ({
+export const deletePost = ({id}) => ({
     type: DELETE_POST,
-    postId
+    id
 })
 
 
-export const receiveAllPosts = posts => ({
+export const receiveAllPosts = ({ posts, user }) => {
+    // debugger 
+    return {
     type: RECEIVE_ALL_POSTS,
-    posts 
-})
+    posts, 
+    user
+ }
+}
 
 export const createPost = (userId, formData) => dispatch => {
     return POSTUtil.createPost(userId, formData)
