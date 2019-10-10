@@ -3,8 +3,7 @@ import * as USERUtil from "../util/user_api_util";
 
 export const receiveUser = user => ({
     type: RECEIVE_USER,
-    user
-});
+    user });
 
 
 

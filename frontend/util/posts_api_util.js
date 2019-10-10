@@ -19,7 +19,7 @@ export const fetchAllPosts = userId => {
 export const editPost = post => {
     return $.ajax({
         method: "PATCH",
-        url: `api/posts/${post.id}`,
+        url: `api/posts/${post}`,
         data: {post}
     })
 }
@@ -27,6 +27,6 @@ export const editPost = post => {
 export const deletePost = post => {
     return $.ajax({
         method: "DELETE",
-        url: `api/posts/${post.id}`
+        url: `api/posts/${post}`
     })
 }

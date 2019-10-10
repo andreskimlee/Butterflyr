@@ -1,17 +1,54 @@
 import React from 'react';
-function UsersPost(props) {
-  let postPhoto; 
-  console.log(props)
-  if (props.post.photo != null) {
-    postPhoto = <img className="photo-on-post" src={props.post.photo} alt=""/>
+import {connect} from "react-redux"
+import {deleteUsersPost} from '../../actions/posts_actions'
+
+class UsersPost extends React.Component {
+  constructor(props) {
+    super(props) 
+    this.state = { dropDown: "falseDropDown" }
+    this.props = props 
+    // console.log(props) 
+  }
+  
+  handleDropDownFocus(e) {
+    e.preventDefault() 
+      this.setState({ dropDown: "trueDropDown"})
+  }
+  
+  componentDidUpdate (prevProps) {
+      console.log(prevProps) 
+      console.log(this.props) 
   }
 
-  
-  var d = new Date(props.post.timestamp);
-  var n = d.toString().slice(4, 15) 
 
+  handleDropDownBlur(e) {
+    e.preventDefault()
+    this.setState({ dropDown: "falseDropDown"}) 
+  }
+
+  // handleEditPost(e) {
+  //   const abc = <form>
+  //     <input type="textarea"/>
+  //   </form>
+  // }
+
+  handlePostDelete(e) {
+    e.preventDefault()
+    debugger 
+    this.props.deleteUsersPost(this.props.post.id).then(this.setState({dropDown: "falseDropDown"}))
     
+  }
 
+
+  
+
+  render () {  
+    let postPhoto; 
+    if (this.props.post.photo != null) { 
+    postPhoto = <img className="photo-on-post" src={this.props.post.photo} alt=""/>
+  }  
+  var d = new Date(this.props.post.timestamp);
+  var n = d.toString().slice(4, 15)
   return (
     <div className="post-index-container">
       <div className="post-top-portion">
@@ -21,9 +58,14 @@ function UsersPost(props) {
             <div className="author-name">Rick</div>
             <div className="date-made">{n}</div>
           </div>
+          <div  id="drpdwn" tabIndex={3} onFocus={this.handleDropDownFocus.bind(this)} className="edit-post-button">...</div>
+          <div id="drpdwn" className={`${this.state.dropDown}`}>
+            <div className="e-post">Edit</div>
+            <div onClick={this.handlePostDelete.bind(this)} className="d-post">Delete</div>
+          </div>
         </div>
           
-          <div className="body-of-post">{props.post.body}</div>
+          <div className="body-of-post">{this.props.post.body}</div>
           {postPhoto} 
           <div className="comment-like-container ">
             <div className="ctii">
@@ -43,5 +85,21 @@ function UsersPost(props) {
     
     </div>
   )
+  }
 }
-export default UsersPost;
+const mapStateToProps = (state) => {    
+  // debugger 
+  return {
+    currentUser: state.entities.users[state.session.id],
+    posts: state.posts.posts 
+  };
+};
+
+const mapDispatchToProps = dispatch => ({
+  createPost: (userId, post) => dispatch(createPost(userId, post)),
+  getUsersPosts: (userId) => dispatch(getUsersPosts(userId)),
+  editUsersPost: (postId) => dispatch(editUsersPost(postId)),
+  deleteUsersPost: (postId) => dispatch(deleteUsersPost(postId))
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(UsersPost)

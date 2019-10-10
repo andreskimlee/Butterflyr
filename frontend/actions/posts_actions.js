@@ -8,8 +8,9 @@ export const receivePost = post => ({
     post
 })
 
-export const deletePost = post => ({
-    type: DELETE_POST
+export const deletePost = postId => ({
+    type: DELETE_POST,
+    postId
 })
 
 

@@ -28,12 +28,15 @@ class CreatePost extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault() 
-        // debugger 
         const formData = new FormData(); // formdata is sort of holding 
-        formData.append('post[photo]', this.state.photoFile) // key of photo... 
+        if (this.state.photoFile !== null) {
+            formData.append('post[photo]', this.state.photoFile)
+        }  
         formData.append('post[body]', this.state.body)
         formData.append('post[author_id]', this.state.author_id)
-        this.props.createPost(this.props.currentUser.id, formData) 
+        debugger 
+        this.props.createPost(this.props.currentUser.id, formData).then(this.props.closeModal)
+        
     }
 
     handleFile(e) {

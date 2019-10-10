@@ -4,6 +4,7 @@
 #
 #  id              :bigint           not null, primary key
 #  DOB             :string           not null
+#  bio             :string
 #  cover_photo_url :string
 #  email           :string           not null
 #  first_name      :string           not null
@@ -11,7 +12,9 @@
 #  last_name       :string           not null
 #  password_digest :string           not null
 #  prof_photo_url  :string
+#  school          :string
 #  session_token   :string           not null
+#  work            :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

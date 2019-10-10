@@ -5,24 +5,27 @@ import {withRouter, Route} from 'react-router-dom'
 import AboutPage from './about_page'
 import CreatePost from './create_post'
 import { connect } from 'react-redux'   
-import { getUsersPosts, editUsersPost, deleteUsersPost} from '../../actions/posts_actions'
+import { fetchUser } from '../../actions/user_actions'
+import { getUsersPosts, editUsersPost, deleteUsersPost } from '../../actions/posts_actions'
 import  UsersPosts  from './user_posts'
 
 class ProfilePage extends React.Component {
     constructor(props) {
         super(props) 
-        this.state = {user: props.currentUser, photoFile: null, dropDown: "false", posts: ""}
+        this.state = { photoFile: null, dropDown: "false", posts: "", Fetchuser: ""} // because set to null put a if condition to append only if not null. 
         this.props = props 
         this.handleCoverPhotoSubmit = this.handleCoverPhotoSubmit.bind(this) 
-        console.log(props)
+        console.log(this.props)
     }   
 
     componentDidMount() {
-       return this.props.getUsersPosts(this.props.match.params.userId).then(posts => this.setState({ posts: posts}))
-    //    debugger 
+       this.props.getUsersPosts(this.props.match.params.userId).then(posts => this.setState({ posts: posts}))
+       debugger 
+       this.props.fetchUser(this.props.match.params.userId)
+       debugger 
     }
 
-    
+   
    
     editCoverPhoto(e) {
         e.preventDefault()
@@ -34,37 +37,44 @@ class ProfilePage extends React.Component {
     handleCoverPhotoSubmit(e) {
         e.preventDefault()
         // debugger 
-        e.type === "click" ? this.setState({ dropDown: "true"}) : this.setState({ dropDown: "false"})
+        e.type === "focus" ? this.setState({ dropDown: "true"}) : this.setState({ dropDown: "false"})
     }
 
     handleProfPhotoSubmit(e) {
         e.preventDefault() 
-        const formData = new FormData(); // formdata is sorting 
-        formData.append('user[prof_photo]', this.state.photoFile) // key of photo... 
-        // debugger
-        this.props.updateUserAction(this.state.user.id, formData)
+
     }
 
     handleFile(e) {
         e.stopPropagation();
         e.preventDefault();
+        const formData = new FormData();
+        if (!e.currentTarget.files[0]) {  
+        formData.append('user[prof_photo]', this.state.photoFile) //  
+        }
+        this.props.updateUserAction(this.state.user.id, formData)
         this.setState({photoFile: e.currentTarget.files[0]})
     }
 
     
                     
     render () {
+        let profPhoto; 
         let renderPosts; 
-        // debugger 
-            if (this.state.posts !== "" ) {
-                // debugger 
-                renderPosts = () => Object.values(this.state.posts.posts.posts).map((post, idx) => (<UsersPosts key={idx} post={post}/>) )
-            } 
+        debugger 
+            if (typeof this.props.posts !== "undefined" ) {
+                    renderPosts = () => Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts key={idx} post={post}/>) )}
+            if (this.state.Fetchuser !== "" ) {
+                debugger 
+                profPhoto = this.state.user.user.prof_photo; 
+            }
+
         return (
+            
             <div className="TopBox">
                  <img className="CoverPhoto" src="https://www.jakpost.travel/wimages/large/134-1340745_pickle-rick-hd-wallpaper-hey-morty-im-a.png" alt=""/>
                     <div>
-                    <div onClick={this.handleCoverPhotoSubmit} onBlur={this.handleCoverPhotoSubmit} className="upload-cover-photo hvr-pulse-grow">
+                    <div tabIndex={3} onFocus={this.handleCoverPhotoSubmit} onBlur={this.handleCoverPhotoSubmit} className="upload-cover-photo hvr-pulse-grow">
                         <div className="container-up">
                         <img className="camera-icon" src="https://icon-library.net/images/camera-icon-png-white/camera-icon-png-white-8.jpg" alt=""/>
                         <div>
@@ -78,11 +88,11 @@ class ProfilePage extends React.Component {
                     </div> 
                     <div className="sectional">
                         <div className="outerborder"></div>
-                        <img className="main-prof-pic" src={this.props.currentUser.prof_photo}/> 
+                        <img className="main-prof-pic" src={profPhoto}/>    
                         <div className="update-prof-pic">
                             <img className="camera-icon-prof" src="https://icon-library.net/images/camera-icon-png-white/camera-icon-png-white-8.jpg" />
                             <div className="up-text">Update</div>   
-                            <input className="heo" type="file" onChange={this.handleFile.bind(this)} onChange={this.handleProfPhotoSubmit.bind(this)} /> 
+                            <input className="heo" type="file" onChange={this.handleFile.bind(this)}/> 
 
                         </div>
                         <div className="prof-links">
@@ -114,7 +124,8 @@ const mapStateToProps = (state) => {
     // debugger 
     return {
       currentUser: state.entities.users[state.session.id],
-      posts: state.posts.posts 
+      posts: state.posts.posts, 
+      friendships: state.friendships || [] 
     };
   };
 
@@ -123,10 +134,12 @@ const mapStateToProps = (state) => {
     createPost: (userId, post) => dispatch(createPost(userId, post)),
     getUsersPosts: (userId) => dispatch(getUsersPosts(userId)),
     editUsersPost: (post) => dispatch(editUsersPost(post)),
-    deleteUsersPost: (post ) => dispatch(deleteUsersPost(post))
+    deleteUsersPost: (post ) => dispatch(deleteUsersPost(post)),
+    fetchUser: userId => dispatch(fetchUser(userId))
+
   })
   
-  export default connect(mapStateToProps,mapDispatchToProps)(ProfilePage)
+  export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ProfilePage))
 
 
 

@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 class Overview extends React.Component {
     constructor(props) {
     super(props)
-    console.log(props)  
+    // console.log(props)  
    
 
     }

@@ -2,10 +2,9 @@ class Api::PostsController < ApplicationController
   before_action :require_logged_in  
 
   def create
-    debugger 
-    a = "aaaaa"
+   
     @post = Post.new(post_params)
-      debugger 
+     
       if @post.save
           render :show
       else
@@ -31,6 +30,7 @@ class Api::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    render :show 
   end
   
 

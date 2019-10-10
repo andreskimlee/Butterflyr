@@ -126,6 +126,50 @@
 
 }
 
-.like-button:hover {
-    
+.edit-post-button {
+    margin-left: 331px;
+    font-size: xx-large;
+    height: 35px;
+    color: #545454;
 }
+
+.edit-post-button:hover {
+    cursor: pointer; 
+}
+
+.trueDropDown {
+    position: absolute;
+    display: block; 
+    /* top: 1560px; */
+    /* left: 180px; */
+    left: 1156px;
+    background-color: white;
+    width: 70px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    outline: none;
+}
+
+.falseDropDown {
+    display: none; 
+    outline: none;
+}
+
+.e-post, .d-post {
+    font-family: sans-serif;
+    /* margin-top: 5px; */
+    font-size: 12px;
+    padding: 5px;
+    width: 60px;
+}
+
+.e-post:hover, .d-post:hover {
+    background-color: #2a8e7c; 
+    color: white; 
+    cursor: pointer; 
+}
+

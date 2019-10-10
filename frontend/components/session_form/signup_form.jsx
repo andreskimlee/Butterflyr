@@ -46,7 +46,7 @@ class SignUpForm extends React.Component {
   validate(field) { 
     // this.setState({ someProperty: { ...this.state.someProperty, flag: false} }); this.state.inputs
     return e => {  // merge({} this.state.input, { [field]: { [e.type]: "focus-invalid" })
-      console.log(this.state) 
+      // console.log(this.state) 
       // debugger
       if (e.type === "focus" && e.target.value.length < 1) {
         const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "focus-invalid", ["blur"]:"" }})   

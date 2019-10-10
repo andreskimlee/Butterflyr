@@ -4,14 +4,17 @@
 #
 #  id              :bigint           not null, primary key
 #  DOB             :string           not null
+#  bio             :string
 #  cover_photo_url :string
 #  email           :string           not null
 #  first_name      :string           not null
 #  gender          :string           not null
 #  last_name       :string           not null
 #  password_digest :string           not null
-#  prof_photo_url  :string                          //edit out dont need. we do need a photos [] 
+#  prof_photo_url  :string
+#  school          :string
 #  session_token   :string           not null
+#  work            :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -34,8 +37,18 @@ class User < ApplicationRecord
     has_many :posts,
       foreign_key: :author_id,
       class_name: :Post
-
-
+    has_many :sent_friend_requests,
+      foreign_key: :requester_id,
+      class_name: :Friendship
+    has_many :received_friend_requests,
+      foreign_key: :requested_id,
+      class_name: :Friendship
+    has_many :requested_friends,
+      through: :sent_friend_requests,
+      source: :requested
+    has_many :received_friends,
+      through: :received_friend_requests,
+      source: :requester
     has_one_attached :prof_photo
     has_one_attached :cover_photo
   

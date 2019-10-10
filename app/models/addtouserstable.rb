@@ -1,0 +1,2 @@
+class Addtouserstable < ApplicationRecord
+end

@@ -12,7 +12,6 @@ User.create!(
     last_name: 'Account',
     DOB: "03291993",
     gender: "M",
-    phone_number: "1234567890",
     prof_photo_url:"",
     cover_photo_url: "",
   )
