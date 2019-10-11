@@ -1,6 +1,6 @@
 # Butterflyr 
     Butterflyr is a full stack application cloning the popular social media website Facebook.
- ![alt-text](https://imgur.com/gtGiHpb)
+ ![alt-text](https://i.imgur.com/gtGiHpb.png)
 
 ## Technologies
 ⋅⋅* Ruby On Rails 
