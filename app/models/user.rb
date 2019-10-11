@@ -37,16 +37,16 @@ class User < ApplicationRecord
     has_many :posts,
       foreign_key: :author_id,
       class_name: :Post
-    has_many :sent_friend_requests,
+    has_many :sent_friend_requests, #user sent friend request. 
       foreign_key: :requester_id,
       class_name: :Friendship
-    has_many :received_friend_requests,
+    has_many :received_friend_requests, #returns all friend requests received all pending. 
       foreign_key: :requested_id,
       class_name: :Friendship
-    has_many :requested_friends,
+    has_many :requested_friends, #returns all new friends 
       through: :sent_friend_requests,
       source: :requested
-    has_many :received_friends,
+    has_many :received_friends, # returns the user who requested you. 
       through: :received_friend_requests,
       source: :requester
     has_one_attached :prof_photo

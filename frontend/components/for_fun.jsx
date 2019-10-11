@@ -1,9 +1,12 @@
 import React from "react" 
 import CreatePost from "./profile_page/create_post"
+import NewsFeed from "./newsfeed/news_feed"
 function abc() {
     return (
         <div className="home-page-containers">
+       <NewsFeed/> 
       <CreatePost/>
+     
       <div className="request-tab">
         <div className="birthday-friend-column">
         <div className="axx" ><img className="calendar" src="https://magazine.rehearseapp.net/wp-content/uploads/2019/08/Calendar.png"/>1 friend request</div>
@@ -19,7 +22,7 @@ function abc() {
          </div>
          <div className="ad-2-ads">
           <div className="ad-2-text"> Sponsored </div>
-          <img className="picklecostume" src={window.appacademy}/>
+          <img className="picklecostume" src="https://www.growthmarketingpro.com/wp-content/uploads/2018/06/app-academy.png"/>
           <div className="adstuff">
           <div>App Academy</div>
          <div>APP-ACADEMY.IO</div>

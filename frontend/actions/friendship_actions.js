@@ -3,8 +3,9 @@ import * as FRIENDUtil from "../util/friendship_util"
 export const FRIEND_REQUEST = 'FRIEND_REQUEST'
 export const DENY_REQUEST = 'DENY_REQUEST'
 
+const RECEIVE_FRIENDSHIP = "RECEIVE_FRIENDSHIP"
 
-export const receiveFriendship = friendship => {
+export const receiveFriendship = ({friendship})=> {
      
     return {
         type: RECEIVE_FRIENDSHIP,

@@ -38,7 +38,7 @@ class ProfilePage extends React.Component {
         formData.append('user[prof_photo]', e.currentTarget.files[0]) //  
         this.props.updateUserAction(this.props.currentUser.id, formData)
     }
-
+ 
     handleSubmitCover(e) {
         debugger
         e.stopPropagation();
@@ -61,9 +61,8 @@ class ProfilePage extends React.Component {
             if (typeof this.props.user !== 'undefined') {
                 profPhoto = this.props.user[this.props.match.params.userId].prof_photo 
             }
-        
-        // if (this.props.currentUser.id === this.props.user[this.props.match.params.userId] ) {
-        //     this.setState({friendStatus:"false"}) } 
+
+            debugger
         // else {
         //     this.setState({friendStatus:"true"}) 
         // }
@@ -127,7 +126,7 @@ const mapStateToProps = (state) => {
     return {
       currentUser: state.entities.users[state.session.id],
       posts: state.entities.posts, 
-      friendships: state.friendships || [] 
+      friendships: state.friendships 
 
     };
   };

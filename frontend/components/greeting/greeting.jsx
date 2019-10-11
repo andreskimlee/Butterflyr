@@ -5,6 +5,10 @@ import LogInFormContainer from '../session_form/login_form_container';
 import NavBar from "../NavBar/Nav"
 import ForFun from '../for_fun'
 import { Route } from 'react-router-dom'
+import { UsersPost } from "../profile_page/user_posts"
+import NewsFeed from "../newsfeed/news_feed"
+
+
 const Greeting = ({ currentUser, logout }) => {
   const sessionLinks = () => (
     <div className="login-signup">
@@ -20,9 +24,8 @@ const Greeting = ({ currentUser, logout }) => {
   );
   const homePage = () => (
     <hgroup className="header-group">
-      <NavBar currentUser={currentUser} logout={logout}></NavBar>
+      <NavBar  currentUser={currentUser} logout={logout}></NavBar>
       <Route exact path="/" component={ForFun}/>
-      
     </hgroup>
   )
 

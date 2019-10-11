@@ -9,6 +9,19 @@ end
 if user.cover_photo.attached?
     json.cover_photo url_for(user.prof_photo) 
 end 
+
+if user.received_friend_requests
+    json.friend_requests user.received_friend_requests
+end 
+
+if user.received_friends 
+    json.received_friends user.received_friends
+end 
+
+
+
+
+
 # t.string "first_name", null: false
 # t.string "last_name", null: false
 # t.string "email", null: false

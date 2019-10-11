@@ -30,7 +30,7 @@
      
 }
 
-.about:hover, .friends:hover, .photos:hover, .more:hover, .timeline:hover {
+.about:hover, .friends:hover, .more:hover, .timeline:hover {
     background-color: #218c7e2b;
 }
 

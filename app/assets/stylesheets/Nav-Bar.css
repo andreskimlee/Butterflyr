@@ -54,7 +54,7 @@
     transform: rotate(-90deg);
     background-color: rgb(255, 255, 255);
     text-align: center;
-    border: 1px solid black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: absolute; 
     top: -10px;
     left: -20px;
@@ -138,3 +138,105 @@
     align-self: center;
 }   
 
+.friend-notification {
+        width: 35px;
+        height: 35px;
+        margin-top: 4px;
+        margin-left: 5px;
+       
+}
+
+.friend-notification:hover {
+    cursor: pointer;
+}
+
+.true-friend-drp {
+    position: absolute;
+    left: 800px;
+    top: 42px;
+    background-color: white;
+    color: black;
+    height: 110px;
+    width: 437px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.false-friend-drp:focus {
+   outline: none;
+
+}
+
+div:focus {
+    outline: none;
+    border: none; 
+ }
+
+
+
+.false-friend-drp {
+    display:none;
+}
+
+.request-container {
+    display: flex;
+    padding: 10px; 
+    border-bottom: 1px solid #dddfe2;
+}
+
+.requesterprof {
+    object-fit: cover;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+}
+
+.title-drp {
+    padding: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #333333;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.requestname {
+    margin-left: 5px; 
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    color: #3ea692;
+}
+
+.bio-tag { 
+        font-size: 12px;
+        margin-left: 5px;
+        font-family: sans-serif;
+        color: #6f6f6f;
+}
+
+.friendapprove {
+    color: white;
+    background-color: #47a794;
+    width: 65px;
+    height: 25px;
+    font-weight: 600;
+    /* border-right: 5px; */
+    margin-left: 26px;
+    margin-right: 3px;
+}
+
+
+.denyfriend {
+    width: 65px;
+    height: 25px;
+    font-weight: 600;
+    background-color: #f5f6f7; 
+    color: #4b4f56; 
+}
+
+.textholder { 
+    width: 194px;
+}
+
+.buttonclass {
+    margin-top: 10px; 
+}
