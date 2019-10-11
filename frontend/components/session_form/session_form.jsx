@@ -33,8 +33,8 @@ class SessionForm extends React.Component {
 
   handlebutton(e) { 
     e.preventDefault();
-    this.state.email = 'abc@gmail.com'
-    this.state.password = 'password'
+    this.state.email = 'ricky@gmail.com'
+    this.state.password = 'Password123'
      
     this.handleSubmit()
 

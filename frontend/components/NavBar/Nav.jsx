@@ -61,7 +61,7 @@ class NavBar extends React.Component {
                 <div className={`${this.state.DropDownFrnd}-friend-drp`}>
                     <div className="title-drp">Friend Request</div>
                     <div className="request-container">
-                        <img className="requesterprof" src={user.prof_photo}/>
+                        <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752" alt=""/>
                         <div className="textholder">
                         <div className="requestname">{user.first_name + " " + user.last_name}</div>
                         <div className="bio-tag"> Lorem Ipsum is simply dummy text of the printing </div>
