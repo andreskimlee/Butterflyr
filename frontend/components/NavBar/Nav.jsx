@@ -49,7 +49,7 @@ class NavBar extends React.Component {
                     user = ""
                 }
             
-        debugger    
+        // debugger    
     
         return (
             <span className="Nav-Bar">
