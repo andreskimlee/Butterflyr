@@ -9,14 +9,9 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlebutton = this.handlebutton.bind(this); 
-    
-    
   }
 
-  componentDidMount(){
-    () => document.getElementsByClassName("popup").addEventListener("change", this.showErrors())
 
-  }
 
   update(field) {
     return e => this.setState({
@@ -25,19 +20,18 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    // e.preventDefault(); 
-
+    e.preventDefault(); 
+    debugger 
     this.props.processForm(this.state)
   
   } 
 
   handlebutton(e) { 
     e.preventDefault();
-    this.state.email = 'ricky@gmail.com'
-    this.state.password = 'Password123'
-     
-    this.handleSubmit()
-
+    this.setState({email : "ricky@gmail.com"})
+    this.setState({password : "Password123"})
+    this.handleSubmit 
+    console.log(this.state) 
   }
 
 

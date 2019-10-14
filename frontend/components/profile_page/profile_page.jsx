@@ -16,7 +16,7 @@ class ProfilePage extends React.Component {
         this.state = { photoFile: null, dropDown: "false", friendStatus: "true", profPic: "", coverPhoto:""} // because set to null put a if condition to append only if not null. 
         this.props = props 
     
-        debugger 
+        // debugger 
     }   
 
     componentDidMount() {
@@ -40,7 +40,7 @@ class ProfilePage extends React.Component {
     }
  
     handleSubmitCover(e) {
-        debugger
+        // debugger
         e.stopPropagation();
         e.preventDefault();
         const formData = new FormData();
@@ -62,7 +62,7 @@ class ProfilePage extends React.Component {
                 profPhoto = this.props.user[this.props.match.params.userId].prof_photo 
             }
 
-            debugger
+            // debugger
         // else {
         //     this.setState({friendStatus:"true"}) 
         // }
