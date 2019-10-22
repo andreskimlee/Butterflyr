@@ -6,7 +6,7 @@ export const DENY_REQUEST = 'DENY_REQUEST'
 const RECEIVE_FRIENDSHIP = "RECEIVE_FRIENDSHIP"
 
 export const receiveFriendship = ({friendship})=> {
-     
+     debugger 
     return {
         type: RECEIVE_FRIENDSHIP,
         friendship

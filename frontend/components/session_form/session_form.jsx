@@ -9,6 +9,7 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlebutton = this.handlebutton.bind(this); 
+    console.log(props)
   }
 
 
@@ -20,18 +21,18 @@ class SessionForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault(); 
-    debugger 
-    this.props.processForm(this.state)
+    e.preventDefault();  
+    this.props.processForm(this.state).then(() => <Redirect to='/'/>)
   
   } 
 
-  handlebutton(e) { 
+  handlebutton(e) { // 
     e.preventDefault();
-    this.setState({email : "ricky@gmail.com"})
-    this.setState({password : "Password123"})
-    this.handleSubmit 
-    console.log(this.state) 
+    // this.setState({email : "ricky@gmail.com"})
+    // this.setState({password : "Password123"})
+    this.state.email = "ricky@gmail.com"
+    this.state.password = "Password123"
+    this.props.processForm(this.state).then(() => <Redirect to='/'/>)
   }
 
 
@@ -40,7 +41,7 @@ class SessionForm extends React.Component {
     return(
       <ul> 
         {this.props.errors.map((error, i) => (
-          <li key={`error-${i}`}>
+          <li className="errors-box" key={`error-${i}`}>
             {error} 
           </li>
         ))} 

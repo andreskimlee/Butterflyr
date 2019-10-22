@@ -31,7 +31,7 @@
     visibility: visible;    
 }
 
-.error-arrow-right {
+/* .error-arrow-right {
     visibility: hidden;
     width: 0;
     height: 0;
@@ -42,7 +42,7 @@
     z-index: 2;
     left: 791px;
     top: 201px;
-}
+} */
 
 
 
@@ -63,6 +63,29 @@
     border-radius: 2px;
     font-family: SF Pro Display;
 }
+
+.errors-box {
+    font-family: SF Pro Display;
+    margin-right: 7px;
+    height: 45px;
+    width: 207px;
+    border-radius: 2px;
+    border: rgb(16, 59, 48) 1px solid;
+    box-shadow: -0.5px 0px 10px rgb(80, 70, 70);
+    border-radius: 5px;
+    font-size: 20px;
+    position: absolute;
+    top: 18px;
+    color: white;
+    left: 611px;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background-color: #2e8876;
+}
+
+
 
 .lname-not-focus-invalid:before {
     position: absolute;
@@ -188,7 +211,7 @@
 
 
 
-.email-error-arrow-right {
+/* .email-error-arrow-right {
     visibility: hidden;
     width: 0;
     height: 0;
@@ -199,7 +222,7 @@
     z-index: 2;
     left: 794px;
     top: 252px;
-}
+} */
 
 .box-2 {
     font-family: SF Pro Display;
@@ -214,7 +237,7 @@
     left: 196px;
 }
 
-.ln-error-arrow-right {
+/* .ln-error-arrow-right {
     visibility: hidden;
     width: 0;
     height: 0;
@@ -226,11 +249,11 @@
     left: 1111px;
     top: 229px;
     transform: rotate(-90deg);
-}
+} */
 
 
 
-.pw-error-arrow-right {
+/* .pw-error-arrow-right {
     visibility: hidden; 
     width: 0;
     height: 0;
@@ -242,7 +265,7 @@
     left: 786px;
     top: 291px;
     transform: rotate(-360deg);
-}
+} */
 
 
 

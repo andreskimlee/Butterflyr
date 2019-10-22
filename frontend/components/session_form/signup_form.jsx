@@ -53,14 +53,15 @@ class SignUpForm extends React.Component {
         this.setState({inputs: newInput})
     } else if (e.type === "blur" && e.target.value.length < 1) {
         const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "not-focus-invalid", ["focus"]: "" }, }, )
-        // newInput.inputs[field]['focus'] = "" 
         this.setState({inputs: newInput})
-    } else if (e.target.value.length > 1) {
-        const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "" }})
-        this.setState({inputs: newInput})
-      
+    } else if (e.type === "blur" && e.target.value.length > 0) {
+      const newInput = merge({}, this.state.inputs, { [field]: "" })
+      this.setState({inputs: newInput})  
+     } else if (e.type === "focus" && e.target.value.length > 0) {
+      const newInput = merge({}, this.state.inputs, { [field]: "" })
+      this.setState({inputs: newInput})  
+     }
     }}
-  }
 
   handleSubmit(e) {
      
@@ -75,6 +76,7 @@ class SignUpForm extends React.Component {
     // debugger
    
     this.props.processForm(user)
+
   }
 
 

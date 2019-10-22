@@ -9,28 +9,65 @@ import { UsersPost } from "../profile_page/user_posts"
 import NewsFeed from "../newsfeed/news_feed"
 
 
-const Greeting = ({ currentUser, logout }) => {
-  const sessionLinks = () => (
-    <div className="login-signup">
-      <div className="navhead">
-     <div className="butterflyr">butterflyr</div>
-      <img className="butterfree" src={window.butterFree}/>
-      <LogInFormContainer/>
-      </div>     
+class Greeting extends React.Component {
+    constructor(props) {
+      super(props)
+      // debugger 
+    }
 
-      <SignUpFormContainer/> 
-      
-    </div>
-  );
-  const homePage = () => (
-    <hgroup className="header-group">
-      <NavBar  currentUser={currentUser} logout={logout}></NavBar>
-      <Route exact path="/" component={ForFun}/>
-    </hgroup>
-  )
+    render () {
+      // debugger 
+      const sessionLinks = () => (
+        <div className="login-signup">
+          <div className="navhead">
+         <div className="butterflyr">butterflyr</div>
+          <img className="butterfree" src={window.butterFree}/>
+          <Route exact path="/" component={LogInFormContainer}/>
+          </div>     
+          <SignUpFormContainer/> 
+        </div>
+      );
+      const homePage = () => (
+        <hgroup className="header-group">
+          <NavBar  currentUser={this.props.currentUser} logout={this.props.logout}></NavBar>
+          <Route exact path="/" component={ForFun}/>
+        </hgroup>
+      )
+      return ( 
+        <div>{this.props.session.id ? homePage() : sessionLinks()}</div>
+      )
+    }
 
-  return currentUser ? homePage() : sessionLinks();
-};
+}
+
+
+
+
+
+
+
+
+// const Greeting = ({ currentUser, logout }) => {
+//   debugger 
+//   const sessionLinks = () => (
+//     <div className="login-signup">
+//       <div className="navhead">
+//      <div className="butterflyr">butterflyr</div>
+//       <img className="butterfree" src={window.butterFree}/>
+//       <LogInFormContainer/>
+//       </div>     
+//       <SignUpFormContainer/> 
+//     </div>
+//   );
+//   const homePage = () => (
+//     <hgroup className="header-group">
+//       <NavBar  currentUser={currentUser} logout={logout}></NavBar>
+//       <Route exact path="/" component={ForFun}/>
+//     </hgroup>
+//   )
+
+// //   return currentUser ? homePage() : sessionLinks();
+// // };
 
 
 export default Greeting;

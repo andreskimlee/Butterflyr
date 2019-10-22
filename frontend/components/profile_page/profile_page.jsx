@@ -13,14 +13,20 @@ import  UsersPosts  from './user_posts'
 class ProfilePage extends React.Component {
     constructor(props) {
         super(props) 
-        this.state = { photoFile: null, dropDown: "false", friendStatus: "true", profPic: "", coverPhoto:""} // because set to null put a if condition to append only if not null. 
+        this.state = { photoFile: null, dropDown: "false", friendStatus: "true", user: ""} // because set to null put a if condition to append only if not null. 
         this.props = props 
-    
+        console.log(this.props)  
         // debugger 
     }   
 
     componentDidMount() {
-       this.props.getUsersPosts(this.props.match.params.userId).then(({user}) => this.setState({profPic: user[this.props.match.params.userId].prof_photo, coverPhoto: user[this.props.match.params.userId].cover_photo }) )
+       this.props.getUsersPosts(this.props.match.params.userId).then( ({user}) => this.setState({user: user}))
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.userId !== this.props.match.params.userId) {
+            this.props.getUsersPosts(this.props.match.params.userId)
+        }
     }
 
     sendFriendshipRequest (e) {
@@ -43,24 +49,29 @@ class ProfilePage extends React.Component {
         // debugger
         e.stopPropagation();
         e.preventDefault();
-        const formData = new FormData();
-        if (!e.currentTarget.files[0]) {        
+        const formData = new FormData();        
         formData.append('user[cover_photo]', e.currentTarget.files[0]) //  
         this.props.updateUserAction(this.props.currentUser.id, formData)
-        }
-         
         
     }
     
                     
-    render () {
+    render () {  
         let profPhoto; 
+        let coverPhoto; 
         let renderPosts;  
+        console.log(this.state)  
             if (typeof this.props.posts !== "undefined" ) {
-                    renderPosts = () => Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={this.props.posts.user}/>) )}
-            if (typeof this.props.user !== 'undefined') {
-                profPhoto = this.props.user[this.props.match.params.userId].prof_photo 
+                    renderPosts = () => Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={this.props.posts.user}/>) )
+                } 
+            
+            if (this.state.user.cover_photo === "null") {
+                coverPhoto = window.coverPhoto
+            } else {
+                coverPhoto = this.props.user.cover_photo 
             }
+
+            
 
             // debugger
         // else {
@@ -71,7 +82,7 @@ class ProfilePage extends React.Component {
         return (
             
             <div className="TopBox">
-                 <img className="CoverPhoto" src="https://www.jakpost.travel/wimages/large/134-1340745_pickle-rick-hd-wallpaper-hey-morty-im-a.png" alt=""/>
+                 <img className="CoverPhoto" src={coverPhoto} alt=""/>
                                 <div onClick={this.sendFriendshipRequest.bind(this)} className={`friendButton-${this.state.friendStatus}`}> <img className="addfriendicon" src="https://banner2.kisspng.com/20180901/otz/kisspng-computer-icons-scalable-vector-graphics-like-butto-profile-addfriend-svg-png-icon-free-download-519-5b8b4a5af052e8.3625273415358551949844.jpg"/>Add Friend</div>
                     <div>
                     <div className="upload-cover-photo hvr-pulse-grow">
@@ -89,7 +100,7 @@ class ProfilePage extends React.Component {
                     </div> 
                     <div className="sectional">
                         <div className="outerborder"></div>
-                        <img className="main-prof-pic" src={this.state.profPic}/>    
+                        <img className="main-prof-pic" src={profPhoto}/>    
                         <div className="update-prof-pic">
                             <img className="camera-icon-prof" src="https://icon-library.net/images/camera-icon-png-white/camera-icon-png-white-8.jpg" />
                             <div className="up-text">Update</div>   
@@ -121,13 +132,13 @@ class ProfilePage extends React.Component {
     }
 }
 
-const mapStateToProps = (state) => {    
+const mapStateToProps = (state, ownProps) => {    
     // debugger 
     return {
       currentUser: state.entities.users[state.session.id],
       posts: state.entities.posts, 
-      friendships: state.friendships 
-
+      friendships: state.friendships, 
+      user: state.entities.users[ownProps.match.params.userId]
     };
   };
 
@@ -139,6 +150,7 @@ const mapStateToProps = (state) => {
     deleteUsersPost: (post ) => dispatch(deleteUsersPost(post)),
     fetchUser: userId => dispatch(fetchUser(userId)),
     requestFriendship: friendship => dispatch(requestFriendship(friendship))
+
     
   })
   
