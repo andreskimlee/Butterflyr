@@ -4,14 +4,10 @@ json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_p
 if user.prof_photo.attached? 
     # debugger 
     json.prof_photo url_for(user.prof_photo)
-else 
-    json.prof_photo "null"
 end
 
 if user.cover_photo.attached?
     json.cover_photo url_for(user.cover_photo) 
-else 
-    json.cover_photo "null"
 end 
 
 if user.received_friend_requests

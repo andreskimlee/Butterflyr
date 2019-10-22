@@ -5,20 +5,21 @@ export const DENY_REQUEST = 'DENY_REQUEST'
 
 const RECEIVE_FRIENDSHIP = "RECEIVE_FRIENDSHIP"
 
-export const receiveFriendship = ({friendship})=> {
-     debugger 
+export const receiveFriendship = friendship => { 
     return {
         type: RECEIVE_FRIENDSHIP,
         friendship
     }
 }
 
-export const deleteFriendship = friendship => ({
+export const deleteFriendship = friendship => {
+ return {
     type: REMOVE_FRIENDSHIP,
-    
-})
+ }
+}
 
 export const requestFriendship = friendship => dispatch => {
+    debugger 
     return FRIENDUtil.requestFriendship(friendship).then(friendship => dispatch(receiveFriendship(friendship)))}
 
 export const approveFriendship = friendship => dispatch => {

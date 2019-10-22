@@ -1,4 +1,5 @@
 export const requestFriendship = friendship => {
+    debugger 
     return $.ajax({
         type: "POST",
         url: "api/friendships",

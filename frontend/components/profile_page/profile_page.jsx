@@ -30,7 +30,7 @@ class ProfilePage extends React.Component {
     }
 
     sendFriendshipRequest (e) {
-        this.props.requestFriendship({requester_id: 16, requested_id: 2, status: "pending"})    
+        this.props.requestFriendship({requester_id: this.props.currentUser.id, requested_id: Number(this.props.match.params.userId), status: "pending"})    
     }
 
     // friendship {requesting, receieved, status}
@@ -57,19 +57,14 @@ class ProfilePage extends React.Component {
     
                     
     render () {  
-        let profPhoto; 
-        let coverPhoto; 
-        let renderPosts;  
+        let renderPosts;
+        const {user = {} } = this.props;
         console.log(this.state)  
             if (typeof this.props.posts !== "undefined" ) {
                     renderPosts = () => Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={this.props.posts.user}/>) )
                 } 
-            
-            if (this.state.user.cover_photo === "null") {
-                coverPhoto = window.coverPhoto
-            } else {
-                coverPhoto = this.props.user.cover_photo 
-            }
+                const coverPhoto = user.cover_photo ? user.cover_photo : window.coverPhoto
+                const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
 
             
 
