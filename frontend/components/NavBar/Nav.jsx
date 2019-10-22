@@ -7,6 +7,7 @@ import { fetchUser } from '../../actions/user_actions'
 
 class NavBar extends React.Component {
     constructor(props) {
+        // debugger 
         super(props) 
         this.state = { DropDown: "", DropDownFrnd: "false"}
         

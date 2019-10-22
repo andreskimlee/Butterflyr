@@ -5,9 +5,9 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
 
-export const receiveCurrentUser = res => ({
+export const receiveCurrentUser = user => ({
     type: RECEIVE_CURRENT_USER,
-    res
+    user
 })
 
 export const logoutCurrentUser = () => ({
@@ -16,13 +16,13 @@ export const logoutCurrentUser = () => ({
 
 export const signup = user => dispatch => {
     return SessionAPIUtil.signup(user)
-                        .then( res => dispatch(receiveCurrentUser(res)),
+                        .then( user => dispatch(receiveCurrentUser(user)),
                         errors => dispatch(receiveSessionErrors(errors)))
 }
 
 export const login = user => dispatch => {
     return SessionAPIUtil.login(user)
-                        .then (res => dispatch(receiveCurrentUser(res)),
+                        .then (user => dispatch(receiveCurrentUser(user)),
                         errors => dispatch(receiveSessionErrors(errors)))
 }
 
