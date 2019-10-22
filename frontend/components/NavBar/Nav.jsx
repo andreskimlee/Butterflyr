@@ -10,6 +10,7 @@ class NavBar extends React.Component {
         // debugger 
         super(props) 
         this.state = { DropDown: "", DropDownFrnd: "false"}
+        console.log(this.props.currentUser.friend_requests)
         
     }
 
@@ -28,9 +29,10 @@ class NavBar extends React.Component {
 
     handleClick4Frnd(e) {
         e.preventDefault() 
+        debugger 
         if (e.type === "focus") {
             this.setState({DropDownFrnd: "true"})
-            } else {
+            } else if (e.type === "blur") {
                 this.setState({DropDownFrnd: "false"})
             }
         }
@@ -58,8 +60,8 @@ class NavBar extends React.Component {
                 <Link to='/' className="azy"> <img className="butterfly-Logo" src={window.butterFlyLogo}/></Link>
                 <Link className="showpage" to={`/users/${this.props.currentUser.id}`}><img className="profile-small"src={this.props.currentUser.prof_photo}/><div className="Name">{this.props.currentUser.first_name.charAt(0).toUpperCase() + this.props.currentUser.first_name.slice(1)}</div></Link>
                 <Link to="/" className="home" ><div className='homeLink'>Home</div></Link>
-                <img tabIndex={3} onBlur={this.handleClick4Frnd.bind(this)} onFocus={this.handleClick4Frnd.bind(this)} className="friend-notification" src="https://cdn0.iconfinder.com/data/icons/facebook-ui-glyph/48/Sed-02-512.png"/>
-                <div className={`${this.state.DropDownFrnd}-friend-drp`}>
+                <img name="dropdown" tabIndex={3}  onFocus={this.handleClick4Frnd.bind(this)} className="friend-notification" src="https://cdn0.iconfinder.com/data/icons/facebook-ui-glyph/48/Sed-02-512.png"/>
+                <div name="dropdown" tabIndex={3} onBlur={this.handleClick4Frnd.bind(this)} className={`${this.state.DropDownFrnd}-friend-drp`}>
                     <div className="title-drp">Friend Request</div>
                     <div className="request-container">
                         <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752" alt=""/>
@@ -85,8 +87,7 @@ class NavBar extends React.Component {
 
 const mapStateToProps = ({ session, entities: { users } }) => {
     return {
-      currentUser: users[session.id],
-      friendships: users.friend_requests 
+      currentUser: users[session.id]
     };
   };
   
