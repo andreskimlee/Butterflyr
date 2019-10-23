@@ -3,19 +3,18 @@ import { Link } from 'react-router-dom';
 import {connect} from "react-redux"
 import { logout } from "../../actions/session_actions" 
 import { fetchUser } from '../../actions/user_actions'
-
-
+import ReactDOM from "react-dom" 
 class NavBar extends React.Component {
     constructor(props) {
         // debugger 
         super(props) 
         this.state = { DropDown: "", DropDownFrnd: "false"}
-        console.log(this.props.currentUser.friend_requests)
-        
+        this.textInput = React.createRef();
+
     }
 
     componentDidMount () {
-            
+        
     }
 
     handleClick(e) {
@@ -29,10 +28,12 @@ class NavBar extends React.Component {
 
     handleClick4Frnd(e) {
         e.preventDefault() 
-        debugger 
+        //   
         if (e.type === "focus") {
             this.setState({DropDownFrnd: "true"})
-            } else if (e.type === "blur") {
+            this.textInput.current.focus()
+            //  
+            } else {
                 this.setState({DropDownFrnd: "false"})
             }
         }
@@ -44,6 +45,7 @@ class NavBar extends React.Component {
     }
 
     render () {
+        console.log(this.textInput)
             let user; 
             if (this.props.currentUser.received_friends[0] !== undefined) {
                 user = this.props.currentUser.received_friends[0]
@@ -51,6 +53,25 @@ class NavBar extends React.Component {
                 else {
                     user = ""
                 }
+
+            let friendrequests = this.props.currentUser.received_friends  
+            debugger  
+            friendrequests = friendrequests.map((friendships, idx) => {
+                        return ( 
+                        <div key={idx} className="request-container">
+                        <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752" alt=""/>
+                        <div className="textholder">
+                        <div className="requestname">{friendships.first_name + " " + friendships.last_name}</div>
+                        <div className="bio-tag"> Lorem Ipsum is simply dummy text of the printing </div>
+                        </div>
+                        <div className="buttonclass">
+                        <button className="friendapprove"> Confirm </button>
+                        <button className="denyfriend"> Delete</button>
+                        </div>
+                        </div>
+                        ) 
+                
+            }) 
             
         // debugger    
     
@@ -60,20 +81,11 @@ class NavBar extends React.Component {
                 <Link to='/' className="azy"> <img className="butterfly-Logo" src={window.butterFlyLogo}/></Link>
                 <Link className="showpage" to={`/users/${this.props.currentUser.id}`}><img className="profile-small"src={this.props.currentUser.prof_photo}/><div className="Name">{this.props.currentUser.first_name.charAt(0).toUpperCase() + this.props.currentUser.first_name.slice(1)}</div></Link>
                 <Link to="/" className="home" ><div className='homeLink'>Home</div></Link>
-                <img name="dropdown" tabIndex={3}  onFocus={this.handleClick4Frnd.bind(this)} className="friend-notification" src="https://cdn0.iconfinder.com/data/icons/facebook-ui-glyph/48/Sed-02-512.png"/>
-                <div name="dropdown" tabIndex={3} onBlur={this.handleClick4Frnd.bind(this)} className={`${this.state.DropDownFrnd}-friend-drp`}>
+                <img name="dropdown" tabIndex={3} onFocus={this.handleClick4Frnd.bind(this)} className="friend-notification" src="https://cdn0.iconfinder.com/data/icons/facebook-ui-glyph/48/Sed-02-512.png"/>
+                <div tabIndex={-1} ref={this.textInput} onBlur={this.handleClick4Frnd.bind(this)} className={`${this.state.DropDownFrnd}-friend-drp`}>
                     <div className="title-drp">Friend Request</div>
-                    <div className="request-container">
-                        <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752" alt=""/>
-                        <div className="textholder">
-                        <div className="requestname">{user.first_name + " " + user.last_name}</div>
-                        <div className="bio-tag"> Lorem Ipsum is simply dummy text of the printing </div>
-                        </div>
-                        <div className="buttonclass">
-                        <button className="friendapprove"> Confirm </button>
-                        <button className="denyfriend"> Delete</button>
-                        </div>
-                    </div>
+                        {friendrequests}
+                    
                 </div>
                 <div className="drop-down-btn" onClick={this.handleClick.bind(this)} >
                     

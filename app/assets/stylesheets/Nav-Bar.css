@@ -156,7 +156,7 @@
     top: 42px;
     background-color: white;
     color: black;
-    height: 110px;
+    height: auto;
     width: 437px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
