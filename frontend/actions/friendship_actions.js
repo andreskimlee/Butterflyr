@@ -23,8 +23,8 @@ export const requestFriendship = friendship => dispatch => {
     return FRIENDUtil.requestFriendship(friendship).then(friendship => dispatch(receiveFriendship(friendship)))}
 
 export const approveFriendship = friendship => dispatch => {
-    return FRIENDSHIPUtils.approveFriendship(friendship).then(friendship => dispatch(receiveFriendship(friendship)))}
+    return FRIENDUtil.approveFriendship(friendship).then(friendship => dispatch(receiveFriendship(friendship)))}
 
 export const denyFriendship = friendship => dispatch => {
-    return FRIENDSHIPUtils.denyFriendship(friendship).then(friendship => dispatch(removeFriendship(friendship)))}
+    return FRIENDUtil.denyFriendship(friendship).then(friendship => dispatch(removeFriendship(friendship)))}
 

@@ -4,9 +4,9 @@ json.partial! "api/users/user", user: @user
         json.extract! person, :id
         json.firstName person.first_name
         json.lastName person.last_name
-        json.friendIds person.friend_ids
-        if person.profile_photo.attached? 
-            json.photoUrl url_for(person.profile_photo)
+        json.id person.id
+        if person.prof_photo.attached? 
+            json.prof_photo url_for(person.prof_photo)
         end
     end
 end

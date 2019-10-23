@@ -7,7 +7,7 @@ class Api::FriendshipsController < ApplicationController
   end
 
   def update
-      @friendship.find(params[:id])
+      @friendship = Friendship.find(params["friendship"][:id])
       # if @friendship.update_attributes(friendship_params)
       if @friendship.update_attributes(friendship_params)
           render :show
