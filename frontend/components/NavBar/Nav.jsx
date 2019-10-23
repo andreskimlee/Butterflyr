@@ -3,14 +3,16 @@ import { Link } from 'react-router-dom';
 import {connect} from "react-redux"
 import { logout } from "../../actions/session_actions" 
 import { fetchUser } from '../../actions/user_actions'
+import { approveFriendship, denyFriendship } from "../../actions/friendship_actions"
 import ReactDOM from "react-dom" 
+import {merge} from "lodash"
 class NavBar extends React.Component {
     constructor(props) {
         // debugger 
         super(props) 
         this.state = { DropDown: "", DropDownFrnd: "false"}
         this.textInput = React.createRef();
-
+        debugger 
     }
 
     componentDidMount () {
@@ -53,28 +55,33 @@ class NavBar extends React.Component {
                 else {
                     user = ""
                 }
+            
 
             let friendrequests = this.props.currentUser.received_friends  
-            debugger  
-            friendrequests = friendrequests.map((friendships, idx) => {
-                        return ( 
-                        <div key={idx} className="request-container">
-                        <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752" alt=""/>
-                        <div className="textholder">
-                        <div className="requestname">{friendships.first_name + " " + friendships.last_name}</div>
-                        <div className="bio-tag"> Lorem Ipsum is simply dummy text of the printing </div>
-                        </div>
-                        <div className="buttonclass">
-                        <button className="friendapprove"> Confirm </button>
-                        <button className="denyfriend"> Delete</button>
-                        </div>
-                        </div>
-                        ) 
-                
-            }) 
+            friendrequests = friendrequests.map((friendships, idx) => { 
+                    let pendingRequests = this.props.currentUser.friend_requests.filter(friends => friends.status === "pending")  
+                      return pendingRequests.map(element => { 
+                        if (friendships.id === element.requester_id) { 
+                              return ( 
+                                <div key={idx} className="request-container">
+                                <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752" alt=""/>
+                                <div className="textholder">
+                                <div className="requestname"><Link to={`/users/${friendships.id}`} >{friendships.first_name + " " + friendships.last_name}</Link></div>
+                                <div className="bio-tag"> Lorem Ipsum is simply dummy text of the printing </div>
+                                </div>
+                                <div className="buttonclass">
+                                <button className="friendapprove" onClick={() => this.props.approveFriendship(merge({}, this.props.currentUser.friend_requests.filter(friends => friends.requester_id === Number(friendships.id))[0], {status: "accepted"}))}> Confirm </button>
+                                <button className="denyfriend"  > Delete</button>
+                                </div>
+                                </div>
+                                ) 
+                        }
+                      
+                    })   
+                    });
             
         // debugger    
-    
+                console.log(friendrequests)    
         return (
             <span className="Nav-Bar">
                 
@@ -105,7 +112,10 @@ const mapStateToProps = ({ session, entities: { users } }) => {
   
   const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
-    fetchUser: (id) => dispatch(fetchUser(id)) 
+    fetchUser: (id) => dispatch(fetchUser(id)),
+    approveFriendship: (friendship) => dispatch(approveFriendship(friendship)),
+    denyFriendship: (id) => dispatch(denyFriendship(id))
+
   });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavBar) 
