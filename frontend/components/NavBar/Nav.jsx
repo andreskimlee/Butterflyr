@@ -45,9 +45,8 @@ class NavBar extends React.Component {
         e.preventDefault
         this.setState({DropDown: ""})
     }
-
+    
     render () {
-        console.log(this.textInput)
             let user; 
             if (this.props.currentUser.received_friends[0] !== undefined) {
                 user = this.props.currentUser.received_friends[0]
@@ -81,7 +80,6 @@ class NavBar extends React.Component {
                     });
             
         // debugger    
-                console.log(friendrequests)    
         return (
             <span className="Nav-Bar">
                 

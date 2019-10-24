@@ -25,7 +25,7 @@ class ProfilePage extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
-            this.props.getUsersPosts(this.props.match.params.userId)
+            this.props.getUsersPosts(this.props.match.params.userId).then( ({user}) => this.setState({user: user}))
         }
     }
 
@@ -106,13 +106,13 @@ class ProfilePage extends React.Component {
                         <Link className="timeline hvr-pop" to={`/users/${this.props.match.params.userId}`}>Timeline</Link>
                         <Link className="about hvr-pop"to={`/users/${this.props.match.params.userId}/about/overview`}>About</Link>   
                         <Link className="friends hvr-pop" to="/">Friends</Link>
-                        <Link className="photos hvr-pop" to="/">Photos</Link>
+                        <Link className="photos2 hvr-pop" to="/">Photos</Link>
                         <a className="more hvr-pop" href="https://images.squarespace-cdn.com/content/v1/51132139e4b0014fdfeca0ca/1515690627146-UG45BRZQ5WE4ABG6T786/ke17ZwdGBToddI8pDm48kEF2GaKpjeSPJuap1bYL1oVZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyEWjbC5HC78c3ldIV68GhowvuiGnah3z0UFPVxk-pMmm-8ZlmgLQgTEiE--OHMuYI/Please+sir+may+I+have+some+more.jpg?format=1500w">More</a>
                         </div>
                         
                     </div>  
                     <div className='bio-comment-container'>
-                       <Route exact path={`/users/:userId`} component={BioPic}/>
+                       <Route exact path={`/users/:userId`} component={BioPic} props={this.state.user}/>
                        <div className="comment-container">
                        <Route exact path={`/users/:userId`} render={(props) => <CreatePost {...props} isAuthed={true} />}/>
                        <Route exact path={`/users/:userId`} render={renderPosts}/>
@@ -128,7 +128,7 @@ class ProfilePage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {    
-    // debugger 
+    debugger 
     return {
       currentUser: state.entities.users[state.session.id],
       posts: state.entities.posts, 

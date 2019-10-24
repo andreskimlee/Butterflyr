@@ -1,0 +1,67 @@
+.user-friends-container {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    height: auto;
+    margin-top: 15px; 
+    border: 1px solid #dddfe2;
+    width: 335px;
+}
+
+.logo-frnds-count { 
+    display: flex;
+    font-family: sans-serif;
+}
+
+.friends-logo {
+    width: 25px;
+    height: 25px;
+    margin: 10px; 
+}
+
+.friends-count {
+    font-weight: 400;
+    margin-top: 14px;
+    display: flex;
+}
+
+.photo-of-friend {
+    object-fit: contain;
+    width: 103px; 
+    height: 103px; 
+    margin-right: 5px;
+}
+
+.friend-list-container { 
+    display: flex;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.friend-num { 
+    color: #979aa2; 
+    font-size: 14px;
+    margin-top: 1px; 
+    margin-left: 1px;
+}
+
+.friend-name {
+    color: teal;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.friend-name:hover {
+    cursor: pointer;
+}
+
+.linkund {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.linkund:hover {
+    text-decoration:underline; 
+    cursor: pointer;
+}

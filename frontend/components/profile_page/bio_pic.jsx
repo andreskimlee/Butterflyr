@@ -1,5 +1,6 @@
 import React from "react"
-import {withRouter} from 'react-router-dom'
+import {withRouter, Route} from 'react-router-dom'
+import UserFriends from './user_friends_container'
 
 class BioPic extends React.Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class BioPic extends React.Component {
 
     render () {
         return (
+            <div>
             <div className="bio-container">
                 <div className="intro"><img className="globe-icon"src={window.globeicon}  /> Intro </div>
                 <div className="bio"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed porttitor nulla. Nulla ornare nisl eget condimentum vehicula.</div>
@@ -18,6 +20,7 @@ class BioPic extends React.Component {
                     <div className="g"><img className="geo" src={window.geo}/><div>From Asuncion, Paraguay</div></div>
                     <div className="c"><img className="clock" src={window.clock}/><div>Joined December 2007</div></div>
                 </div>
+                <button className="edit-details"><div className="detailedit">Edit Details</div></button>
                 <div className="photos">
                     <img className="image-1" src="https://images2.minutemediacdn.com/image/upload/c_crop,h_788,w_1400,x_0,y_24/f_auto,q_auto,w_1100/v1555155291/shape/mentalfloss/rickandmorty.jpg"/>
                     <div>
@@ -26,6 +29,9 @@ class BioPic extends React.Component {
                         <img className="image-4" src="https://nerdist.com/wp-content/uploads/2019/05/Rick-and-morty-1200x675.png"/>
                     </div>
                 </div>
+            
+            </div>
+            <Route exact path={`/users/:userId`} component={UserFriends}/>
             </div>
         )
     }
