@@ -13,7 +13,7 @@ import  UsersPosts  from './user_posts'
 class ProfilePage extends React.Component {
     constructor(props) {
         super(props) 
-        this.state = { photoFile: null, dropDown: "false", friendStatus: "true", user: ""} // because set to null put a if condition to append only if not null. 
+        this.state = { photoFile: null, dropDown: "false", user: ""} // because set to null put a if condition to append only if not null. 
         this.props = props 
         console.log(this.props)  
         // debugger 
@@ -25,13 +25,10 @@ class ProfilePage extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
-            this.props.getUsersPosts(this.props.match.params.userId).then( ({user}) => this.setState({user: user}))
+            this.props.getUsersPosts(this.props.match.params.userId)    
         }
     }
 
-    sendFriendshipRequest (e) {
-        this.props.requestFriendship({requester_id: this.props.currentUser.id, requested_id: Number(this.props.match.params.userId), status: "pending"})    
-    }
 
     // friendship {requesting, receieved, status}
 
@@ -67,18 +64,13 @@ class ProfilePage extends React.Component {
                 const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
 
             
-
-            // debugger
-        // else {
-        //     this.setState({friendStatus:"true"}) 
-        // }
-
+            
 
         return (
             
             <div className="TopBox">
                  <img className="CoverPhoto" src={coverPhoto} alt=""/>
-                                <div onClick={this.sendFriendshipRequest.bind(this)} className={`friendButton-${this.state.friendStatus}`}> <img className="addfriendicon" src="https://banner2.kisspng.com/20180901/otz/kisspng-computer-icons-scalable-vector-graphics-like-butto-profile-addfriend-svg-png-icon-free-download-519-5b8b4a5af052e8.3625273415358551949844.jpg"/>Add Friend</div>
+                                
                     <div>
                     <div className="upload-cover-photo hvr-pulse-grow">
                         <div className="container-up">
@@ -144,7 +136,6 @@ const mapStateToProps = (state, ownProps) => {
     editUsersPost: (post) => dispatch(editUsersPost(post)),
     deleteUsersPost: (post ) => dispatch(deleteUsersPost(post)),
     fetchUser: userId => dispatch(fetchUser(userId)),
-    requestFriendship: friendship => dispatch(requestFriendship(friendship))
 
     
   })
@@ -157,4 +148,3 @@ const mapStateToProps = (state, ownProps) => {
 
 
 
-//questions how do we submit without a submit button. 

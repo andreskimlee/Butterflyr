@@ -5,14 +5,26 @@ class UsersFriends extends React.Component {
         super(props) 
         console.log(props) 
         this.state = {
-            user: ""
+            user: "",
+            friendButton: "Add Friend",
+            friendStatus: "true"
         }
         this.props = props
+
+    }
+
+    sendFriendshipRequest (e) {
+        this.props.requestFriendship({requester_id: this.props.currentUser.id, requested_id: Number(this.props.match.params.userId), status: "pending"})    
     }
 
     componentDidMount () {
         this.props.getUsersPosts(this.props.match.params.userId).then( ({user}) => this.setState({user: user}))
+        if (this.props.currentUser.id === Number(this.props.match.params.userId)) {
+            this.setState({friendStatus: "false"})
+        } 
     }
+
+    
 
     render () {
         if (this.props.user === undefined) {
@@ -29,7 +41,7 @@ class UsersFriends extends React.Component {
                     })
                 })
             let sentFriend = this.props.user.requested_friends
-            debugger 
+             
             sentFriend = sentFriend.forEach((friendships, idx) => { 
                     let requestedFriend = this.props.user.sent_friend_requests.filter(friends => friends.status === "accepted")  
                         return requestedFriend.map(element => { 
@@ -41,8 +53,7 @@ class UsersFriends extends React.Component {
 
 
 
-                let profilePic; 
-                debugger 
+                let profilePic;  
                 friendlist = friendlist.map(user => {
                     user.prof_photo ? profilePic = user.prof_photo : profilePic = window.profPhoto
                     return (
@@ -54,8 +65,14 @@ class UsersFriends extends React.Component {
                         </div>
                     )
                 })
+
+                
+
+
+
         return (
             <div className="user-friends-container">
+                    <div onClick={this.sendFriendshipRequest.bind(this)} className={`friendButton-${this.state.friendStatus}`}> <img className="addfriendicon" src="https://banner2.kisspng.com/20180901/otz/kisspng-computer-icons-scalable-vector-graphics-like-butto-profile-addfriend-svg-png-icon-free-download-519-5b8b4a5af052e8.3625273415358551949844.jpg"/>{this.state.friendButton}</div>
                 <div className="logo-frnds-count">
                     <img className="friends-logo" src={window.friendsLogo} alt=""/>
                     <div className="friends-count">Friends · <div className="friend-num">{friendlist.length}</div></div>
