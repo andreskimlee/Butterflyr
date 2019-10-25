@@ -19,24 +19,37 @@ class UsersFriends extends React.Component {
             return null; 
         }
         let friendlist = [] 
-        debugger
             let friendrequests = this.props.user.received_friends 
             friendrequests = friendrequests.map((friendships, idx) => { 
                     let pendingRequests = this.props.user.friend_requests.filter(friends => friends.status === "accepted")  
                       return pendingRequests.map(element => { 
-                        if (friendships.id === element.requester_id) {
+                        if (friendships.id === element.requester_id) { 
                             friendlist.push(friendships) 
                         }
                     })
                 })
+            let sentFriend = this.props.user.requested_friends
+            debugger 
+            sentFriend = sentFriend.forEach((friendships, idx) => { 
+                    let requestedFriend = this.props.user.sent_friend_requests.filter(friends => friends.status === "accepted")  
+                        return requestedFriend.map(element => { 
+                            if (friendships.id === element.requested_id) { 
+                                friendlist.push(friendships) 
+                            }
+                        })
+                    })
+
+
+
                 let profilePic; 
+                debugger 
                 friendlist = friendlist.map(user => {
                     user.prof_photo ? profilePic = user.prof_photo : profilePic = window.profPhoto
                     return (
                         <div className="user-friend">
                             <Link className="linkund" to={`/users/${user.id}`}>
                             <img className="photo-of-friend"src={profilePic} alt=""/>
-                            <div className="friend-name">{user.first_name + " " + user.last_name}</div>
+                            <div className="friend-name">{(user.first_name[0].toUpperCase() + user.first_name.slice(1)) + " " + (user.last_name[0].toUpperCase() + user.last_name.slice(1))}</div>
                             </Link>
                         </div>
                     )

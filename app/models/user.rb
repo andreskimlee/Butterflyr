@@ -43,7 +43,7 @@ class User < ApplicationRecord
     has_many :received_friend_requests, #returns all friend requests received all pending. 
       foreign_key: :requested_id,
       class_name: :Friendship
-    has_many :requested_friends, #returns all new friends 
+    has_many :requested_friends, #returns all friends requests sent 
       through: :sent_friend_requests,
       source: :requested
     has_many :received_friends, # returns the user who requested you. 

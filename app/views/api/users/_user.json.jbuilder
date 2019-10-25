@@ -18,6 +18,13 @@ if user.received_friends
     json.received_friends user.received_friends
 end 
 
+if user.sent_friend_requests
+    json.sent_friend_requests user.sent_friend_requests
+end 
+
+if user.requested_friends
+    json.requested_friends user.requested_friends
+end 
 
 
 
