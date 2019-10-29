@@ -8,5 +8,8 @@ json.partial! "api/users/user", user: @user
         if person.prof_photo.attached? 
             json.prof_photo url_for(person.prof_photo)
         end
+        if person.cover_photo.attached?
+            json.coverUrl url_for(person.cover_photo)
+        end
     end
 end

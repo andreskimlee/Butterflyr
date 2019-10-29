@@ -12,17 +12,16 @@ class Api::UsersController < ApplicationController
       
     def show 
         # debugger
-        @user = User.find(params[:id])
+        @user = User.with_attached_profile_photo.with_attached_cover_photo.with_attached_photos
+        .includes(:sent_friend_requests, :received_friend_requests, :received_friends, :requested_friends).find(params[:id])
         render "api/users/show"
     end
 
     def update
         # debugger
-        @user = User.find(params[:id])
-        # debugger
-        a = "aa"
+        @user = User.with_attached_profile_photo.with_attached_cover_photo.with_attached_photos.find(params[:id])
         if @user.update_attributes(user_params)
-          render "api/users/show"
+            render :show
         else 
           render json: @user.errors.full_messages
         end 
@@ -31,7 +30,7 @@ class Api::UsersController < ApplicationController
     # end
   
     def user_params
-      params.require(:user).permit(:email, :password, :first_name, :last_name, :DOB, :gender, :prof_photo, :cover_photo, :cover_photo_url)
+      params.require(:user).permit(:email, :password, :first_name, :last_name, :DOB, :gender, :prof_photo, :cover_photo, :cover_photo_url,  photos: [])
     end
 end
   

@@ -44,6 +44,7 @@ class UsersPost extends React.Component {
   }  
   var d = new Date(this.props.post.timestamp);
   var n = d.toString().slice(4, 15)
+
   return (
     <div className="post-index-container">
       <div className="post-top-portion">
