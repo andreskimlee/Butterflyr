@@ -52,14 +52,13 @@ class UsersFriends extends React.Component {
                     })
 
 
-
-                let profilePic;  
                 friendlist = friendlist.map(user => {
-                    user.prof_photo ? profilePic = user.prof_photo : profilePic = window.profPhoto
+                    const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
+                    debugger
                     return (
                         <div className="user-friend">
                             <Link className="linkund" to={`/users/${user.id}`}>
-                            <img className="photo-of-friend"src={profilePic} alt=""/>
+                            <img className="photo-of-friend"src={profPhoto} alt=""/>
                             <div className="friend-name">{(user.first_name[0].toUpperCase() + user.first_name.slice(1)) + " " + (user.last_name[0].toUpperCase() + user.last_name.slice(1))}</div>
                             </Link>
                         </div>

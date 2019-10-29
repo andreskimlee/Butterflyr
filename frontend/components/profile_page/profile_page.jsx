@@ -25,6 +25,7 @@ class ProfilePage extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
+            console.log(this.props.posts) 
             this.props.getUsersPosts(this.props.match.params.userId)    
         }
     }
@@ -57,8 +58,10 @@ class ProfilePage extends React.Component {
         let renderPosts;
         const {user = {} } = this.props;
         console.log(this.state)  
-            if (typeof this.props.posts !== "undefined" ) {
-                    renderPosts = () => Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={this.props.posts.user}/>) )
+            if (typeof this.props.posts !== "undefined") {
+                    debugger 
+                    renderPosts = () => Object.values(this.props.posts).filter(post => post.authorId === Number(this.props.match.params.userId))
+                    .reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={this.props.posts.user}/>) )
                 } 
                 const coverPhoto = user.cover_photo ? user.cover_photo : window.coverPhoto
                 const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
