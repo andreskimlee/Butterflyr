@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 class UsersFriends extends React.Component {
     constructor(props) {
         super(props) 
-        console.log(props) 
+        // console.log(props) 
         this.state = {
             user: "",
             friendButton: "Add Friend",
@@ -54,7 +54,7 @@ class UsersFriends extends React.Component {
 
                 friendlist = friendlist.map(user => {
                     const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
-                    debugger
+                    // debugger
                     return (
                         <div className="user-friend">
                             <Link className="linkund" to={`/users/${user.id}`}>

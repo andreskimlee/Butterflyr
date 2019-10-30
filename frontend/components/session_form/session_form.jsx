@@ -9,7 +9,7 @@ class SessionForm extends React.Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlebutton = this.handlebutton.bind(this); 
-    console.log(props)
+    // console.log(props)
   }
 
 

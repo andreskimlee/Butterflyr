@@ -12,7 +12,7 @@ class NavBar extends React.Component {
         super(props) 
         this.state = { DropDown: "", DropDownFrnd: "false"}
         this.textInput = React.createRef();
-        debugger 
+        // debugger 
     }
 
     componentDidMount () {

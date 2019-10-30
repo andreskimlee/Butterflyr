@@ -15,7 +15,7 @@ class ProfilePage extends React.Component {
         super(props) 
         this.state = { photoFile: null, dropDown: "false", user: ""} // because set to null put a if condition to append only if not null. 
         this.props = props 
-        console.log(this.props)  
+        // console.log(this.props)  
         // debugger 
     }   
 
@@ -25,7 +25,7 @@ class ProfilePage extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
-            console.log(this.props.posts) 
+            // console.log(this.props.posts) 
             this.props.getUsersPosts(this.props.match.params.userId)    
         }
     }
@@ -39,7 +39,8 @@ class ProfilePage extends React.Component {
         e.stopPropagation();
         e.preventDefault();
         const formData = new FormData();
-        formData.append('user[prof_photo]', e.currentTarget.files[0]) //  
+        formData.append('user[prof_photo]', e.currentTarget.files[0])
+        formData.append('user[photos]', e.currentTarget.files[0]) //  
         this.props.updateUserAction(this.props.currentUser.id, formData)
     }
  
@@ -48,7 +49,8 @@ class ProfilePage extends React.Component {
         e.stopPropagation();
         e.preventDefault();
         const formData = new FormData();        
-        formData.append('user[cover_photo]', e.currentTarget.files[0]) //  
+        formData.append('user[cover_photo]', e.currentTarget.files[0])
+        formData.append('user[photos]', e.currentTarget.files[0]) //  
         this.props.updateUserAction(this.props.currentUser.id, formData)
         
     }
@@ -57,11 +59,11 @@ class ProfilePage extends React.Component {
     render () {  
         let renderPosts;
         const {user = {} } = this.props;
-        console.log(this.state)  
+        // console.log(this.state)  
             if (typeof this.props.posts !== "undefined") {
-                    debugger 
+                    // debugger 
                     renderPosts = () => Object.values(this.props.posts).filter(post => post.authorId === Number(this.props.match.params.userId))
-                    .reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={this.props.posts.user}/>) )
+                    .reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={user}/>) )
                 } 
                 const coverPhoto = user.cover_photo ? user.cover_photo : window.coverPhoto
                 const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
@@ -122,8 +124,7 @@ class ProfilePage extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {    
-    debugger 
+const mapStateToProps = (state, ownProps) => {     
     return {
       currentUser: state.entities.users[state.session.id],
       posts: state.entities.posts, 
@@ -138,9 +139,7 @@ const mapStateToProps = (state, ownProps) => {
     getUsersPosts: (userId) => dispatch(getUsersPosts(userId)),
     editUsersPost: (post) => dispatch(editUsersPost(post)),
     deleteUsersPost: (post ) => dispatch(deleteUsersPost(post)),
-    fetchUser: userId => dispatch(fetchUser(userId)),
-
-    
+    fetchUser: userId => dispatch(fetchUser(userId)),    
   })
   
   export default withRouter(connect(mapStateToProps,mapDispatchToProps)(ProfilePage))
