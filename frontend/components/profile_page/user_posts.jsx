@@ -7,7 +7,7 @@ class UsersPost extends React.Component {
     super(props) 
     this.state = { dropDown: "falseDropDown" }
     this.props = props 
-    console.log(props) 
+     
   }
   
   handleDropDownFocus(e) {
@@ -49,9 +49,9 @@ class UsersPost extends React.Component {
     <div className="post-index-container">
       <div className="post-top-portion">
         <div className="prof-name-ind">
-          <img className="prof-photo-ind" src={this.props.currentUser.prof_photo} alt=""/>
+          <img className="prof-photo-ind" src={this.props.user.prof_photo} alt=""/>
           <div className="post-date-name">
-            <div className="author-name">{this.props.user}</div>
+            <div className="author-name">{(this.props.user.first_name[0].toUpperCase() + this.props.user.first_name.slice(1)) + " " + (this.props.user.last_name[0].toUpperCase() + this.props.user.last_name.slice(1))}</div>
             <div className="date-made">{n}</div>
           </div>
           <div  id="drpdwn" tabIndex={3} onFocus={this.handleDropDownFocus.bind(this)} className="edit-post-button">...</div>
@@ -74,7 +74,7 @@ class UsersPost extends React.Component {
             </div>
           </div>
           <div className="write-comm">
-            <img className="write-comm-prof" src={this.props.currentUser.prof_photo}/>
+            <img className="write-comm-prof" src={this.props.user.prof_photo}/>
             <input className="write-comment-box" type="text" placeholder="Write a comment..."/>
           </div>
       </div>
@@ -83,12 +83,12 @@ class UsersPost extends React.Component {
   )
   }
 }
-const mapStateToProps = (state) => {    
-  // debugger 
+const mapStateToProps = (state, ownProps) => {
+  debugger    
   return {
     currentUser: state.entities.users[state.session.id],
-    posts: state.entities.posts, 
-    user: state.entities.user 
+    posts: state.entities.posts,
+    user: state.entities.users[ownProps.user.id]
   };
 };
 

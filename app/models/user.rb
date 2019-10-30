@@ -67,6 +67,25 @@ class User < ApplicationRecord
     def is_password?(password)
       BCrypt::Password.new(self.password_digest).is_password?(password)
     end
+
+    def friend_ids
+      @friend_ids ||= Friendship.select('requester_id, requested_id').where("requested_id = ? OR requester_id = ? AND status = 'accepted'", self.id, self.id).map {|el|
+          el.requester_id + el.requested_id - self.id }
+    end
+
+    def friends 
+        @friends ||= User.where('id IN (?)', self.friend_ids).includes(profile_photo_attachment: [:blob])
+    end
+
+    def received_requests
+        ids = Friendship.select('requester_id, requested_id').where("requested_id = ? OR requester_id = ?", self.id, self.id).map {|el|
+            el.requester_id + el.requested_id - self.id }
+        @received_requests ||= User.where('id IN (?)', ids).includes(profile_photo_attachment: [:blob])
+    end
+
+    def friend_requests
+        @friend_requests ||= Friendship.where("requested_id = ? OR requester_id = ?", self.id, self.id)
+    end
   
     def reset_session_token!
       generate_unique_session_token

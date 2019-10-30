@@ -14,7 +14,7 @@ class CreatePost extends React.Component {
             photoFile: null,
         }
     this.update = this.update.bind(this) 
-    // console.log(this.props)
+    
     this.props = props 
     }
 
@@ -29,14 +29,16 @@ class CreatePost extends React.Component {
     handleSubmit(e) {
         e.preventDefault() 
         const formData = new FormData(); // formdata is sort of holding 
+        const formData2 = new FormData(); 
         if (this.state.photoFile !== null) {
             formData.append('post[photo]', this.state.photoFile)
+            formData2.append('user[photos]', this.state.photoFile)
         }  
         formData.append('post[body]', this.state.body)
         formData.append('post[author_id]', this.state.author_id)
         // debugger 
         this.props.createPost(this.props.currentUser.id, formData).then(this.props.closeModal)
-        
+        this.props.updateUserAction(this.props.currentUser.id, formData2)
     }
 
     handleFile(e) {
@@ -48,6 +50,7 @@ class CreatePost extends React.Component {
 
 
     render () {
+        // console.log(this.props)
         return (
             <div className='create-post'>
                             <form>
@@ -85,8 +88,8 @@ const mapStateToProps = (state) => {
   const mapDispatchToProps = dispatch => ({
     createPost: (userId, formData) => dispatch(createPost(userId, formData)),
     closeModal: () => dispatch(closeModal()),
-    openModal: (abc) => dispatch(openModal(abc))   
-    // getUsersPosts: (userId) => dispatch(getUsersPosts(userId))
+    openModal: (abc) => dispatch(openModal(abc)),
+    updateUserAction: (userId, formData) => dispatch(updateUserAction(userId, formData))
   })
   
   export default connect(mapStateToProps,mapDispatchToProps)(CreatePost)
