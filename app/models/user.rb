@@ -74,13 +74,13 @@ class User < ApplicationRecord
     end
 
     def friends 
-        @friends ||= User.where('id IN (?)', self.friend_ids).includes(profile_photo_attachment: [:blob])
+        @friends ||= User.where('id IN (?)', self.friend_ids).includes(prof_photo_attachment: [:blob])
     end
 
     def received_requests
         ids = Friendship.select('requester_id, requested_id').where("requested_id = ? OR requester_id = ?", self.id, self.id).map {|el|
             el.requester_id + el.requested_id - self.id }
-        @received_requests ||= User.where('id IN (?)', ids).includes(profile_photo_attachment: [:blob])
+        @received_requests ||= User.where('id IN (?)', ids).includes(prof_photo_attachment: [:blob])
     end
 
     def friend_requests

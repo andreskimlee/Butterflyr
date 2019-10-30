@@ -1,8 +1,8 @@
-# debugger
+
 json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_photo_url, :gender
  
 if user.prof_photo.attached? 
-    # debugger 
+    
     json.prof_photo url_for(user.prof_photo)
 end
 
@@ -19,17 +19,32 @@ if user.received_friend_requests
 end 
 
 if user.received_friends 
-    json.received_friends user.received_friends
+    json.received_friends user.received_friends 
 end 
 
 if user.sent_friend_requests
     json.sent_friend_requests user.sent_friend_requests
+    
 end 
 
 if user.requested_friends
     json.requested_friends user.requested_friends
 end 
 
+
+
+json.friends do 
+    user.friends.each do |friend|
+        json.set! friend.id do
+            json.extract! friend, :id
+            json.first_name friend.first_name
+            json.last_name friend.last_name
+            if friend.prof_photo.attached? 
+                json.prof_photo url_for(friend.prof_photo)
+            end
+        end
+    end
+end 
 
 
 
