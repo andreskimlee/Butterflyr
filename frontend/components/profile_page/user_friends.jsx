@@ -27,34 +27,40 @@ class UsersFriends extends React.Component {
     
 
     render () {
+        console.log(this.props) 
         if (this.props.user === undefined) {
             return null; 
         }
         let friendlist = [] 
-            let friendrequests = this.props.user.received_friends 
+        
+            let friendrequests = Object.values(this.props.user.friends)
             friendrequests = friendrequests.map((friendships, idx) => { 
                     let pendingRequests = this.props.user.friend_requests.filter(friends => friends.status === "accepted")  
                       return pendingRequests.map(element => { 
                         if (friendships.id === element.requester_id) { 
                             friendlist.push(friendships) 
+                            debugger 
                         }
                     })
                 })
             let sentFriend = this.props.user.requested_friends
-             
+            // debugger
             sentFriend = sentFriend.forEach((friendships, idx) => { 
                     let requestedFriend = this.props.user.sent_friend_requests.filter(friends => friends.status === "accepted")  
                         return requestedFriend.map(element => { 
                             if (friendships.id === element.requested_id) { 
                                 friendlist.push(friendships) 
+                                debugger
                             }
                         })
                     })
 
 
-                friendlist = friendlist.map(user => {
-                    const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
-                    // debugger
+                friendlist = friendlist.map(user => {               
+                     var profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
+                     if (user.id === this.props.currentUser.id) {
+                        var profPhoto = this.props.currentUser.prof_photo
+                    }                      
                     return (
                         <div className="user-friend">
                             <Link className="linkund" to={`/users/${user.id}`}>
