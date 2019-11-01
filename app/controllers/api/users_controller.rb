@@ -12,7 +12,7 @@ class Api::UsersController < ApplicationController
       
     def show 
         # debugger
-        @user = User.with_attached_prof_photo.with_attached_cover_photo.with_attached_photos
+        @user = User.with_attached_prof_photo.with_attached_cover_photo.with_attached_photos.all
         .includes(:sent_friend_requests, :received_friend_requests, :received_friends, :requested_friends).find(params[:id])
         render "api/users/show"
     end

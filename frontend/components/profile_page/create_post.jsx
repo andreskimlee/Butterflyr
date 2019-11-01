@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import UserPosts from './user_posts'
 import { openModal, closeModal } from '../../actions/modal_actions';
 
+
 class CreatePost extends React.Component {
     constructor(props) {
     super(props) 
@@ -18,12 +19,14 @@ class CreatePost extends React.Component {
     this.props = props 
     }
 
-
+    
 
     update(field) {
         return e => this.setState({
           [field]: e.target.value
+          
         });
+        
     }
 
     handleSubmit(e) {
@@ -62,7 +65,7 @@ class CreatePost extends React.Component {
                                 </div>
                                 <div className="textbox-container">
                                 <img className="textbox-prof" src={this.props.currentUser.prof_photo}/>
-                                <input onClick={() => this.props.openModal("createPost")} className="create-textbox" onChange={this.update("body")} type="textarea" placeholder="What's on your mind?"/>
+                                <input onClick={() => this.props.openModal("createPost")} className="create-textbox" onChange={this.update("body").bind(this)} type="textarea" placeholder="What's on your mind?" />
                                 
                                 <div className="bottom-container">
                                 <input id="file" name="file" type="file" onChange={this.handleFile.bind(this)} className="upload-photo-post"/>
@@ -89,7 +92,8 @@ const mapStateToProps = (state) => {
     createPost: (userId, formData) => dispatch(createPost(userId, formData)),
     closeModal: () => dispatch(closeModal()),
     openModal: (abc) => dispatch(openModal(abc)),
-    updateUserAction: (userId, formData) => dispatch(updateUserAction(userId, formData))
+    updateUserAction: (userId, formData) => dispatch(updateUserAction(userId, formData)),
+    createComment: (postId, authorId) => dispatch(createComment(postId, authorId))
   })
   
   export default connect(mapStateToProps,mapDispatchToProps)(CreatePost)

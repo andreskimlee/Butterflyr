@@ -10,7 +10,7 @@ if user.cover_photo.attached?
     json.cover_photo url_for(user.cover_photo) 
 end 
 
-if user.photos.attached?    
+if user.photos.attached?     
     json.photos person.photos.map { |file| url_for(file) }
 end
 

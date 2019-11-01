@@ -1,0 +1,19 @@
+.prof-pic-for-the-100th-time {
+    object-fit: contain;
+    border-radius: 50%;
+    width: 32px;
+    height:32px;
+}
+
+.comment-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-head {
+    display: flex;
+}
+
+.name-body {
+    display: flex;
+}

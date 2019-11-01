@@ -37,6 +37,9 @@ class User < ApplicationRecord
     has_many :posts,
       foreign_key: :author_id,
       class_name: :Post
+    has_many :comments,
+      foreign_key: :author_id,
+      class_name: :Comment
     has_many :sent_friend_requests, #user sent friend request. 
       foreign_key: :requester_id,
       class_name: :Friendship
@@ -52,6 +55,8 @@ class User < ApplicationRecord
     has_one_attached :prof_photo
     has_one_attached :cover_photo
     has_many_attached :photos
+
+    
   
     def self.find_by_credentials(email, password)
       user = User.find_by(email: email)
@@ -69,7 +74,7 @@ class User < ApplicationRecord
     end
 
     def friend_ids
-      @friend_ids ||= Friendship.select('requester_id, requested_id').where("requested_id = ? OR requester_id = ? AND status = 'accepted'", self.id, self.id).map {|el|
+      @friend_ids ||= Friendship.select('requested_id, requester_id').where("requested_id = ? OR requester_id = ? AND status = 'accepted'", self.id, self.id).map {|el|
           el.requester_id + el.requested_id - self.id }
     end
 
