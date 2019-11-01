@@ -21,9 +21,12 @@ class UsersFriends extends React.Component {
         this.props.getUsersPosts(this.props.match.params.userId).then( ({user}) => this.setState({user: user}))
         if (this.props.currentUser.id === Number(this.props.match.params.userId)) {
             this.setState({friendStatus: "false"})
-        } 
+        } else {
+            this.setState({friendStatus: "true"})
+        }
     }
-
+    
+    
     
 
     render () {
@@ -39,7 +42,7 @@ class UsersFriends extends React.Component {
                       return pendingRequests.map(element => { 
                         if (friendships.id === element.requester_id) { 
                             friendlist.push(friendships) 
-                            debugger 
+                            // debugger 
                         }
                     })
                 })
@@ -50,7 +53,7 @@ class UsersFriends extends React.Component {
                         return requestedFriend.map(element => { 
                             if (friendships.id === element.requested_id) { 
                                 friendlist.push(friendships) 
-                                debugger
+                                // debugger
                             }
                         })
                     })

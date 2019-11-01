@@ -409,3 +409,12 @@ input:focus {
     margin-left: 11px; 
 }
 
+.newsfeed-posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.cont-wall { 
+    display: flex;
+    flex-direction: column;
+}

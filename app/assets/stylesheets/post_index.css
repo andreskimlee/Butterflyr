@@ -140,7 +140,7 @@
     cursor: pointer; 
 }
 
-.trueDropDown {
+.trueDropDown-undefined {
     position: absolute;
     display: block; 
     /* top: 1560px; */
@@ -157,7 +157,29 @@
     outline: none;
 }
 
-.falseDropDown {
+.trueDropDown-newsfeed {
+    position: absolute;
+    display: block; 
+    /* top: 1560px; */
+    /* left: 180px; */
+    left: 906px;
+    background-color: white;
+    width: 70px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    outline: none;
+}
+
+.falseDropDown-undefined {
+    display: none; 
+    outline: none;
+}
+
+.falseDropDown-newsfeed {
     display: none; 
     outline: none;
 }
@@ -175,4 +197,3 @@
     color: white; 
     cursor: pointer; 
 }
-

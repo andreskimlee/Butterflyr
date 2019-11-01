@@ -30,10 +30,9 @@ class NavBar extends React.Component {
 
     handleClick4Frnd(e) {
         e.preventDefault() 
-        //   
-        if (e.type === "focus") {
+        // debugger 
+        if (e.type === "click") {
             this.setState({DropDownFrnd: "true"})
-            this.textInput.current.focus()
             //  
             } else {
                 this.setState({DropDownFrnd: "false"})
@@ -86,8 +85,8 @@ class NavBar extends React.Component {
                 <Link to='/' className="azy"> <img className="butterfly-Logo" src={window.butterFlyLogo}/></Link>
                 <Link className="showpage" to={`/users/${this.props.currentUser.id}`}><img className="profile-small"src={this.props.currentUser.prof_photo}/><div className="Name">{this.props.currentUser.first_name.charAt(0).toUpperCase() + this.props.currentUser.first_name.slice(1)}</div></Link>
                 <Link to="/" className="home" ><div className='homeLink'>Home</div></Link>
-                <img name="dropdown" tabIndex={3} onFocus={this.handleClick4Frnd.bind(this)} className="friend-notification" src="https://cdn0.iconfinder.com/data/icons/facebook-ui-glyph/48/Sed-02-512.png"/>
-                <div tabIndex={-1} ref={this.textInput} onBlur={this.handleClick4Frnd.bind(this)} className={`${this.state.DropDownFrnd}-friend-drp`}>
+                <img name="dropdown" tabIndex={3} onBlur={this.handleClick4Frnd.bind(this)} onClick={this.handleClick4Frnd.bind(this)} className="friend-notification" src="https://cdn0.iconfinder.com/data/icons/facebook-ui-glyph/48/Sed-02-512.png"/>
+                <div tabIndex={-1} ref={this.textInput}  className={`${this.state.DropDownFrnd}-friend-drp`}>
                     <div className="title-drp">Friend Request</div>
                         {friendrequests}
                     
