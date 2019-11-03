@@ -1,20 +1,49 @@
 import React from "react"
 import {withRouter, Route} from 'react-router-dom'
 import UserFriends from './user_friends_container'
+import {connect} from "react-redux"
+import {updateUserAction} from '../../actions/user_actions'
 
 class BioPic extends React.Component {
     constructor(props) {
     super(props) 
+    this.state = {
+        editBio: "false",
+        bioText: ""
+    }
         
     }
 
+    handleClick(e) {
+        e.preventDefault()
+        this.setState({editBio: "true"})
+    }
+
     render () {
+        let editState;
+        if (this.state.editBio === "false") {
+          editState = 
+            <div>
+            <div className="bio"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed porttitor nulla. Nulla ornare nisl eget condimentum vehicula.</div>
+            <button onClick={this.handleClick.bind(this)} className="edit-bio"><div className={`bioedit`}>Edit Bio</div></button>
+            </div>
+        } else {
+           editState =
+            <div className="edit-bio-info">
+                <form>
+             <input className="input-bio"type="textbox" name="bio"/>
+             <div className="bottom-sect-bio-edit">
+
+             </div>
+             </form>
+             </div>
+             
+        }
         return (
             <div>
             <div className="bio-container">
                 <div className="intro"><img className="globe-icon"src={window.globeicon}  /> Intro </div>
-                <div className="bio"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed porttitor nulla. Nulla ornare nisl eget condimentum vehicula.</div>
-                <button className="edit-bio"><div className="bioedit">Edit Bio</div></button>
+                {editState}
                 <div className="user-info">
                    <div className="h"><img className="house" src={window.house}/><div>Lives in Syosset, New York</div></div>
                     <div className="g"><img className="geo" src={window.geo}/><div>From Asuncion, Paraguay</div></div>
@@ -37,4 +66,24 @@ class BioPic extends React.Component {
     }
 }
 
-export default withRouter(BioPic); 
+const mapStateToProps = (state, ownProps) => {     
+    return {
+      currentUser: state.entities.users[state.session.id],
+      posts: state.entities.posts, 
+      friendships: state.friendships, 
+      user: state.entities.users[ownProps.match.params.userId], 
+      comments: state.entities.comments || []  
+    };
+  };
+
+  
+  const mapDispatchToProps = dispatch => ({
+    updateUserAction: (userId, formData) => dispatch(updateUserAction(userId, formData)), 
+  })
+  
+  export default withRouter(connect(mapStateToProps,mapDispatchToProps)(BioPic))
+
+
+
+
+

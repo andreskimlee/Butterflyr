@@ -1,5 +1,5 @@
 .bio-container {
-    width: 335px;
+    width: 322px;
     height: auto;
     background-color: white;
     border: 1px solid #d6e8e6;
@@ -25,21 +25,22 @@
     font-size: 17px;
 }
 
-.bio 
-    {
-        margin-top: 15px;
-        width: 285px;
-        height: 40px;
-        font-size: 12px;
-        font-family: sans-serif;
-        margin-left: 33px;
-    }
+.bio {
+    /* margin-top: 15px; */
+    width: auto;
+    height: 40px;
+    font-size: 12px;
+    font-family: sans-serif;
+    /* margin-left: 33px; */
+    padding: 15px;
+    text-align: center;
+}
     .edit-bio {
         margin-top: 11px;
         width: 285px;
         height: 27px;
         background-color: #efefef;
-        margin-left: 24px;
+        margin-left: 18px;
         border: 1px solid #c7c7c7;
         /* font-weight: 100; */
     }
@@ -49,7 +50,7 @@
         width: 285px;
         height: 27px;
         background-color: #efefef;
-        margin-left: 24px;
+        margin-left: 18px;
         border: 1px solid #c7c7c7;
         /* font-weight: 100; */
         margin-bottom: 14px;
@@ -88,16 +89,17 @@
 
 .image-1 {
     object-fit: cover;
-    width: 321px;
+    width: 312px;
     height: 210px;
-    margin: 3px;
+    margin-left: 1px;
 }
 
 .image-2, .image-3, .image-4 {
     object-fit: cover;
-    width: 103px;
+    width: 101px;
     height: 93px;
-    margin: 3px;
+    margin: 2px;
+
 }
 
 
@@ -113,3 +115,16 @@
 }
 
 
+.input-bio {
+    height: 80px;
+    width: 300px;
+    /* margin: auto; */
+    /* align-self: center; */
+    margin: 8px;
+}
+
+.bottom-sect-bio-edit {
+    height: 70px; 
+    width: 300px; 
+    
+}

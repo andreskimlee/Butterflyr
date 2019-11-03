@@ -27,7 +27,8 @@ class ProfilePage extends React.Component {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
             // console.log(this.props.posts) 
             this.props.getUsersPosts(this.props.match.params.userId)    
-        }
+        } 
+        
     }
 
 
@@ -63,8 +64,17 @@ class ProfilePage extends React.Component {
             if (typeof this.props.posts !== "undefined") {
                     // debugger 
                     renderPosts = () => Object.values(this.props.posts).filter(post => post.authorId === Number(this.props.match.params.userId))
-                    .reverse().map((post, idx) => (<UsersPosts key={idx} post={post} user={user}/>) )
-                } 
+                    .reverse().map((post, idx) => {
+                        // if (Object.values(this.props.comments).length > 1 ) {
+                        //     if (post.id === Object.values(this.props.comments[0].postId)) {
+                        //         post.comments[this.props.comments[0].id] = this.props.comments[0]
+                        //     }
+                        // }
+                        return (
+                         <UsersPosts key={idx} post={post} user={user}/>
+                        )
+                })
+            }
                 const coverPhoto = user.cover_photo ? user.cover_photo : window.coverPhoto
                 const profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
 
@@ -129,7 +139,8 @@ const mapStateToProps = (state, ownProps) => {
       currentUser: state.entities.users[state.session.id],
       posts: state.entities.posts, 
       friendships: state.friendships, 
-      user: state.entities.users[ownProps.match.params.userId]
+      user: state.entities.users[ownProps.match.params.userId], 
+      comments: state.entities.comments || []  
     };
   };
 
