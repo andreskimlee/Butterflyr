@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux"
-import {deleteUsersPost} from '../../actions/posts_actions'
+import {deleteUsersPost, getUsersPosts} from '../../actions/posts_actions'
 import { createComment } from "../../actions/comment_actions"
+import { merge } from 'lodash'
 
 class UsersPost extends React.Component {
   constructor(props) {
@@ -22,10 +23,17 @@ class UsersPost extends React.Component {
         formData.append('comment[author_id]', this.props.currentUser.id)
         formData.append('comment[post_id]', this.props.post.id)
         this.props.createComment(this.props.post.id, formData)
-        
+        e.target.value = "" 
     }
   }
 
+  handleCommentClick (e) {
+    e.preventDefault() 
+   
+   let abc = document.getElementsByClassName("write-comment-box")[0]
+   abc.focus() 
+  }
+  
 
   update(field) {
     return e => this.setState({
@@ -60,8 +68,8 @@ class UsersPost extends React.Component {
 
   
 
-  render () {  
-    console.log(this.state.body)
+  render () {
+    let commentCounter = this.props.post.comments ? Object.values(this.props.post.comments).length : "" 
     if (this.props.user === undefined) {
       return null; 
   }
@@ -74,18 +82,31 @@ class UsersPost extends React.Component {
   var profPhoto = this.props.user.prof_photo ? this.props.user.prof_photo : window.profPhoto
                      if (this.props.user.id === this.props.currentUser.id) {
                         var profPhoto = this.props.currentUser.prof_photo
-                    }    
+                    }
+                    
+  
   let comments;                    
   if (this.props.post.comments) {
-    comments = Object.values(this.props.post.comments).map(comment => {
+    if (Object.values(this.props.comments).length > 0) { 
+      if (Object.values(this.props.comments)[0].postId === this.props.post.id) { 
+        comments = merge({}, this.props.comments, this.props.post.comments)
+    } 
+    
+  }
+    comments = Object.values(comments ? comments : this.props.post.comments).map(comment => { 
+      debugger 
       return (
       <div>
         <div className="comment-head">
         <img className="prof-pic-for-the-100th-time" src={comment.prof_photo ? comment.prof_photo : window.profPhoto}></img>
         <div className="name-body">
-        <div> {(comment.first_name[0].toUpperCase() + comment.first_name.slice(1)) + " " + (comment.last_name[0].toUpperCase() + comment.last_name.slice(1))} </div>
+        <div className="name-on-comment"> {(comment.first_name[0].toUpperCase() + comment.first_name.slice(1)) + " " + (comment.last_name[0].toUpperCase() + comment.last_name.slice(1))} </div>
         <div> {comment.body} </div>
         </div>
+        </div>
+        <div className="like-reply-created">
+          <div className="like-reply">Like · Reply</div>
+          <div className="timestamp">· {comment.createdAt.date}</div>
         </div>
         </div>
       )
@@ -110,6 +131,7 @@ class UsersPost extends React.Component {
           
           <div className="body-of-post">{this.props.post.body}</div>
           {postPhoto} 
+          <div className="comment-counter">{commentCounter} Comments</div>
           <div className="comment-like-container ">
             <div className="ctii">
             <img className="like-button hvr-icon-bounce" src="https://images.vexels.com/media/users/3/157338/isolated/preview/4952c5bde17896bea3e8c16524cd5485-facebook-like-icon-by-vexels.png" />
@@ -117,7 +139,7 @@ class UsersPost extends React.Component {
             </div>
             <div className="cti"> 
               <img className="commenticon" src="https://icon-library.net/images/comment-icon-png/comment-icon-png-2.jpg" />
-              <div className="comment-text">Comment</div>
+              <div onClick={this.handleCommentClick.bind(this)} className="comment-text">Comment</div>
             </div>
           </div>
           <div className="comment-container">
@@ -134,10 +156,11 @@ class UsersPost extends React.Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  // debugger    
+      
   return {
     currentUser: state.entities.users[state.session.id],
     posts: state.entities.posts,
+    comments: state.entities.comments || []
   };
 };
 
@@ -146,7 +169,7 @@ const mapDispatchToProps = dispatch => ({
   getUsersPosts: (userId) => dispatch(getUsersPosts(userId)),
   editUsersPost: (postId) => dispatch(editUsersPost(postId)),
   deleteUsersPost: (postId) => dispatch(deleteUsersPost(postId)),
-  createComment: (postId, authorId) => dispatch(createComment(postId, authorId)),
+  createComment: (postId, formData) => dispatch(createComment(postId, formData)),
   deleteCommentOnPost: (commentId) => dispatch(deleteCommentOnPost(commentId))
 })
 

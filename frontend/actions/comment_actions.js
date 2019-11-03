@@ -2,12 +2,11 @@ import * as COMMENTUtil from '../util/comment_util'
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
 
-export const receiveComment = ({comment, user}) => {
- debugger 
+export const receiveComment = ({comments}) => {
+   
     return {   
     type: RECEIVE_COMMENT,
-    comment, 
-    user
+    comments, 
  }
 }
 
@@ -17,8 +16,8 @@ export const deleteComment = ({id}) => ({
 })
 
 
-export const createComment = (postId, formData) => dispatch => {
-    return COMMENTUtil.createComment(postId, formData)
+export const createComment = (postId, comment) => dispatch => {
+    return COMMENTUtil.createComment(postId, comment)
         .then( comment => dispatch(receiveComment(comment)))
 }
 

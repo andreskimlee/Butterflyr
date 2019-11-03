@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom'
 import {createPost, getUsersPosts } from '../../actions/posts_actions'
 import { connect } from "react-redux"
 import UserPosts from './user_posts'
+import {updateUserAction} from '../../actions/user_actions'
 import { openModal, closeModal } from '../../actions/modal_actions';
 
 

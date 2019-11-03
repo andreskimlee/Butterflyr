@@ -104,9 +104,20 @@
 
 .ctii, .cti {
     display: flex;
-    margin-left: 65px;
+    /* margin-left: 65px; */
     padding-top: 8px;
     padding-bottom: 8px;
+    color: #606770;
+    padding-left: 51px;
+    /* margin-left: 3px; */
+    padding-right: 51px;
+    margin: 3px;
+}
+
+
+.ctii:hover, .cti:hover {
+    background-color: #f2f2f2; 
+    cursor: pointer;
 }
 
 .write-comment-box {
