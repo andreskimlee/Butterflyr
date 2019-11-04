@@ -1,5 +1,7 @@
 import React from "react"
 import { Link } from 'react-router-dom'
+import FriendIndex from './friend_index'
+import {withRouter, Route} from 'react-router-dom'
 class UsersFriends extends React.Component {
     constructor(props) {
         super(props) 
@@ -88,6 +90,7 @@ class UsersFriends extends React.Component {
                 <div className="friend-list-container">
                   {friendlist}
                 </div>
+                
             </div>
         )
     }
