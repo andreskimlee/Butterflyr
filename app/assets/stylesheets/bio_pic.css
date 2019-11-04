@@ -34,6 +34,8 @@
     /* margin-left: 33px; */
     padding: 15px;
     text-align: center;
+    word-wrap:break-word;
+    display:block;
 }
     .edit-bio {
         margin-top: 11px;
@@ -122,6 +124,8 @@
     margin-top: 8px;
     border: 1px solid #ebedf0;
     text-align: center;
+    word-wrap:break-word;
+    display:block;
 }
 
 .bottom-sect-bio-edit {
