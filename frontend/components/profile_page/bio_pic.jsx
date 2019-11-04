@@ -14,6 +14,34 @@ class BioPic extends React.Component {
         
     }
 
+    componentDidMount() {
+        this.setState({bioText: this.props.user ? this.props.user.bio : "" })
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.match.params.userId !== this.props.match.params.userId) {
+            // console.log(this.props.posts) 
+            this.setState({bioText: this.props.user ? this.props.user.bio : "" })
+        } 
+    }
+
+    handleCancel(e) {
+        this.setState({editBio: "false"})
+    }
+
+    handleSave(e) {
+        e.preventDefault() 
+        let formData = new FormData()
+        formData.append('user[bio]', this.state.bioText)
+        this.props.updateUserAction(this.props.currentUser.id, formData).then(this.setState({bioText: this.state.bioText}))
+        this.setState({editBio: "false"})
+    }
+
+    handleBioChange (e) {
+        e.preventDefault() 
+        this.setState({bioText: e.target.value})
+    }
+
     handleClick(e) {
         e.preventDefault()
         this.setState({editBio: "true"})
@@ -24,16 +52,20 @@ class BioPic extends React.Component {
         if (this.state.editBio === "false") {
           editState = 
             <div>
-            <div className="bio"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi sed porttitor nulla. Nulla ornare nisl eget condimentum vehicula.</div>
+            <div className="bio">{this.state.bioText}</div>
             <button onClick={this.handleClick.bind(this)} className="edit-bio"><div className={`bioedit`}>Edit Bio</div></button>
             </div>
         } else {
            editState =
             <div className="edit-bio-info">
                 <form>
-             <input className="input-bio"type="textbox" name="bio"/>
+             <input onChange={this.handleBioChange.bind(this)} className="input-bio"type="textbox" name="bio" value={this.state.bioText}/>
              <div className="bottom-sect-bio-edit">
-
+                 <div className="counter-for-text">{100 - this.state.bioText.length}</div>
+                 <div className="button-container">
+                <button onClick={this.handleCancel.bind(this)} className="cancel-button">Cancel</button>
+                <button onClick={this.handleSave.bind(this)} className="save-button">Save</button>
+                </div>
              </div>
              </form>
              </div>

@@ -1,5 +1,5 @@
 
-json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_photo_url, :gender
+json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_photo_url, :gender, :bio
  
 if user.prof_photo.attached? 
     
