@@ -118,13 +118,53 @@
 .input-bio {
     height: 80px;
     width: 300px;
-    /* margin: auto; */
-    /* align-self: center; */
-    margin: 8px;
+    margin-left: 8px;
+    margin-top: 8px;
+    border: 1px solid #ebedf0;
+    text-align: center;
 }
 
 .bottom-sect-bio-edit {
     height: 70px; 
-    width: 300px; 
-    
+    width: 302px; 
+    background-color: #f5f6f7; 
+    border: 1px solid #ebedf0;
+    margin-left:8px; 
+}
+
+.cancel-button {
+    border: none;
+    border: 1px solid #ebedf0;
+    width: 60px;
+    height: 24px;
+    color: #707680;
+    font-weight: bold;
+
+}
+
+.save-button {
+    border: none;
+    border: 1px solid #ebedf0;
+    background: linear-gradient(#73aca1 ,#1ba187);
+    color: white;
+    width: 46px;
+    height: 24px;
+    font-weight: bold;
+}
+
+.counter-for-text {
+    font-family: sans-serif;
+    color: #a6aaaf;
+    font-size: 13px;
+    text-align: end;
+    margin-right: 6px;
+    margin-top: 6px;
+}
+
+.button-container {
+    align-items: end;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-right: 6px;
 }
