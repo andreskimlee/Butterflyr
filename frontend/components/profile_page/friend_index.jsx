@@ -1,6 +1,7 @@
 import React from 'react'
 import {withRouter, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class FriendIndex extends React.Component {
     constructor(props) {
@@ -9,6 +10,46 @@ class FriendIndex extends React.Component {
     }
 
     render () {
+        let friendlist = [] 
+        
+            let friendrequests = Object.values(this.props.user.friends)
+            friendrequests = friendrequests.map((friendships, idx) => { 
+                    let pendingRequests = this.props.user.friend_requests.filter(friends => friends.status === "accepted")  
+                      return pendingRequests.map(element => { 
+                        if (friendships.id === element.requester_id) { 
+                            friendlist.push(friendships) 
+                            // debugger 
+                        }
+                    })
+                })
+            let sentFriend = this.props.user.requested_friends
+            // debugger
+            sentFriend = sentFriend.forEach((friendships, idx) => { 
+                    let requestedFriend = this.props.user.sent_friend_requests.filter(friends => friends.status === "accepted")  
+                        return requestedFriend.map(element => { 
+                            if (friendships.id === element.requested_id) { 
+                                friendlist.push(friendships) 
+                                // debugger
+                            }
+                        })
+                    })
+
+
+                friendlist = friendlist.map(user => {               
+                     var profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
+                     if (user.id === this.props.currentUser.id) {
+                        var profPhoto = this.props.currentUser.prof_photo
+                    }                      
+                    return (
+                        <div className="user-friendsindex">
+                            <Link className="linkund" to={`/users/${user.id}`}>
+                            <img className="photo-of-friend"src={profPhoto} alt=""/>
+                            </Link>
+                            <div className="friend-index-name">{(user.first_name[0].toUpperCase() + user.first_name.slice(1)) + " " + (user.last_name[0].toUpperCase() + user.last_name.slice(1))}</div>
+                            <div className="friend-status-btn"> ✓ Friends</div>
+                        </div>
+                    )
+                })
         return (
             <div className="friend-container"> 
                 <header className="header-friend-idx">
@@ -16,11 +57,14 @@ class FriendIndex extends React.Component {
                     <img className="friend-index-logo" src={window.friendIndex}></img>
                     <div className="title-friend-index">Friends</div>
                     </div>
-                    <div>
-                    <div>All Friends</div> 
+                    <div className="friend-count-cont">
+                    <div className="friend-text-ind">All Friends</div> 
+                    <div className="counter-friendamt">{friendlist.length}</div>
                     </div>
                 </header>
-                
+                <div className="friend-index-list">
+                 {friendlist}
+                 </div>
             </div>
         )
     }
