@@ -28,3 +28,67 @@
     height: 85px;
     border-bottom: 1px solid #ccd0d5;
 }
+
+.friend-count-cont {
+    margin-left: 10px;
+    margin-top: 19px;
+    display: flex;
+}
+
+.friend-text-ind {
+    font-weight: 600;
+    color: #5d626b;
+    font-family: helvetica;
+    font-size: 13px;
+}
+
+.user-friendsindex {
+    display: flex;
+    width: 404px;
+    margin: 18px;
+    border: 1px solid #ccd0d5;
+
+}
+
+.friend-index-list {
+    display: flex;
+    background-color: white;
+}
+
+.friend-index-name {
+    color: teal;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+
+
+
+.counter-friendamt {
+    color: #8a929d;
+    font-family: sans-serif;
+    font-size: 13px;
+    margin-left: 5px;
+}
+
+.friend-status-btn {
+    border: 1px solid #bdc0c5;
+    width: 80px;
+    height: 25px;
+    background-color: #f5f6f7;
+    color: #4b4f56;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 33px;
+    margin-left: 101px;
+
+}
