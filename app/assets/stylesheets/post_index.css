@@ -38,6 +38,7 @@
     width: 468px;
     margin-left: 14px;
     border-bottom: 1px solid #dddfe2;
+    height: 44px;
 }
 
 .write-comm {
@@ -105,13 +106,14 @@
 .ctii, .cti {
     display: flex;
     /* margin-left: 65px; */
-    padding-top: 8px;
+    padding-top: 13px;
     padding-bottom: 8px;
     color: #606770;
-    padding-left: 51px;
+    padding-left: 80px;
     /* margin-left: 3px; */
-    padding-right: 51px;
-    margin: 3px;
+    padding-right: 80px;
+    /* margin: 3px; */
+    width: 70px;
 }
 
 
@@ -210,10 +212,24 @@
 }
 
 .hover-emojis {
+    display: none;
     background-color: white;
     width: 294px;
     height: 53px;
     border-radius: 30px; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    position: absolute;
+    position: relative;
+    top: -86px;
+    left: -124px;
+
 }
+
+.ctii:hover .hover-emojis {
+    display: block;
+}
+
+.gif-1, .gif-2, .gif-3, .gif-4, .gif-5, .gif-6 {
+    width: 49px;
+    height: 49px;
+}
+

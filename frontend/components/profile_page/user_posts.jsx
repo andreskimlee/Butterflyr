@@ -29,8 +29,24 @@ class UsersPost extends React.Component {
   }
 
   handleLikeClick (e) {
+    let typeOfLike; 
     e.preventDefault() 
-    let like = { like: {author_id: this.props.currentUser.id, likeable_id: this.props.post.id,  like_type: "wow", likeable_type: "post"}} 
+    switch (e.target.className) {
+      case "gif-1":
+        typeOfLike = "like"
+      case "gif-2":
+        typeOfLike = "love"
+      case "gif-3":
+        typeOfLike = "haha"
+      case "gif-4":
+        typeOfLike = "wow"
+      case "gif-5":
+        typeOfLike = "sad"
+      case "gif-6":
+        typeOfLike = "angry"
+
+    }
+    let like = { like: {author_id: this.props.currentUser.id, likeable_id: this.props.post.id,  like_type: typeOfLike, likeable_type: "post"}} 
     this.props.createLike(like)
   }
 
@@ -118,6 +134,37 @@ class UsersPost extends React.Component {
       )
     })
   }
+
+  let postLikes = "";
+  let emojiLikes; 
+  let emojiLikes2;
+  let emojiLikes3; 
+  let countForEmojis = {}
+  if (this.props.post.likes) {
+    let totalLikes = Object.values(this.props.post.likes).length;  
+      switch (true) {
+        case (totalLikes === 0):
+        postLikes = ""; 
+        emojiLikes = ""; 
+        break; 
+        case (totalLikes === 1): 
+        Object.values(this.props.post.likes).forEach(ele => {
+         let firstUser = this.props.users[ele.author_id] 
+         postLikes = (firstUser.first_name[0].toUpperCase() + firstUser.first_name.slice(1)) + " " +  (firstUser.last_name[0].toUpperCase() + firstUser.last_name.slice(1))
+        })
+        break; 
+        case (totalLikes === 2): 
+        let first = this.props.users[Object.values(this.props.post.likes)[0].author_id];
+        let second = this.props.users[Object.values(this.props.post.likes)[1].author_id]; 
+        postLikes = ((first.first_name[0].toUpperCase() + first.first_name.slice(1)) + " " +  (first.last_name[0].toUpperCase() + first.last_name.slice(1)) + "and" + (second.first_name[0].toUpperCase() + second.first_name.slice(1)) + " " +  (second.last_name[0].toUpperCase() + second.last_name.slice(1)))
+        break; 
+        case (totalLikes >= 3): 
+        let first1 = this.props.users[Object.values(this.props.post.likes)[0].author_id];
+        let second2 = this.props.users[Object.values(this.props.post.likes)[1].author_id]; 
+        postLikes = ((first1.first_name[0].toUpperCase() + first1.first_name.slice(1)) + " " +  (first1.last_name[0].toUpperCase() + first1.last_name.slice(1)) + "," + (second2.first_name[0].toUpperCase() + second2.first_name.slice(1)) + " " +  (second2.last_name[0].toUpperCase() + second2.last_name.slice(1)) + "and" + `${totalLikes - 2}` + "others" )
+        break; 
+      }
+  }
   
   return (
     <div className="post-index-container">
@@ -138,21 +185,21 @@ class UsersPost extends React.Component {
           <div className="body-of-post">{this.props.post.body}</div>
           {postPhoto} 
           <div>
-            <div className="likes-area">hello</div>
-          <div className="comment-counter">{commentCounter} Comments</div>
+            <div className="likes-area"></div>
+          <div className="comment-counter">{emojiLikes} {postLikes} {commentCounter} Comments</div>
           </div>
           <div className="comment-like-container ">
             <div className="ctii">
             <img className="like-button hvr-icon-bounce" src="https://images.vexels.com/media/users/3/157338/isolated/preview/4952c5bde17896bea3e8c16524cd5485-facebook-like-icon-by-vexels.png" />
             <div>
-            <div onClick={this.handleLikeClick.bind(this)} className="likes">Like</div>
+            <div className="likes">Like</div>
             <div className="hover-emojis">
-              <img className="" src="" alt=""/>
-              <img className="" src="" alt=""/>
-              <img className="" src="" alt=""/>
-              <img className="" src="" alt=""/>
-              <img className="" src="" alt=""/>
-              <img className="" src="" alt=""/>
+              <img onClick={this.handleLikeClick.bind(this)} className="gif-1" src={window.likeGif} />
+              <img onClick={this.handleLikeClick.bind(this)} className="gif-2" src={window.loveGif} />
+              <img onClick={this.handleLikeClick.bind(this)} className="gif-3"  src={window.hahaGif} />
+              <img onClick={this.handleLikeClick.bind(this)} className="gif-4" src={window.wowGif} />
+              <img onClick={this.handleLikeClick.bind(this)} className="gif-5" src={window.sadGif} />
+              <img onClick={this.handleLikeClick.bind(this)} className="gif-6" src={window.angryGif}/>
             </div>
             </div>
             </div>
@@ -179,8 +226,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.entities.users[state.session.id],
     posts: state.entities.posts,
-    comments: state.entities.comments || []
-
+    comments: state.entities.comments || [], 
+    users: state.entities.users 
   };
 };
 
