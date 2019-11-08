@@ -3,6 +3,7 @@ import {connect} from "react-redux"
 import {deleteUsersPost, getUsersPosts} from '../../actions/posts_actions'
 import { createComment } from "../../actions/comment_actions"
 import { merge } from 'lodash'
+import { createLike } from '../../actions/like_actions'
 
 class UsersPost extends React.Component {
   constructor(props) {
@@ -25,6 +26,12 @@ class UsersPost extends React.Component {
         this.props.createComment(this.props.post.id, formData)
         e.target.value = "" 
     }
+  }
+
+  handleLikeClick (e) {
+    e.preventDefault() 
+    let like = { like: {author_id: this.props.currentUser.id, likeable_id: this.props.post.id,  like_type: "wow", likeable_type: "post"}} 
+    this.props.createLike(like)
   }
 
   handleCommentClick (e) {
@@ -93,8 +100,7 @@ class UsersPost extends React.Component {
     } 
     
   }
-    comments = Object.values(comments ? comments : this.props.post.comments).map(comment => { 
-      debugger 
+    comments = Object.values(comments ? comments : this.props.post.comments).map(comment => {  
       return (
       <div>
         <div className="comment-head">
@@ -131,11 +137,24 @@ class UsersPost extends React.Component {
           
           <div className="body-of-post">{this.props.post.body}</div>
           {postPhoto} 
+          <div>
+            <div className="likes-area">hello</div>
           <div className="comment-counter">{commentCounter} Comments</div>
+          </div>
           <div className="comment-like-container ">
             <div className="ctii">
             <img className="like-button hvr-icon-bounce" src="https://images.vexels.com/media/users/3/157338/isolated/preview/4952c5bde17896bea3e8c16524cd5485-facebook-like-icon-by-vexels.png" />
-            <div className="likes">Likes</div>
+            <div>
+            <div onClick={this.handleLikeClick.bind(this)} className="likes">Like</div>
+            <div className="hover-emojis">
+              <img className="" src="" alt=""/>
+              <img className="" src="" alt=""/>
+              <img className="" src="" alt=""/>
+              <img className="" src="" alt=""/>
+              <img className="" src="" alt=""/>
+              <img className="" src="" alt=""/>
+            </div>
+            </div>
             </div>
             <div className="cti"> 
               <img className="commenticon" src="https://icon-library.net/images/comment-icon-png/comment-icon-png-2.jpg" />
@@ -161,6 +180,7 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: state.entities.users[state.session.id],
     posts: state.entities.posts,
     comments: state.entities.comments || []
+
   };
 };
 
@@ -170,7 +190,8 @@ const mapDispatchToProps = dispatch => ({
   editUsersPost: (postId) => dispatch(editUsersPost(postId)),
   deleteUsersPost: (postId) => dispatch(deleteUsersPost(postId)),
   createComment: (postId, formData) => dispatch(createComment(postId, formData)),
-  deleteCommentOnPost: (commentId) => dispatch(deleteCommentOnPost(commentId))
+  deleteCommentOnPost: (commentId) => dispatch(deleteCommentOnPost(commentId)),
+  createLike : (like) => dispatch(createLike(like))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(UsersPost)

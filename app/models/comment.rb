@@ -20,4 +20,12 @@ class Comment < ApplicationRecord
     class_name: :User
     
     has_one_attached :photo
+
+    has_many :likes, 
+      primary_key: :id, 
+      foreign_key: :likeable_id, 
+      class_name: :Like,
+      dependent: :destroy 
+    
+
 end

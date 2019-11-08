@@ -34,6 +34,11 @@ class User < ApplicationRecord
   
     after_initialize :ensure_session_token
 
+    has_many :liked_things, :through => :likes, :source => :thing
+    has_many :likes, 
+      foreign_key: :author_id,
+      class_name: :Like
+
     has_many :posts,
       foreign_key: :author_id,
       class_name: :Post
@@ -55,6 +60,8 @@ class User < ApplicationRecord
     has_one_attached :prof_photo
     has_one_attached :cover_photo
     has_many_attached :photos
+    
+    
 
     
   

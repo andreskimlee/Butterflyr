@@ -11,7 +11,7 @@ if user.cover_photo.attached?
 end 
 
 if user.photos.attached?     
-    json.photos person.photos.map { |file| url_for(file) }
+    json.photos user.photos.map { |file| url_for(file) }
 end
 
 if user.received_friend_requests

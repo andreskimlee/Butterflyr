@@ -17,7 +17,7 @@ elsif comment.created_at.strftime('%-B,%-d,%-Y') == Time.new.strftime('%-B,%-d,%
         time: comment.created_at.strftime('%-I:%M%p')})
 elsif comment.created_at.strftime('%-Y') == Time.new.year.to_s
     json.createdAt({date: comment.created_at.strftime('%-B %-d'),
-        time: @comment.created_at.strftime('%-I:%M%p')})
+        time: comment.created_at.strftime('%-I:%M%p')})
 else
     json.createdAt({date: comment.created_at.strftime('%-B %-d, %Y'),
         time: comment.created_at.strftime('%-I:%M%p')})
@@ -26,3 +26,13 @@ end
 if comment.photo.attached? 
     json.photo url_for(comment.photo)
 end
+
+if comment.likes 
+    json.likes do 
+        comment.likes.each do |like|
+            json.set! like.id do
+                json.partial! 'api/likes/likes', like: like 
+            end
+        end 
+    end 
+end 
