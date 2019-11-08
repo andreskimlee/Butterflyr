@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 class FriendIndex extends React.Component {
     constructor(props) {
         super(props) 
-        console.log(props) 
+       
     }
 
     render () {

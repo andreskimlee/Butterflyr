@@ -20,7 +20,7 @@ class BioPic extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
-            // console.log(this.props.posts) 
+            
             this.setState({bioText: this.props.user ? this.props.user.bio : "" })
         } 
     }

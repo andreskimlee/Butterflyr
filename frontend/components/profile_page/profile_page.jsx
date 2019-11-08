@@ -14,22 +14,25 @@ import FriendIndex from './friend_index'
 class ProfilePage extends React.Component {
     constructor(props) {
         super(props) 
-        this.state = { photoFile: null, dropDown: "false", user: ""} // because set to null put a if condition to append only if not null. 
+        this.state = { photoFile: null, dropDown: "false", user: "", profPhoto: ""} // because set to null put a if condition to append only if not null. 
         this.props = props 
-        // console.log(this.props)  
+        
         // debugger 
     }   
 
     componentDidMount() {
-       this.props.getUsersPosts(this.props.match.params.userId).then( ({user}) => this.setState({user: user}))
+       this.props.getUsersPosts(this.props.match.params.userId).then( ({user}) => this.setState({user: user.prof_photo}))
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps) { 
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
-            // console.log(this.props.posts) 
-            this.props.getUsersPosts(this.props.match.params.userId)    
+       
+            this.props.getUsersPosts(this.props.match.params.userId)
         } 
+
         
+
+
     }
 
 
@@ -61,7 +64,7 @@ class ProfilePage extends React.Component {
     render () {  
         let renderPosts;
         const {user = {} } = this.props;
-        // console.log(this.state)  
+       
             if (typeof this.props.posts !== "undefined") {
                     // debugger 
                     renderPosts = () => Object.values(this.props.posts).filter(post => post.authorId === Number(this.props.match.params.userId))
@@ -81,9 +84,8 @@ class ProfilePage extends React.Component {
 
             
             
-
-        return (
             
+        return (
             <div className="TopBox">
                  <img className="CoverPhoto" src={coverPhoto} alt=""/>
                                 

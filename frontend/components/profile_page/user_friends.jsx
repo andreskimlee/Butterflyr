@@ -5,7 +5,7 @@ import {withRouter, Route} from 'react-router-dom'
 class UsersFriends extends React.Component {
     constructor(props) {
         super(props) 
-        // console.log(props) 
+        
         this.state = {
             user: "",
             friendButton: "Add Friend",
@@ -32,7 +32,7 @@ class UsersFriends extends React.Component {
     
 
     render () {
-        console.log(this.props) 
+     
         if (this.props.user === undefined) {
             return null; 
         }

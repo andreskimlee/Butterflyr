@@ -18,13 +18,17 @@ class Post < ApplicationRecord
     belongs_to :author,
         foreign_key: :author_id,
         class_name: :User
+
     has_many :comments, 
         foreign_key: :post_id,
         class_name: :Comment,
         dependent: :destroy
     
-
-    # has_many :comments
+    has_many :likes, 
+        primary_key: :id, 
+        foreign_key: :likeable_id, 
+        class_name: :Like,
+        dependent: :destroy
 
     has_one_attached :photo
 end 
