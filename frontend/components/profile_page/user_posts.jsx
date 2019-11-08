@@ -13,6 +13,7 @@ class UsersPost extends React.Component {
     
   }
 
+
   keyPressed(e) {
     if (e.key === "Enter") {
         const formData = new FormData(); // formdata is sort of holding 
@@ -29,27 +30,32 @@ class UsersPost extends React.Component {
   }
 
   handleLikeClick (e) {
-    debugger
     let typeOfLike; 
     e.preventDefault() 
     switch (true) {
       case (e.target.className ==="gif-1"):
         typeOfLike = "like"
+        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
         break;
       case (e.target.className === "gif-2"):
         typeOfLike = "love"
+        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
         break;
       case (e.target.className === "gif-3"):
         typeOfLike = "haha"
+        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
         break;
       case (e.target.className ==="gif-4"):
         typeOfLike = "wow"
+        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
         break;
       case (e.target.className === "gif-5"):
         typeOfLike = "sad"
+        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
         break;
       case (e.target.className === "gif-6"):
         typeOfLike = "angry"
+        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
         break;
 
     }
@@ -141,34 +147,35 @@ class UsersPost extends React.Component {
       )
     })
   }
+  let allLikes; 
   let emojiPrint; 
   let postLikes = "";
-  let emojiLikes; 
   let countForEmojis = {}
   if (this.props.post.likes) {
-    let totalLikes = Object.values(this.props.post.likes).length;  
+    allLikes = merge({}, this.props.likes, this.props.post.likes)
+    let totalLikes = Object.values(allLikes).length;  
       switch (true) {
         case (totalLikes === 0):
         postLikes = "";  
         break; 
         case (totalLikes === 1): 
-        Object.values(this.props.post.likes).forEach(ele => {
+        Object.values(allLikes).forEach(ele => {
          let firstUser = this.props.users[ele.author_id] 
          postLikes = (firstUser.first_name[0].toUpperCase() + firstUser.first_name.slice(1)) + " " +  (firstUser.last_name[0].toUpperCase() + firstUser.last_name.slice(1))
         })
         break; 
         case (totalLikes === 2): 
-        let first = this.props.users[Object.values(this.props.post.likes)[0].author_id];
-        let second = this.props.users[Object.values(this.props.post.likes)[1].author_id]; 
+        let first = this.props.users[Object.values(allLikes)[0].author_id];
+        let second = this.props.users[Object.values(allLikes)[1].author_id]; 
         postLikes = ((first.first_name[0].toUpperCase() + first.first_name.slice(1)) + " " +  (first.last_name[0].toUpperCase() + first.last_name.slice(1)) + "and" + (second.first_name[0].toUpperCase() + second.first_name.slice(1)) + " " +  (second.last_name[0].toUpperCase() + second.last_name.slice(1)))
         break; 
         case (totalLikes >= 3): 
-        let first1 = this.props.users[Object.values(this.props.post.likes)[0].author_id];
-        let second2 = this.props.users[Object.values(this.props.post.likes)[1].author_id]; 
+        let first1 = this.props.users[Object.values(allLikes)[0].author_id];
+        let second2 = this.props.users[Object.values(allLikes)[1].author_id]; 
         postLikes = ((first1.first_name[0].toUpperCase() + first1.first_name.slice(1)) + " " +  (first1.last_name[0].toUpperCase() + first1.last_name.slice(1)) + "," + " " + (second2.first_name[0].toUpperCase() + second2.first_name.slice(1)) + " " +  (second2.last_name[0].toUpperCase() + second2.last_name.slice(1)) +  " " + "and" + " " + `${totalLikes - 2}` + " " + "others" )
         break; 
       }
-      Object.values(this.props.post.likes).forEach(like => {
+      Object.values(allLikes).forEach(like => {
         if (countForEmojis[like.like_type]) {
           countForEmojis[like.like_type] += 1 
         } else {
@@ -180,8 +187,8 @@ class UsersPost extends React.Component {
       let arr = [countForEmojis]
       let sorted = Object.keys(arr[0]).sort((a, b) => arr[0][b] - arr[0][a])
       sorted.forEach(x => sortedEmojis.push(x))
-      
       let emojiToDisplay = []
+      console.log(sortedEmojis.length)
       switch (true) {
         case (sortedEmojis.length === 0):
           emojiToDisplay = "" 
@@ -193,14 +200,15 @@ class UsersPost extends React.Component {
             emojiToDisplay.push(sortedEmojis[0])
             emojiToDisplay.push(sortedEmojis[1])
           break;
-        case (sortedEmojis.length === 3):
+        case (sortedEmojis.length >= 3):
             emojiToDisplay.push(sortedEmojis[0])
             emojiToDisplay.push(sortedEmojis[1])
             emojiToDisplay.push(sortedEmojis[2])
           break;  
       }
-       
+       console.log(emojiToDisplay)
       if (emojiToDisplay !== "") {
+        
          emojiPrint = emojiToDisplay.map(emoji => {
           switch (true) {
             case (emoji === "angry"):
@@ -290,7 +298,8 @@ const mapStateToProps = (state, ownProps) => {
     currentUser: state.entities.users[state.session.id],
     posts: state.entities.posts,
     comments: state.entities.comments || [], 
-    users: state.entities.users 
+    users: state.entities.users,
+    likes: state.entities.likes
   };
 };
 
