@@ -29,21 +29,28 @@ class UsersPost extends React.Component {
   }
 
   handleLikeClick (e) {
+    debugger
     let typeOfLike; 
     e.preventDefault() 
-    switch (e.target.className) {
-      case "gif-1":
+    switch (true) {
+      case (e.target.className ==="gif-1"):
         typeOfLike = "like"
-      case "gif-2":
+        break;
+      case (e.target.className === "gif-2"):
         typeOfLike = "love"
-      case "gif-3":
+        break;
+      case (e.target.className === "gif-3"):
         typeOfLike = "haha"
-      case "gif-4":
+        break;
+      case (e.target.className ==="gif-4"):
         typeOfLike = "wow"
-      case "gif-5":
+        break;
+      case (e.target.className === "gif-5"):
         typeOfLike = "sad"
-      case "gif-6":
+        break;
+      case (e.target.className === "gif-6"):
         typeOfLike = "angry"
+        break;
 
     }
     let like = { like: {author_id: this.props.currentUser.id, likeable_id: this.props.post.id,  like_type: typeOfLike, likeable_type: "post"}} 
@@ -134,18 +141,15 @@ class UsersPost extends React.Component {
       )
     })
   }
-
+  let emojiPrint; 
   let postLikes = "";
   let emojiLikes; 
-  let emojiLikes2;
-  let emojiLikes3; 
   let countForEmojis = {}
   if (this.props.post.likes) {
     let totalLikes = Object.values(this.props.post.likes).length;  
       switch (true) {
         case (totalLikes === 0):
-        postLikes = ""; 
-        emojiLikes = ""; 
+        postLikes = "";  
         break; 
         case (totalLikes === 1): 
         Object.values(this.props.post.likes).forEach(ele => {
@@ -161,10 +165,61 @@ class UsersPost extends React.Component {
         case (totalLikes >= 3): 
         let first1 = this.props.users[Object.values(this.props.post.likes)[0].author_id];
         let second2 = this.props.users[Object.values(this.props.post.likes)[1].author_id]; 
-        postLikes = ((first1.first_name[0].toUpperCase() + first1.first_name.slice(1)) + " " +  (first1.last_name[0].toUpperCase() + first1.last_name.slice(1)) + "," + (second2.first_name[0].toUpperCase() + second2.first_name.slice(1)) + " " +  (second2.last_name[0].toUpperCase() + second2.last_name.slice(1)) + "and" + `${totalLikes - 2}` + "others" )
+        postLikes = ((first1.first_name[0].toUpperCase() + first1.first_name.slice(1)) + " " +  (first1.last_name[0].toUpperCase() + first1.last_name.slice(1)) + "," + " " + (second2.first_name[0].toUpperCase() + second2.first_name.slice(1)) + " " +  (second2.last_name[0].toUpperCase() + second2.last_name.slice(1)) +  " " + "and" + " " + `${totalLikes - 2}` + " " + "others" )
         break; 
       }
-  }
+      Object.values(this.props.post.likes).forEach(like => {
+        if (countForEmojis[like.like_type]) {
+          countForEmojis[like.like_type] += 1 
+        } else {
+          countForEmojis[like.like_type] = 0
+          countForEmojis[like.like_type] += 1 
+        }
+      })
+      let sortedEmojis = [] 
+      let arr = [countForEmojis]
+      let sorted = Object.keys(arr[0]).sort((a, b) => arr[0][b] - arr[0][a])
+      sorted.forEach(x => sortedEmojis.push(x))
+      
+      let emojiToDisplay = []
+      switch (true) {
+        case (sortedEmojis.length === 0):
+          emojiToDisplay = "" 
+          break;
+        case (sortedEmojis.length === 1):  
+        emojiToDisplay.push(sortedEmojis[0])
+          break; 
+        case (sortedEmojis.length === 2):
+            emojiToDisplay.push(sortedEmojis[0])
+            emojiToDisplay.push(sortedEmojis[1])
+          break;
+        case (sortedEmojis.length === 3):
+            emojiToDisplay.push(sortedEmojis[0])
+            emojiToDisplay.push(sortedEmojis[1])
+            emojiToDisplay.push(sortedEmojis[2])
+          break;  
+      }
+       
+      if (emojiToDisplay !== "") {
+         emojiPrint = emojiToDisplay.map(emoji => {
+          switch (true) {
+            case (emoji === "angry"):
+               return <img className="most-liked-emoji" src={window.angrySVG}></img>
+            case (emoji === "like"):
+               return <img className="most-liked-emoji" src={window.likeSVG}></img>
+              
+            case (emoji === "sad"):
+               return emojiPrint = <img className="most-liked-emoji" src={window.sadSVG}></img>
+            case (emoji === "love"):
+               return emojiPrint = <img className="most-liked-emoji" src={window.loveSVG}></img>
+            case (emoji === "haha"):
+              return <img className="most-liked-emoji" src={window.hahaSVG}></img>
+            case (emoji === "wow"):
+               return <img className="most-liked-emoji" src={window.wowSVG}></img>
+          }
+        })
+      }
+    }
   
   return (
     <div className="post-index-container">
@@ -186,7 +241,15 @@ class UsersPost extends React.Component {
           {postPhoto} 
           <div>
             <div className="likes-area"></div>
-          <div className="comment-counter">{emojiLikes} {postLikes} {commentCounter} Comments</div>
+              <div className="comment-counter">
+                <div className="emoji-container">
+                  {emojiPrint} 
+                  <div className="name-liker">{postLikes}</div>
+                </div>
+                
+                <div className="comment-counter">{commentCounter} Comments</div>
+                
+              </div>
           </div>
           <div className="comment-like-container ">
             <div className="ctii">

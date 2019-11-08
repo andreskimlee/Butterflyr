@@ -212,20 +212,22 @@
 }
 
 .hover-emojis {
-    display: none;
+    height: 0px; 
     background-color: white;
     width: 294px;
-    height: 53px;
+    
     border-radius: 30px; 
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: relative;
     top: -86px;
     left: -124px;
-
+    transition: .5s ease;
+    overflow: hidden;
+    
 }
 
 .ctii:hover .hover-emojis {
-    display: block;
+    height: 53px;
 }
 
 .gif-1, .gif-2, .gif-3, .gif-4, .gif-5, .gif-6 {
@@ -233,3 +235,26 @@
     height: 49px;
 }
 
+.most-liked-emoji { 
+    width: 5%;
+
+
+}
+
+.emoji-container {
+    display: flex;
+    flex-grow: 1;
+    overflow: hidden;
+    align-items: center;
+    margin-left: 11px;
+    width: 10px;
+}
+
+.comment-counter {
+    display: flex;
+    margin-right: 9px;
+}
+
+.name-liker {
+   margin-left: 5px;
+}
