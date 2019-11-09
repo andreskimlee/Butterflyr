@@ -66,7 +66,7 @@ class CreatePost extends React.Component {
                                 </div>
                                 <div className="textbox-container">
                                 <img className="textbox-prof" src={this.props.currentUser.prof_photo}/>
-                                <input onClick={() => this.props.openModal("createPost")} className="create-textbox" onChange={this.update("body").bind(this)} type="textarea" placeholder="What's on your mind?" />
+                                <input value={this.state.body} onClick={() => this.props.openModal("createPost")} className="create-textbox" onChange={this.update("body").bind(this)} type="textarea" placeholder="What's on your mind?" />
                                 
                                 <div className="bottom-container">
                                 <input id="file" name="file" type="file" onChange={this.handleFile.bind(this)} className="upload-photo-post"/>

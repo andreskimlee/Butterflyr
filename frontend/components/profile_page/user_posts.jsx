@@ -3,14 +3,20 @@ import {connect} from "react-redux"
 import {deleteUsersPost, getUsersPosts} from '../../actions/posts_actions'
 import { createComment } from "../../actions/comment_actions"
 import { merge } from 'lodash'
-import { createLike } from '../../actions/like_actions'
+import { createLike, deleteLike} from '../../actions/like_actions'
+
 
 class UsersPost extends React.Component {
   constructor(props) {
     super(props) 
-    this.state = { dropDown: "falseDropDown", type: this.props.type, body: "", photoFile: null,}
+    this.state = { dropDown: "falseDropDown", type: this.props.type, body: "", photoFile: null, likeButton: "", emojiLogo: window.defaultLike}
     this.props = props 
     
+  }
+
+  handleLikeButton(e) {
+    e.preventDefault() 
+
   }
 
 
@@ -35,27 +41,33 @@ class UsersPost extends React.Component {
     switch (true) {
       case (e.target.className ==="gif-1"):
         typeOfLike = "like"
-        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
+        this.setState({likeButton: "Like"})
+        this.setState({emojiLogo: window.likeSVG})
         break;
       case (e.target.className === "gif-2"):
         typeOfLike = "love"
-        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
+        this.setState({likeButton: "Love"})
+        this.setState({emojiLogo: window.loveSVG})
         break;
       case (e.target.className === "gif-3"):
         typeOfLike = "haha"
-        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
+        this.setState({likeButton: "Haha"})
+        this.setState({emojiLogo: window.hahaSVG})
         break;
       case (e.target.className ==="gif-4"):
         typeOfLike = "wow"
-        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
+        this.setState({likeButton: "Wow"})
+        this.setState({emojiLogo: window.wowSVG})
         break;
       case (e.target.className === "gif-5"):
         typeOfLike = "sad"
-        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
+        this.setState({likeButton: "Sad"})
+        this.setState({emojiLogo: window.sadSVG})
         break;
       case (e.target.className === "gif-6"):
         typeOfLike = "angry"
-        document.getElementsByClassName("hover-emojis")[0].style.height = "0px"
+        this.setState({likeButton: "Angry"})
+        this.setState({emojiLogo: window.angrySVG})
         break;
 
     }
@@ -260,10 +272,10 @@ class UsersPost extends React.Component {
               </div>
           </div>
           <div className="comment-like-container ">
-            <div className="ctii">
-            <img className="like-button hvr-icon-bounce" src="https://images.vexels.com/media/users/3/157338/isolated/preview/4952c5bde17896bea3e8c16524cd5485-facebook-like-icon-by-vexels.png" />
+            <div className="ctii" onClick={this.handleLikeButton.bind(this)}>
+            <img className="like-button hvr-icon-bounce" src={this.state.emojiLogo} />
             <div>
-            <div className="likes">Like</div>
+            <div className={`likes-${this.state.likeButton}`}>{this.state.likeButton === "" ? 'Like' : this.state.likeButton}</div>
             <div className="hover-emojis">
               <img onClick={this.handleLikeClick.bind(this)} className="gif-1" src={window.likeGif} />
               <img onClick={this.handleLikeClick.bind(this)} className="gif-2" src={window.loveGif} />
@@ -310,7 +322,8 @@ const mapDispatchToProps = dispatch => ({
   deleteUsersPost: (postId) => dispatch(deleteUsersPost(postId)),
   createComment: (postId, formData) => dispatch(createComment(postId, formData)),
   deleteCommentOnPost: (commentId) => dispatch(deleteCommentOnPost(commentId)),
-  createLike : (like) => dispatch(createLike(like))
+  createLike : (like) => dispatch(createLike(like)),
+  deleteLike : (like) => dispatch(deleteLike(like))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(UsersPost)
