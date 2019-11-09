@@ -55,8 +55,8 @@
 }
 
 .like-button {
-    height: 20px;
-    width: 20px; 
+    height: 17px;
+    width: 17px;
 }
 
 .post-date-name {
@@ -90,16 +90,17 @@
 }
 
 .commenticon {
-    width: 20px; 
-    height: 20px; 
+    height: 17px;
+    width: 17px;
 }
 
-.comment-text, .likes { 
+.comment-text, .likes- { 
         font-family: sans-serif;
-        font-weight: 500;
+        font-weight: 600;
         color: #797f86;
         margin-top: 2px;
         margin-left: 5px;
+        font-size: 13px;
     
 }
 
@@ -111,7 +112,7 @@
     color: #606770;
     padding-left: 80px;
     /* margin-left: 3px; */
-    padding-right: 80px;
+    padding-right: 84px;
     /* margin: 3px; */
     width: 70px;
 }
@@ -235,6 +236,7 @@
     height: 49px;
 }
 
+
 .most-liked-emoji { 
     width: 5%;
 
@@ -258,3 +260,40 @@
 .name-liker {
    margin-left: 5px;
 }
+
+.likes-Like {
+    color: #5d90ff;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.likes-Love {
+    color: #ef5367; 
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.likes-Angry {
+    color: #f38959;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
+.likes-Sad, .likes-Haha, .likes-Wow {
+    color: #fed872;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 2px;
+    margin-left: 5px;
+    font-size: 13px;
+}
+
