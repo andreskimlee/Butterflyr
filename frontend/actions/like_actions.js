@@ -11,10 +11,13 @@ export const receiveLike = ({likes}) => {
     }
 }
 
-export const removeLike = ({likes}) => ({
+export const removeLike = ({likes}) => {
+    debugger 
+    return {
     type: REMOVE_LIKE,
     likes
-})
+    }
+}
 
 export const createLike = like => dispatch => {
     return LIKEUtils.createLike(like).then(like => dispatch(receiveLike(like)))

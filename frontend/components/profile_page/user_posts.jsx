@@ -11,12 +11,25 @@ class UsersPost extends React.Component {
     super(props) 
     this.state = { dropDown: "falseDropDown", type: this.props.type, body: "", photoFile: null, likeButton: "", emojiLogo: window.defaultLike}
     this.props = props 
-    
+    this.handleLikeButton = this.handleLikeButton.bind(this) 
   }
 
+  
+
   handleLikeButton(e) {
-    e.preventDefault() 
-    // this.props.deleteLike if like exists within post. 
+    e.preventDefault()  
+    if (this.state.likeButton !== "" ) {
+      let allLikesForPost = merge({}, this.props.post.likes, this.props.likes)
+      Object.values(allLikesForPost).forEach(ele => {
+        if (ele.author_id === this.props.currentUser.id) {
+          this.props.deleteLike(ele)
+
+        }
+        
+      })
+    
+
+    }
   }
   
   
@@ -143,10 +156,10 @@ class UsersPost extends React.Component {
     } 
     
   }
-    comments = Object.values(comments ? comments : this.props.post.comments).map(comment => {  
+    comments = Object.values(comments ? comments : this.props.post.comments).map((comment, idx) => {  
       return (
       <div>
-        <div className="comment-head">
+        <div className="comment-head" key={idx}>
         <img className="prof-pic-for-the-100th-time" src={comment.prof_photo ? comment.prof_photo : window.profPhoto}></img>
         <div className="name-body">
         <div className="name-on-comment"> {(comment.first_name[0].toUpperCase() + comment.first_name.slice(1)) + " " + (comment.last_name[0].toUpperCase() + comment.last_name.slice(1))} </div>
@@ -166,8 +179,9 @@ class UsersPost extends React.Component {
   let postLikes = "";
   let countForEmojis = {}
   if (this.props.post.likes || this.props.likes) {
-    allLikes = merge({}, this.props.likes, this.props.post.likes)
-    let totalLikes = Object.values(allLikes).length;  
+      allLikes = merge(this.props.post.likes, this.props.likes) 
+    let totalLikes = Object.values(allLikes).filter(ele => ele.likeable_id === this.props.post.id).length;  
+    debugger 
       switch (true) {
         case (totalLikes === 0):
         postLikes = "";  
@@ -187,7 +201,7 @@ class UsersPost extends React.Component {
         postLikes = ((first1.first_name[0].toUpperCase() + first1.first_name.slice(1)) + " " +  (first1.last_name[0].toUpperCase() + first1.last_name.slice(1)) + "," + " " + (second2.first_name[0].toUpperCase() + second2.first_name.slice(1)) + " " +  (second2.last_name[0].toUpperCase() + second2.last_name.slice(1)) +  " " + "and" + " " + `${totalLikes - 2}` + " " + "others" )
         break; 
       }
-      Object.values(allLikes).forEach(like => {
+      Object.values(allLikes).filter(ele => ele.likeable_id === this.props.post.id).forEach(like => {
         if (countForEmojis[like.like_type]) {
           countForEmojis[like.like_type] += 1 
         } else {
@@ -221,32 +235,32 @@ class UsersPost extends React.Component {
        
       if (emojiToDisplay !== "") {
   
-         emojiPrint = emojiToDisplay.map(emoji => {
+         emojiPrint = emojiToDisplay.map((emoji,idx) => {
           switch (true) {
             case (emoji === "angry"):
-               return <img className="most-liked-emoji" src={window.angrySVG}></img>
+               return <img key={idx} className="most-liked-emoji" src={window.angrySVG}></img>
             case (emoji === "like"):
-               return <img className="most-liked-emoji" src={window.likeSVG}></img>
+               return <img key={idx} className="most-liked-emoji" src={window.likeSVG}></img>
               
             case (emoji === "sad"):
-               return emojiPrint = <img className="most-liked-emoji" src={window.sadSVG}></img>
+               return emojiPrint = <img key={idx} className="most-liked-emoji" src={window.sadSVG}></img>
             case (emoji === "love"):
-               return emojiPrint = <img className="most-liked-emoji" src={window.loveSVG}></img>
+               return emojiPrint = <img key={idx} className="most-liked-emoji" src={window.loveSVG}></img>
             case (emoji === "haha"):
-              return <img className="most-liked-emoji" src={window.hahaSVG}></img>
+              return <img key={idx} className="most-liked-emoji" src={window.hahaSVG}></img>
             case (emoji === "wow"):
-               return <img className="most-liked-emoji" src={window.wowSVG}></img>
+               return <img key={idx} className="most-liked-emoji" src={window.wowSVG}></img>
           }
         })
       }
-    }
+    } 
   
     Object.values(allLikes).map(ele => {
       if (ele.author_id === this.props.currentUser.id && this.state.likeButton === "" ) {
-        debugger 
+       
         switch (true) {
           case (ele.like_type ==="like"):
-            debugger 
+           
             this.setState({likeButton: "Like"})
             this.setState({emojiLogo: window.likeSVG})
             break; 
@@ -339,8 +353,7 @@ class UsersPost extends React.Component {
   )
   }
 }
-const mapStateToProps = (state, ownProps) => {
-      debugger 
+const mapStateToProps = (state, ownProps) => { 
   return {
     currentUser: state.entities.users[state.session.id],
     posts: state.entities.posts,

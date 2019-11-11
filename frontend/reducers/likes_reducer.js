@@ -6,7 +6,10 @@ export default function friendshipReducer (state={}, action) {
         case RECEIVE_LIKE: 
             return merge({}, state, action.likes);
         case REMOVE_LIKE:  
-            return state;   
+            debugger 
+            const newState = merge({}, state);
+            delete newState[Object.values(action.likes)[0].id]
+            return newState;
         default:
             return state; 
     }
