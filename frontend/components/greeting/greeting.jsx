@@ -7,6 +7,7 @@ import ForFun from '../for_fun'
 import { Route } from 'react-router-dom'
 import { UsersPost } from "../profile_page/user_posts"
 import NewsFeed from "../newsfeed/news_feed"
+import ChatRoom from '../chatroom/chatroom'
 
 
 class Greeting extends React.Component {
@@ -31,6 +32,7 @@ class Greeting extends React.Component {
         <hgroup className="header-group">
           <NavBar  currentUser={this.props.currentUser} logout={this.props.logout}></NavBar>
           <Route exact path="/" component={ForFun}/>
+          <Route exact path="/" component={ChatRoom}/>
         </hgroup>
       )
       return ( 
