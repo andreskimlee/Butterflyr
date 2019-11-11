@@ -16,8 +16,10 @@ class UsersPost extends React.Component {
 
   handleLikeButton(e) {
     e.preventDefault() 
-
+    // this.props.deleteLike if like exists within post. 
   }
+  
+  
 
 
   keyPressed(e) {
@@ -163,7 +165,7 @@ class UsersPost extends React.Component {
   let emojiPrint; 
   let postLikes = "";
   let countForEmojis = {}
-  if (this.props.post.likes) {
+  if (this.props.post.likes || this.props.likes) {
     allLikes = merge({}, this.props.likes, this.props.post.likes)
     let totalLikes = Object.values(allLikes).length;  
       switch (true) {
@@ -171,15 +173,13 @@ class UsersPost extends React.Component {
         postLikes = "";  
         break; 
         case (totalLikes === 1): 
-        Object.values(allLikes).forEach(ele => {
-         let firstUser = this.props.users[ele.author_id] 
-         postLikes = (firstUser.first_name[0].toUpperCase() + firstUser.first_name.slice(1)) + " " +  (firstUser.last_name[0].toUpperCase() + firstUser.last_name.slice(1))
-        })
+        let firstA = this.props.users[Object.values(allLikes)[0].author_id]; 
+        postLikes = ((firstA.first_name[0].toUpperCase() + firstA.first_name.slice(1)) + " " +  (firstA.last_name[0].toUpperCase() + firstA.last_name.slice(1)))
         break; 
         case (totalLikes === 2): 
         let first = this.props.users[Object.values(allLikes)[0].author_id];
         let second = this.props.users[Object.values(allLikes)[1].author_id]; 
-        postLikes = ((first.first_name[0].toUpperCase() + first.first_name.slice(1)) + " " +  (first.last_name[0].toUpperCase() + first.last_name.slice(1)) + "and" + (second.first_name[0].toUpperCase() + second.first_name.slice(1)) + " " +  (second.last_name[0].toUpperCase() + second.last_name.slice(1)))
+        postLikes = ((first.first_name[0].toUpperCase() + first.first_name.slice(1)) + " " +  (first.last_name[0].toUpperCase() + first.last_name.slice(1)) + " " + "and" + " " + (second.first_name[0].toUpperCase() + second.first_name.slice(1)) + " " +  (second.last_name[0].toUpperCase() + second.last_name.slice(1)))
         break; 
         case (totalLikes >= 3): 
         let first1 = this.props.users[Object.values(allLikes)[0].author_id];
@@ -200,7 +200,7 @@ class UsersPost extends React.Component {
       let sorted = Object.keys(arr[0]).sort((a, b) => arr[0][b] - arr[0][a])
       sorted.forEach(x => sortedEmojis.push(x))
       let emojiToDisplay = []
-      console.log(sortedEmojis.length)
+      
       switch (true) {
         case (sortedEmojis.length === 0):
           emojiToDisplay = "" 
@@ -218,9 +218,9 @@ class UsersPost extends React.Component {
             emojiToDisplay.push(sortedEmojis[2])
           break;  
       }
-       console.log(emojiToDisplay)
+       
       if (emojiToDisplay !== "") {
-        
+  
          emojiPrint = emojiToDisplay.map(emoji => {
           switch (true) {
             case (emoji === "angry"):
@@ -241,6 +241,41 @@ class UsersPost extends React.Component {
       }
     }
   
+    Object.values(allLikes).map(ele => {
+      if (ele.author_id === this.props.currentUser.id && this.state.likeButton === "" ) {
+        debugger 
+        switch (true) {
+          case (ele.like_type ==="like"):
+            debugger 
+            this.setState({likeButton: "Like"})
+            this.setState({emojiLogo: window.likeSVG})
+            break; 
+          case (ele.like_type ==="love"):
+            this.setState({likeButton: "Love"})
+            this.setState({emojiLogo: window.loveSVG})
+            break;
+          case (ele.like_type ==="haha"):
+            this.setState({likeButton: "Haha"})
+            this.setState({emojiLogo: window.hahaSVG})
+            break;
+          case (ele.like_type ==="wow"):
+           
+            this.setState({likeButton: "Wow"})
+            this.setState({emojiLogo: window.wowSVG})
+            break;
+          case (ele.like_type ==="sad"):
+            this.setState({likeButton: "Sad"})
+            this.setState({emojiLogo: window.sadSVG})
+            break;
+          case (ele.like_type ==="angry"):
+
+            this.setState({likeButton: "Angry"})
+            this.setState({emojiLogo: window.angrySVG})
+            break;
+        }
+      }
+    })
+
   return (
     <div className="post-index-container">
       <div className="post-top-portion">
@@ -273,7 +308,7 @@ class UsersPost extends React.Component {
           </div>
           <div className="comment-like-container ">
             <div className="ctii" onClick={this.handleLikeButton.bind(this)}>
-            <img className="like-button hvr-icon-bounce" src={this.state.emojiLogo} />
+            <img className="like-button" src={this.state.emojiLogo} />
             <div>
             <div className={`likes-${this.state.likeButton}`}>{this.state.likeButton === "" ? 'Like' : this.state.likeButton}</div>
             <div className="hover-emojis">
@@ -305,7 +340,7 @@ class UsersPost extends React.Component {
   }
 }
 const mapStateToProps = (state, ownProps) => {
-      
+      debugger 
   return {
     currentUser: state.entities.users[state.session.id],
     posts: state.entities.posts,
