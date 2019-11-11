@@ -20,9 +20,15 @@ export default (state=[], action) => {
             const newComments = merge({}, state, action.comment)
             return newComments 
         case REMOVE_LIKE:
-            const newState2 = merge({}, state)
-            delete newState2[Object.values(action.likes)[0].likeable_id].likes[Object.values(action.likes)[0].id]
-            return newState2               
+                const newState2 = merge({}, state);
+            if (newState2[Object.values(action.likes)[0].likeable_id].likes) {
+                debugger 
+                delete newState2[Object.values(action.likes)[0].likeable_id].likes[Object.values(action.likes)[0].id];
+                return newState2;
+            } else {
+                return state; 
+            }
+                          
         default:
             return state;
     }

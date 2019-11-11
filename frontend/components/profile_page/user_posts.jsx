@@ -11,7 +11,7 @@ class UsersPost extends React.Component {
     super(props) 
     this.state = { dropDown: "falseDropDown", type: this.props.type, body: "", photoFile: null, likeButton: "", emojiLogo: window.defaultLike}
     this.props = props 
-    this.handleLikeButton = this.handleLikeButton.bind(this) 
+    
   }
 
   
@@ -23,7 +23,8 @@ class UsersPost extends React.Component {
       Object.values(allLikesForPost).forEach(ele => {
         if (ele.author_id === this.props.currentUser.id) {
           this.props.deleteLike(ele)
-
+          this.setState({likeButton: ""})
+          this.setState({emojiLogo: window.defaultLike})
         }
         
       })
@@ -254,10 +255,9 @@ class UsersPost extends React.Component {
         })
       }
     } 
-  
-    Object.values(allLikes).map(ele => {
+  if (this.props.post.likes) {
+    Object.values(this.props.post.likes).map(ele => {
       if (ele.author_id === this.props.currentUser.id && this.state.likeButton === "" ) {
-       
         switch (true) {
           case (ele.like_type ==="like"):
            
@@ -288,7 +288,7 @@ class UsersPost extends React.Component {
             break;
         }
       }
-    })
+    }) }
 
   return (
     <div className="post-index-container">
