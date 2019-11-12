@@ -60,7 +60,9 @@ class User < ApplicationRecord
     has_one_attached :prof_photo
     has_one_attached :cover_photo
     has_many_attached :photos
-    
+    has_many :messages, 
+      foreign_key: :author_id, 
+      class_name: :Message
     
 
     

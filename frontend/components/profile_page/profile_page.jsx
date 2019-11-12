@@ -87,13 +87,13 @@ class ProfilePage extends React.Component {
             
         return (
             <div className="TopBox">
-                 <img className="CoverPhoto" src={coverPhoto} alt=""/>
+                 <img className="CoverPhoto" src={coverPhoto}/>
                                 
                     <div>
                     <div className="upload-cover-photo hvr-pulse-grow">
                         <div className="container-up">
                             <input onChange={this.handleSubmitCover.bind(this)} className= "hoo" type="file"/>
-                        <img className="camera-icon" src="https://icon-library.net/images/camera-icon-png-white/camera-icon-png-white-8.jpg" alt=""/>
+                        <img className="camera-icon" src="https://icon-library.net/images/camera-icon-png-white/camera-icon-png-white-8.jpg"/>
                         <div>
                         <div className="text-cover-prof">Update Cover Photo</div>
                             

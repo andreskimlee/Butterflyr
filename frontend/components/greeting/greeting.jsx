@@ -32,7 +32,7 @@ class Greeting extends React.Component {
         <hgroup className="header-group">
           <NavBar  currentUser={this.props.currentUser} logout={this.props.logout}></NavBar>
           <Route exact path="/" component={ForFun}/>
-          <Route exact path="/" component={ChatRoom}/>
+          
         </hgroup>
       )
       return ( 

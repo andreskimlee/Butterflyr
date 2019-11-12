@@ -1,0 +1,18 @@
+.chatbox-container {
+    width: 206px;
+    border-left-color: #ccc;
+    position: fixed !important;
+    line-height: 16px;
+    top: 42px;
+    left: 1233px;
+    overflow-y:scroll;
+    overflow-x:hidden;
+    height: 100%;
+    z-index: 300;
+    background-clip: padding-box;
+    background-color: #e9ebee;
+}
+
+.chatroom-container {
+    display: none;
+}

@@ -4,6 +4,7 @@
     height: 315px;
     border-left: 1px solid #9a9a9a;
     border-right: 1px solid #9a9a9a;
+    min-height: 315px;
 }
 
 

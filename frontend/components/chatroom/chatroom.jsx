@@ -1,11 +1,10 @@
 import React from "react";
-import MessageForm from "./MessageForm.js";
+import MessageForm from "./MessageForm";
 
 class ChatRoom extends React.Component {
   constructor(props) {
     super(props);
     this.state = { messages: [] };
-    this.bottom = React.createRef();
   }
   
   componentDidMount() {
@@ -32,12 +31,11 @@ class ChatRoom extends React.Component {
   
   loadChat(e) {
     e.preventDefault();
-    App.cable.subscriptions.subscriptions[0].load();
+    debugger 
+    App.cable.subscriptions.subscriptions[1].load()
   }
   
-  componentDidUpdate() {
-    this.bottom.current.scrollIntoView();
-  }
+
   
   render() {
     const messageList = this.state.messages.map((message, idx) => {
@@ -49,14 +47,16 @@ class ChatRoom extends React.Component {
       );
     });
     return (
+      <div className="chatbox-container"> 
+        
       <div className="chatroom-container">
-        <div>ChatRoom</div>
         <button className="load-button" 
           onClick={this.loadChat.bind(this)}>
           Load Chat History
         </button>
         <div className="message-list">{messageList}</div>
         <MessageForm />
+      </div>
       </div>
     );
   }

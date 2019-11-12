@@ -62,7 +62,7 @@ class NavBar extends React.Component {
                         if (friendships.id === element.requester_id) { 
                               return ( 
                                 <div key={idx} className="request-container">
-                                <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752" alt=""/>
+                                <img className="requesterprof" src="https://vignette.wikia.nocookie.net/rickandmorty/images/b/bc/Vlcsnap-2015-01-31-04h27m25s140.png/revision/latest?cb=20150131122752"/>
                                 <div className="textholder">
                                 <div className="requestname"><Link className="friend-req-link"to={`/users/${friendships.id}`} >{friendships.first_name + " " + friendships.last_name}</Link></div>
                                 <div className="bio-tag"> Lorem Ipsum is simply dummy text of the printing </div>

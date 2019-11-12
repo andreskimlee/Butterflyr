@@ -5,7 +5,7 @@ import {withRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux' 
 import { getUsersPosts, editUsersPost, deleteUsersPost } from '../actions/posts_actions'
 import  UsersPosts  from './profile_page/user_posts'
-
+import ChatRoom from './chatroom/chatroom'
 class NewsFeedComments extends React.Component {
     constructor(props) {
       super(props)
@@ -62,7 +62,7 @@ class NewsFeedComments extends React.Component {
         </div>
         
       </div>
-      
+      <Route exact path="/" component={ChatRoom}/>
       </div>
     )
     }
