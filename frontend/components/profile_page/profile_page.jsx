@@ -87,7 +87,11 @@ class ProfilePage extends React.Component {
             
         return (
             <div className="TopBox">
+<<<<<<< HEAD
                  <img className="CoverPhoto" src={coverPhoto}/>
+=======
+                 <img className="CoverPhoto" src={coverPhoto} alt=""/>
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
                                 
                     <div>
                     <div className="upload-cover-photo hvr-pulse-grow">

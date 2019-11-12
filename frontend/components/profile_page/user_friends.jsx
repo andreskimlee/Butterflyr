@@ -69,7 +69,11 @@ class UsersFriends extends React.Component {
                     return (
                         <div className="user-friend" key={idx}>
                             <Link className="linkund" to={`/users/${user.id}`}>
+<<<<<<< HEAD
                             <img className="photo-of-friend"src={profPhoto} />
+=======
+                            <img className="photo-of-friend"src={profPhoto} alt=""/>
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
                             <div className="friend-name">{(user.first_name[0].toUpperCase() + user.first_name.slice(1)) + " " + (user.last_name[0].toUpperCase() + user.last_name.slice(1))}</div>
                             </Link>
                         </div>
@@ -84,7 +88,11 @@ class UsersFriends extends React.Component {
             <div className="user-friends-container">
                     <div onClick={this.sendFriendshipRequest.bind(this)} className={`friendButton-${this.state.friendStatus}`}> <img className="addfriendicon" src="https://banner2.kisspng.com/20180901/otz/kisspng-computer-icons-scalable-vector-graphics-like-butto-profile-addfriend-svg-png-icon-free-download-519-5b8b4a5af052e8.3625273415358551949844.jpg"/>{this.state.friendButton}</div>
                 <div className="logo-frnds-count">
+<<<<<<< HEAD
                     <img className="friends-logo" src={window.friendsLogo}/>
+=======
+                    <img className="friends-logo" src={window.friendsLogo} alt=""/>
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
                     <div className="friends-count">Friends · <div className="friend-num">{friendlist.length}</div></div>
                 </div>
                 <div className="friend-list-container">

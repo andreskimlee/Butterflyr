@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_11_11_221305) do
+=======
+ActiveRecord::Schema.define(version: 2019_11_08_015741) do
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_11_11_221305) do
     t.string "likeable_type"
   end
 
+<<<<<<< HEAD
   create_table "messages", force: :cascade do |t|
     t.string "body"
     t.integer "author_id"
@@ -70,6 +75,8 @@ ActiveRecord::Schema.define(version: 2019_11_11_221305) do
     t.datetime "updated_at", null: false
   end
 
+=======
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
   create_table "posts", force: :cascade do |t|
     t.text "body", null: false
     t.integer "author_id", null: false

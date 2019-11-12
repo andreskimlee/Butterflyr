@@ -1,10 +1,18 @@
 import React from "react";
+<<<<<<< HEAD
 import MessageForm from "./MessageForm";
+=======
+import MessageForm from "./MessageForm.js";
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
 
 class ChatRoom extends React.Component {
   constructor(props) {
     super(props);
     this.state = { messages: [] };
+<<<<<<< HEAD
+=======
+    this.bottom = React.createRef();
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
   }
   
   componentDidMount() {
@@ -31,11 +39,20 @@ class ChatRoom extends React.Component {
   
   loadChat(e) {
     e.preventDefault();
+<<<<<<< HEAD
     debugger 
     App.cable.subscriptions.subscriptions[1].load()
   }
   
 
+=======
+    App.cable.subscriptions.subscriptions[0].load();
+  }
+  
+  componentDidUpdate() {
+    this.bottom.current.scrollIntoView();
+  }
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
   
   render() {
     const messageList = this.state.messages.map((message, idx) => {
@@ -47,9 +64,14 @@ class ChatRoom extends React.Component {
       );
     });
     return (
+<<<<<<< HEAD
       <div className="chatbox-container"> 
         
       <div className="chatroom-container">
+=======
+      <div className="chatroom-container">
+        <div>ChatRoom</div>
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
         <button className="load-button" 
           onClick={this.loadChat.bind(this)}>
           Load Chat History
@@ -57,7 +79,10 @@ class ChatRoom extends React.Component {
         <div className="message-list">{messageList}</div>
         <MessageForm />
       </div>
+<<<<<<< HEAD
       </div>
+=======
+>>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
     );
   }
 }
