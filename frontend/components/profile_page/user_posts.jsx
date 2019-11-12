@@ -235,11 +235,7 @@ class UsersPost extends React.Component {
       }
        
       if (emojiToDisplay !== "") {
-<<<<<<< HEAD
         
-=======
-  
->>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
          emojiPrint = emojiToDisplay.map((emoji,idx) => {
           switch (true) {
             case (emoji === "angry"):
@@ -260,11 +256,7 @@ class UsersPost extends React.Component {
       }
     } 
   if (this.props.post.likes) {
-<<<<<<< HEAD
     Object.values(this.props.post.likes).filter(ele => ele.author_id === this.props.currentUser.id).map(ele => {
-=======
-    Object.values(this.props.post.likes).map(ele => {
->>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
       if (ele.author_id === this.props.currentUser.id && this.state.likeButton === "" ) {
         switch (true) {
           case (ele.like_type ==="like"):
@@ -302,11 +294,7 @@ class UsersPost extends React.Component {
     <div className="post-index-container">
       <div className="post-top-portion">
         <div className="prof-name-ind">
-<<<<<<< HEAD
           <img className="prof-photo-ind" src={profPhoto} />
-=======
-          <img className="prof-photo-ind" src={profPhoto} alt=""/>
->>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
           <div className="post-date-name">
             <div className="author-name">{(this.props.user.first_name[0].toUpperCase() + this.props.user.first_name.slice(1)) + " " + (this.props.user.last_name[0].toUpperCase() + this.props.user.last_name.slice(1))}</div>
             <div className="date-made">{n}</div>

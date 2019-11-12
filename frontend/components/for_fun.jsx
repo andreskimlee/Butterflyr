@@ -5,11 +5,7 @@ import {withRouter, Route} from 'react-router-dom'
 import { connect } from 'react-redux' 
 import { getUsersPosts, editUsersPost, deleteUsersPost } from '../actions/posts_actions'
 import  UsersPosts  from './profile_page/user_posts'
-<<<<<<< HEAD
 import ChatRoom from './chatroom/chatroom'
-=======
-
->>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
 class NewsFeedComments extends React.Component {
     constructor(props) {
       super(props)
