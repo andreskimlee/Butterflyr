@@ -70,3 +70,8 @@
     display: flex;
     flex-direction: column;
 }
+
+.linkedin, .angellist, .personal-site, .personal-site, .personal-email {
+    text-decoration: none;
+    color: black;
+}

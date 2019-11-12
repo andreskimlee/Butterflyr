@@ -11,6 +11,7 @@
     z-index: 300;
     background-clip: padding-box;
     background-color: #e9ebee;
+    display: none;
 }
 
 .chatroom-container {
