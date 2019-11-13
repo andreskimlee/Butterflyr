@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # == Schema Information
 #
 # Table name: messages
@@ -11,8 +10,6 @@
 #  chat_id    :integer
 #
 
-=======
->>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
 class Message < ApplicationRecord
     validates :author_id, presence: true
 
@@ -22,8 +19,4 @@ class Message < ApplicationRecord
   
     belongs_to :chatroom, polymorphic: true
   end
-<<<<<<< HEAD
   
-=======
-  
->>>>>>> 3e421af565e7e932f77e833ea9cd791ad0afaca8
