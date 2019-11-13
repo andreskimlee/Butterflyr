@@ -71,7 +71,9 @@
     flex-direction: column;
 }
 
-.linkedin, .angellist, .personal-site, .personal-site, .personal-email {
+.linkedin, .angellist, .personal-site, .personal-site, .personal-email, .git-link {
     text-decoration: none;
     color: black;
 }
+
+ 

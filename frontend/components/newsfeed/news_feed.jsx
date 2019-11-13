@@ -38,7 +38,7 @@ class NewsFeed extends React.Component {
                     <section className="newsfeed-main hvr-wobble-to-bottom-right">
                        <div className="left-column-tab">
                         <img className="newsfeed-logo" src="https://icon-library.net/images/github-icon-svg/github-icon-svg-14.jpg" />
-                       <div className="textfeed" >GitHub </div>
+                       <a className="git-link" href="https://github.com/andreskimlee"><div className="textfeed" >GitHub </div></a>
                        </div>
                     </section>
                     <section className="newsfeed-main hvr-wobble-to-bottom-right">
