@@ -12,7 +12,7 @@ export const receiveLike = ({likes}) => {
 }
 
 export const removeLike = ({likes}) => {
-    debugger 
+     
     return {
     type: REMOVE_LIKE,
     likes

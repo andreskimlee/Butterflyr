@@ -1,0 +1,55 @@
+.photo-index-container {
+    display: flex; 
+    flex-direction: column;
+    margin-top: 6px;
+    border: 1px solid #ccd0d5;
+}
+
+.photo-header-container {
+    display: flex; 
+    margin-left: 9px;
+    margin-top: 18px;
+    
+}
+
+.photo-index-title {
+    height: 85px;
+    background-color: #f5f6f7; 
+    
+}
+
+.photo-index-text {
+    color: #4b4f56;
+    font-family: sans-serif; 
+    font-size: 22px; 
+}
+
+.photo-index-logo {
+    height: 25px;
+    width: 25px;
+    margin-right: 9px;
+}
+
+.your-photos {
+    color: teal;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-left: 9px;
+    margin-top: 22px;
+}
+
+.all-user-photos {
+    height: 205px;
+    width: 205px; 
+    margin-left: 4px;
+    margin-top: 4px;
+    border: 1px solid #ccd0d5;
+}
+
+.all-photos-container {
+    background-color: white;
+    height: auto;
+    border: 1px solid #ccd0d5;
+    margin-top: -1px;
+}

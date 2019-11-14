@@ -37,8 +37,9 @@ class UsersFriends extends React.Component {
             return null; 
         }
         let friendlist = [] 
-        
+        if (this.props.user.friends !== undefined) {
             let friendrequests = Object.values(this.props.user.friends)
+             
             friendrequests = friendrequests.map((friendships, idx) => { 
                     let pendingRequests = this.props.user.friend_requests.filter(friends => friends.status === "accepted")  
                       return pendingRequests.map(element => { 
@@ -78,7 +79,7 @@ class UsersFriends extends React.Component {
 
                 
 
-
+            }
 
         return (
             <div className="user-friends-container">

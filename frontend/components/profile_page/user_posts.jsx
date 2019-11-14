@@ -133,6 +133,9 @@ class UsersPost extends React.Component {
   
 
   render () {
+    if (!this.props.users) {
+      return null 
+    }
     let commentCounter = this.props.post.comments ? Object.values(this.props.post.comments).length : "" 
     if (this.props.user === undefined) {
       return null; 
@@ -182,16 +185,17 @@ class UsersPost extends React.Component {
   if (this.props.post.likes || this.props.likes) {
       allLikes = merge(this.props.post.likes, this.props.likes) 
     let totalLikes = Object.values(allLikes).filter(ele => ele.likeable_id === this.props.post.id).length;  
-    debugger 
+     if (this.props.users !== undefined) {
       switch (true) {
         case (totalLikes === 0):
         postLikes = "";  
         break; 
-        case (totalLikes === 1): 
+        case (totalLikes === 1):  
         let firstA = this.props.users[Object.values(allLikes)[0].author_id]; 
         postLikes = ((firstA.first_name[0].toUpperCase() + firstA.first_name.slice(1)) + " " +  (firstA.last_name[0].toUpperCase() + firstA.last_name.slice(1)))
         break; 
         case (totalLikes === 2): 
+        debugger
         let first = this.props.users[Object.values(allLikes)[0].author_id];
         let second = this.props.users[Object.values(allLikes)[1].author_id]; 
         postLikes = ((first.first_name[0].toUpperCase() + first.first_name.slice(1)) + " " +  (first.last_name[0].toUpperCase() + first.last_name.slice(1)) + " " + "and" + " " + (second.first_name[0].toUpperCase() + second.first_name.slice(1)) + " " +  (second.last_name[0].toUpperCase() + second.last_name.slice(1)))
@@ -202,6 +206,7 @@ class UsersPost extends React.Component {
         postLikes = ((first1.first_name[0].toUpperCase() + first1.first_name.slice(1)) + " " +  (first1.last_name[0].toUpperCase() + first1.last_name.slice(1)) + "," + " " + (second2.first_name[0].toUpperCase() + second2.first_name.slice(1)) + " " +  (second2.last_name[0].toUpperCase() + second2.last_name.slice(1)) +  " " + "and" + " " + `${totalLikes - 2}` + " " + "others" )
         break; 
       }
+    }
       Object.values(allLikes).filter(ele => ele.likeable_id === this.props.post.id).forEach(like => {
         if (countForEmojis[like.like_type]) {
           countForEmojis[like.like_type] += 1 

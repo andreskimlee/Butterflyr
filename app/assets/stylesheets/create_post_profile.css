@@ -4,10 +4,8 @@ display: flex;
 }
 
 .create-post {
-    margin-top: 15px;
-    margin-left: 14px;
-    width: 500px;
-
+    margin-top: 6px;
+    width: 513px;
     height: 154px;
     background-color: white;
     display: flex;

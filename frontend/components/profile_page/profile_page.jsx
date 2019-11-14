@@ -10,6 +10,7 @@ import { getUsersPosts, editUsersPost, deleteUsersPost } from '../../actions/pos
 import { requestFriendship } from "../../actions/friendship_actions"
 import  UsersPosts  from './user_posts'
 import FriendIndex from './friend_index'
+import PhotoIndex from './photo_index'
 
 class ProfilePage extends React.Component {
     constructor(props) {
@@ -117,7 +118,7 @@ class ProfilePage extends React.Component {
                         <Link className="timeline hvr-pop" to={`/users/${this.props.match.params.userId}`}>Timeline</Link>
                         <Link className="about hvr-pop"to={`/users/${this.props.match.params.userId}/about/overview`}>About</Link>   
                         <Link className="friends hvr-pop" to={`/users/${this.props.match.params.userId}/friends`}>Friends</Link>
-                        <Link className="photos2 hvr-pop" to="/">Photos</Link>
+                        <Link className="photos2 hvr-pop" to={`/users/${this.props.match.params.userId}/photos`}>Photos</Link>
                         <a className="more hvr-pop" href="https://images.squarespace-cdn.com/content/v1/51132139e4b0014fdfeca0ca/1515690627146-UG45BRZQ5WE4ABG6T786/ke17ZwdGBToddI8pDm48kEF2GaKpjeSPJuap1bYL1oVZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyEWjbC5HC78c3ldIV68GhowvuiGnah3z0UFPVxk-pMmm-8ZlmgLQgTEiE--OHMuYI/Please+sir+may+I+have+some+more.jpg?format=1500w">More</a>
                         </div>
                         
@@ -132,6 +133,7 @@ class ProfilePage extends React.Component {
                     </div>
                        <Route path={`/users/:userId/about`} component={AboutPage}/>
                        <Route exact path={`/users/:userId/friends`} render={(props) => <FriendIndex {...props} isAuthed={true} />}/>
+                       <Route exact path={`/users/:userId/photos`} render={(props) => <PhotoIndex {...props} isAuthed={true} />}/>
                        
             </div>
 

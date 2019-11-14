@@ -20,6 +20,8 @@ class Api::UsersController < ApplicationController
     def update
         # debugger
         @user = User.with_attached_prof_photo.with_attached_cover_photo.with_attached_photos.find(params[:id])
+        a = "a" 
+        
         if @user.update_attributes(user_params)
             render :show
         else 
@@ -30,7 +32,7 @@ class Api::UsersController < ApplicationController
     # end
   
     def user_params
-      params.require(:user).permit(:bio, :email, :password, :first_name, :last_name, :DOB, :gender, :prof_photo, :cover_photo, :cover_photo_url,  photos: [])
+      params.require(:user).permit(:bio, :email, :password, :first_name, :last_name, :DOB, :gender, :prof_photo, :cover_photo, :cover_photo_url,  :photos)
     end
 end
   

@@ -16,11 +16,14 @@ class BioPic extends React.Component {
 
     componentDidMount() {
         this.setState({bioText: this.props.user ? this.props.user.bio : "" })
+        console.log(this.props.user)
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.userId !== this.props.match.params.userId) {
-            
+            this.setState({bioText: this.props.user ? this.props.user.bio : "" })
+        } 
+        if (prevProps.user !== this.props.user) {
             this.setState({bioText: this.props.user ? this.props.user.bio : "" })
         } 
     }
@@ -48,6 +51,11 @@ class BioPic extends React.Component {
     }
 
     render () {
+        if (!this.props.user) {
+            return null
+        }
+
+        console.log(this.state.bioText)
         let editState;
         if (this.state.editBio === "false") {
           editState = 
@@ -61,7 +69,7 @@ class BioPic extends React.Component {
                 <form>
              <input onChange={this.handleBioChange.bind(this)} className="input-bio"type="textbox" name="bio" value={this.state.bioText}/>
              <div className="bottom-sect-bio-edit">
-                 <div className="counter-for-text">{100 - this.state.bioText.length}</div>
+                 <div className="counter-for-text">{100 - (this.state.bioText ? this.state.bioText.length : 0 ) }</div>
                  <div className="button-container">
                 <button onClick={this.handleCancel.bind(this)} className="cancel-button">Cancel</button>
                 <button onClick={this.handleSave.bind(this)} className="save-button">Save</button>
@@ -71,6 +79,40 @@ class BioPic extends React.Component {
              </div>
              
         }
+        let featuredPhotos;
+        
+        if (this.props.user.photos !== undefined) { 
+            switch (true) {
+                case (this.props.user.photos.length === 1) :
+                featuredPhotos = <div className="photos"><img className="image-1" src={this.props.user.photos[0]} /></div>
+                break;
+                case (this.props.user.photos.length === 2) : 
+                featuredPhotos = <div className="photos"><img className="image-1" src={this.props.user.photos[0]} />
+                    <div>
+                    <img className="image-2" src={this.props.user.photos[1]} />
+                    </div>
+                    </div>
+                break; 
+                case (this.props.user.photos.length === 3 ) :
+                       featuredPhotos = <div className="photos"><img className="image-1" src={this.props.user.photos[0]} />
+                        <div>
+                        <img className="image-2" src={this.props.user.photos[1]} />
+                        <img className="image-3" src={this.props.user.photos[2]}/>
+                        </div>
+                        </div>
+                    break; 
+                case (this.props.user.photos.length >= 4 ) : 
+                featuredPhotos = <div className="photos"><img className="image-1" src={this.props.user.photos[0]} />
+                <div>
+                <img className="image-2" src={this.props.user.photos[1]} />
+                <img className="image-3" src={this.props.user.photos[2]}/>
+                <img className="image-4" src={this.props.user.photos[3]}/>
+                </div>
+                </div>
+                break;        
+            }     
+        }
+
         return (
             <div>
             <div className="bio-container">
@@ -82,14 +124,9 @@ class BioPic extends React.Component {
                     <div className="c"><img className="clock" src={window.clock}/><div>Joined December 2007</div></div>
                 </div>
                 <button className="edit-details"><div className="detailedit">Edit Details</div></button>
-                <div className="photos">
-                    <img className="image-1" src="https://images2.minutemediacdn.com/image/upload/c_crop,h_788,w_1400,x_0,y_24/f_auto,q_auto,w_1100/v1555155291/shape/mentalfloss/rickandmorty.jpg"/>
-                    <div>
-                        <img className="image-2" src="https://nyoobserver.files.wordpress.com/2019/07/rick-and-morty-season-4-trailer-1.jpg?quality=80"/>
-                        <img className="image-3" src="https://am23.akamaized.net/tms/cnt/uploads/2019/09/rick-and-morty-adult-swim-1200x800.jpg"/>
-                        <img className="image-4" src="https://nerdist.com/wp-content/uploads/2019/05/Rick-and-morty-1200x675.png"/>
-                    </div>
-                </div>
+                
+                    {featuredPhotos}
+        
             
             </div>
             <Route exact path={`/users/:userId`} component={UserFriends}/>

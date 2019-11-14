@@ -11,7 +11,7 @@ class FriendIndex extends React.Component {
 
     render () {
         let friendlist = [] 
-        
+            if (this.props.user.friends) {
             let friendrequests = Object.values(this.props.user.friends)
             friendrequests = friendrequests.map((friendships, idx) => { 
                     let pendingRequests = this.props.user.friend_requests.filter(friends => friends.status === "accepted")  
@@ -50,9 +50,10 @@ class FriendIndex extends React.Component {
                         </div>
                     )
                 })
+            }
         return (
             <div className="friend-container"> 
-                <header className="header-friend-idx">
+                <div className="header-friend-idx">
                     <div className="header-friend-index">
                     <img className="friend-index-logo" src={window.friendIndex}></img>
                     <div className="title-friend-index">Friends</div>
@@ -61,7 +62,7 @@ class FriendIndex extends React.Component {
                     <div className="friend-text-ind">All Friends</div> 
                     <div className="counter-friendamt">{friendlist.length}</div>
                     </div>
-                </header>
+                </div>
                 <div className="friend-index-list">
                  {friendlist}
                  </div>

@@ -13,18 +13,17 @@ class NewsFeedComments extends React.Component {
     }
 
     componentDidMount() { 
-      // debugger 
+      if (this.props.currentUser.friends !== undefined) { 
       Object.values(this.props.currentUser.friends).forEach(ele => this.props.getUsersPosts(ele.id))
       this.props.getUsersPosts(this.props.currentUser.id)
-      
+      }
    }
 
 
 
     render () {
       let renderPosts;
-      const {currentUser = {} } = this.props;
-        if (typeof this.props.posts !== "undefined") {
+        if (typeof this.props.posts !== undefined) {
 
                     renderPosts = Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts className="newsfeed-posts" key={idx} post={post} user={this.props.currentUser.friends[post.authorId] ? this.props.currentUser.friends[post.authorId] : this.props.currentUser} type={"newsfeed"}/>) )
                 } 

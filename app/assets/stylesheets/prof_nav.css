@@ -16,7 +16,7 @@
     background-color: white;
     margin-bottom: 4px;
     font-family: SF Pro Display;
-    /* flex-wrap: wrap; */
+    border: 1px solid #ccd0d5;
 }
 
 .about, .friends, .photos2, .more, .timeline{

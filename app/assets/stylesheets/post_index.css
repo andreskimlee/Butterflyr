@@ -1,9 +1,8 @@
 .post-index-container {
-    width: 500px; 
+    width: 513px; 
     height: auto; 
     background-color: white; 
     margin-top: 13px;
-    margin-left: 13px;
     border: 1px solid #dddfe2;
     display: flex;
     flex-direction: column; 
@@ -11,7 +10,7 @@
 
 .photo-on-post {
     object-fit: cover;
-    width: 500px;
+    width: 513px;
     height: 300px;
     
 }

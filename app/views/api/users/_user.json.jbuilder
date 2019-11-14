@@ -1,6 +1,7 @@
 
 json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_photo_url, :gender, :bio
  
+
 if user.prof_photo.attached? 
     
     json.prof_photo url_for(user.prof_photo)

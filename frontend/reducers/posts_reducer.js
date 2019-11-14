@@ -10,7 +10,7 @@ export default (state=[], action) => {
             // debugger   
             const newPosts = merge({}, state, action.post)
             return newPosts; 
-        case RECEIVE_ALL_POSTS: 
+        case RECEIVE_ALL_POSTS:  
             return merge({}, state, action.posts)
         case DELETE_POST: 
             const newState = merge({}, state);
@@ -22,7 +22,7 @@ export default (state=[], action) => {
         case REMOVE_LIKE:
                 const newState2 = merge({}, state);
             if (newState2[Object.values(action.likes)[0].likeable_id].likes) {
-                debugger 
+                 
                 delete newState2[Object.values(action.likes)[0].likeable_id].likes[Object.values(action.likes)[0].id];
                 return newState2;
             } else {

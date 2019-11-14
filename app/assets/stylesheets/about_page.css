@@ -3,8 +3,9 @@
     width: 850px; 
     height: 470px; 
     background-color: white;
-    margin-top: 12px; 
+    margin-top: 6px;
     flex-direction: column; 
+    border: 1px solid #d3d6db;
 }
 
 .about-title {

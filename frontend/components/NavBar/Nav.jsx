@@ -30,7 +30,7 @@ class NavBar extends React.Component {
 
     handleClick4Frnd(e) {
         e.preventDefault() 
-        debugger 
+         
         if (this.state.DropDownFrnd === "false") {
             this.setState({DropDownFrnd: "true"})
 
