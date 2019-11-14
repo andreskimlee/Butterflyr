@@ -40,7 +40,7 @@ class CreatePost extends React.Component {
         }  
         formData.append('post[body]', this.state.body)
         formData.append('post[author_id]', this.state.author_id)
-        // debugger 
+      
         this.props.createPost(this.props.currentUser.id, formData).then(this.props.closeModal)
         this.props.updateUserAction(this.props.currentUser.id, formData2)
     }

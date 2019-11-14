@@ -19,7 +19,7 @@ export const deleteFriendship = friendship => {
 }
 
 export const requestFriendship = friendship => dispatch => {
-    // debugger 
+    
     return FRIENDUtil.requestFriendship(friendship).then(friendship => dispatch(receiveFriendship(friendship)))}
 
 export const approveFriendship = friendship => dispatch => {

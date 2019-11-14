@@ -18,7 +18,7 @@ class ProfilePage extends React.Component {
         this.state = { photoFile: null, dropDown: "false", user: "", profPhoto: ""} // because set to null put a if condition to append only if not null. 
         this.props = props 
         
-        // debugger 
+        
     }   
 
     componentDidMount() {
@@ -56,7 +56,7 @@ class ProfilePage extends React.Component {
     }
  
     handleSubmitCover(e) {
-        // debugger
+       
         e.stopPropagation();
         e.preventDefault();
         const formData = new FormData();        
@@ -76,7 +76,7 @@ class ProfilePage extends React.Component {
         const {user = {} } = this.props;
        
             if (typeof this.props.posts !== "undefined") {
-                    // debugger 
+                    
                     renderPosts = () => Object.values(this.props.posts).filter(post => post.authorId === Number(this.props.match.params.userId))
                     .reverse().map((post, idx) => {
                         // if (Object.values(this.props.comments).length > 1 ) {

@@ -28,9 +28,7 @@ The challenge was to ensure the error would persist even after losing focus. A c
 check the status of the inputs even after the user is not on focus with the input in context. 
 
 ```javascript
-return e => {  // merge({} this.state.input, { [field]: { [e.type]: "focus-invalid" })
-      // console.log(this.state) 
-      // debugger
+return e => {  
       if (e.type === "focus" && e.target.value.length < 1) {
         const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "focus-invalid", ["blur"]:"" }})   
         this.setState({inputs: newInput})

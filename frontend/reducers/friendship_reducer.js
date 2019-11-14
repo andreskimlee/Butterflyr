@@ -6,7 +6,7 @@ export default function friendshipReducer (state={}, action) {
         case FRIEND_REQUEST: 
             return merge({}, action.friendship);
         case DENY_REQUEST: 
-            // debugger 
+        
             return state;   
         default:
             return state; 

@@ -47,7 +47,7 @@ class SignUpForm extends React.Component {
     // this.setState({ someProperty: { ...this.state.someProperty, flag: false} }); this.state.inputs
     return e => {  // merge({} this.state.input, { [field]: { [e.type]: "focus-invalid" })
       
-      // debugger
+      
       if (e.type === "focus" && e.target.value.length < 1) {
         const newInput = merge({}, this.state.inputs, { [field]: { [e.type]: "focus-invalid", ["blur"]:"" }})   
         this.setState({inputs: newInput})
@@ -73,7 +73,7 @@ class SignUpForm extends React.Component {
     str += user['DOB'].year; 
     user['DOB'] = str  
     delete user.inputs
-    // debugger
+    
    
     this.props.processForm(user)
 
@@ -86,7 +86,7 @@ class SignUpForm extends React.Component {
   } 
 
   render() { 
-    // debugger 
+     
     return (
       <div className="sign-up-form">
         <form onSubmit={this.handleSubmit} >

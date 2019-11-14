@@ -124,7 +124,7 @@ class UsersPost extends React.Component {
 
   handlePostDelete(e) {
     e.preventDefault()
-    // debugger 
+    
     this.props.deleteUsersPost(this.props.post.id).then(this.setState({dropDown: "falseDropDown"}))
     
   }
@@ -195,7 +195,7 @@ class UsersPost extends React.Component {
         postLikes = ((firstA.first_name[0].toUpperCase() + firstA.first_name.slice(1)) + " " +  (firstA.last_name[0].toUpperCase() + firstA.last_name.slice(1)))
         break; 
         case (totalLikes === 2): 
-        debugger
+        
         let first = this.props.users[Object.values(allLikes)[0].author_id];
         let second = this.props.users[Object.values(allLikes)[1].author_id]; 
         postLikes = ((first.first_name[0].toUpperCase() + first.first_name.slice(1)) + " " +  (first.last_name[0].toUpperCase() + first.last_name.slice(1)) + " " + "and" + " " + (second.first_name[0].toUpperCase() + second.first_name.slice(1)) + " " +  (second.last_name[0].toUpperCase() + second.last_name.slice(1)))

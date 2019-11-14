@@ -13,11 +13,11 @@ import ChatRoom from '../chatroom/chatroom'
 class Greeting extends React.Component {
     constructor(props) {
       super(props)
-      // debugger 
+  
     }
 
     render () {
-      // debugger 
+     
       const sessionLinks = () => (
         <div className="login-signup">
           <div className="navhead">
@@ -41,35 +41,6 @@ class Greeting extends React.Component {
     }
 
 }
-
-
-
-
-
-
-
-
-// const Greeting = ({ currentUser, logout }) => {
-//   debugger 
-//   const sessionLinks = () => (
-//     <div className="login-signup">
-//       <div className="navhead">
-//      <div className="butterflyr">butterflyr</div>
-//       <img className="butterfree" src={window.butterFree}/>
-//       <LogInFormContainer/>
-//       </div>     
-//       <SignUpFormContainer/> 
-//     </div>
-//   );
-//   const homePage = () => (
-//     <hgroup className="header-group">
-//       <NavBar  currentUser={currentUser} logout={logout}></NavBar>
-//       <Route exact path="/" component={ForFun}/>
-//     </hgroup>
-//   )
-
-// //   return currentUser ? homePage() : sessionLinks();
-// // };
 
 
 export default Greeting;

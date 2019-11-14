@@ -16,7 +16,7 @@ class Contact extends React.Component {
         const dateString = dateOfBirth.slice(0,2) + "/" + dateOfBirth.slice(2,4) + "/" + dateOfBirth.slice(4)
         var d = new Date(dateString);
         var n = d.toString().slice(4, 15)
-        debugger  
+      
         return (
             <div className="overview-container">
                 <div className="overview-2">

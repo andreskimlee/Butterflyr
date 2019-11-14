@@ -18,18 +18,18 @@ class FriendIndex extends React.Component {
                       return pendingRequests.map(element => { 
                         if (friendships.id === element.requester_id) { 
                             friendlist.push(friendships) 
-                            // debugger 
+                      
                         }
                     })
                 })
             let sentFriend = this.props.user.requested_friends
-            // debugger
+    
             sentFriend = sentFriend.forEach((friendships, idx) => { 
                     let requestedFriend = this.props.user.sent_friend_requests.filter(friends => friends.status === "accepted")  
                         return requestedFriend.map(element => { 
                             if (friendships.id === element.requested_id) { 
                                 friendlist.push(friendships) 
-                                // debugger
+                          
                             }
                         })
                     })

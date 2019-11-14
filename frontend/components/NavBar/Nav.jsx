@@ -8,11 +8,11 @@ import ReactDOM from "react-dom"
 import {merge} from "lodash"
 class NavBar extends React.Component {
     constructor(props) {
-        // debugger 
+    
         super(props) 
         this.state = { DropDown: "", DropDownFrnd: "false"}
         this.textInput = React.createRef();
-        // debugger 
+    
     }
 
     componentDidMount () {
@@ -77,7 +77,7 @@ class NavBar extends React.Component {
                     })   
                     });
             
-        // debugger    
+       
         return (
             <span className="Nav-Bar">
                 

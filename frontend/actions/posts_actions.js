@@ -15,7 +15,7 @@ export const deletePost = ({id}) => ({
 
 
 export const receiveAllPosts = ({ posts, user }) => {
-    // debugger 
+    
     return {
     type: RECEIVE_ALL_POSTS,
     posts, 
