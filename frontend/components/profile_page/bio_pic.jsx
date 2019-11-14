@@ -121,7 +121,7 @@ class BioPic extends React.Component {
                 <div className="user-info">
                    <div className="h"><img className="house" src={window.house}/><div>Lives in Syosset, New York</div></div>
                     <div className="g"><img className="geo" src={window.geo}/><div>From Asuncion, Paraguay</div></div>
-                    <div className="c"><img className="clock" src={window.clock}/><div>Joined December 2007</div></div>
+                    <div className="c"><img className="clock" src={window.clock}/><div>Joined {this.props.user.createdAt}</div></div>
                 </div>
                 <button className="edit-details"><div className="detailedit">Edit Details</div></button>
                 

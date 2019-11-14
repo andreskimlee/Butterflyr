@@ -1,6 +1,7 @@
 
 json.extract! user, :id, :email, :first_name, :last_name, :email, :DOB, :cover_photo_url, :gender, :bio
- 
+
+json.createdAt user.created_at.strftime('%-B %-Y') 
 
 if user.prof_photo.attached? 
     
