@@ -126,7 +126,7 @@ class ProfilePage extends React.Component {
                         <div className="prof-links">
                         <Link className="timeline hvr-pop" to={`/users/${this.props.match.params.userId}`}>Timeline</Link>
                         <Link className="about hvr-pop"to={`/users/${this.props.match.params.userId}/about/overview`}>About</Link>   
-                        <Link className="friends hvr-pop" to={`/users/${this.props.match.params.userId}/friends`}>Friends <div className="friend-count-nav">{this.props.user.friends ? Object.values(this.props.user.friends).length : 0 }</div></Link>
+                        <Link className="friends hvr-pop" to={`/users/${this.props.match.params.userId}/friends`}>Friends <div className="friend-count-nav">{this.props.user ? Object.values(this.props.user.friends).length : 0 }</div></Link>
                         <Link className="photos2 hvr-pop" to={`/users/${this.props.match.params.userId}/photos`}>Photos</Link>
                         <a className="more hvr-pop" href="https://images.squarespace-cdn.com/content/v1/51132139e4b0014fdfeca0ca/1515690627146-UG45BRZQ5WE4ABG6T786/ke17ZwdGBToddI8pDm48kEF2GaKpjeSPJuap1bYL1oVZw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyEWjbC5HC78c3ldIV68GhowvuiGnah3z0UFPVxk-pMmm-8ZlmgLQgTEiE--OHMuYI/Please+sir+may+I+have+some+more.jpg?format=1500w">More</a>
                         </div>

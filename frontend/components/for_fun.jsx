@@ -24,8 +24,9 @@ class NewsFeedComments extends React.Component {
     render () {
       let renderPosts;
         if (typeof this.props.posts !== undefined) {
-
-                    renderPosts = Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts className="newsfeed-posts" key={idx} post={post} user={this.props.currentUser.friends ? this.props.currentUser.friends[post.authorId] : this.props.currentUser} type={"newsfeed"}/>) )
+            if (this.props.currentUser.friends) { 
+                    renderPosts = Object.values(this.props.posts).reverse().map((post, idx) => (<UsersPosts className="newsfeed-posts" key={idx} post={post} user={this.props.currentUser.friends[post.authorId] ? this.props.currentUser.friends[post.authorId] : this.props.currentUser} type={"newsfeed"}/>) )
+            }
                 } 
     return (
         <div className="home-page-containers">
