@@ -155,9 +155,12 @@ class UsersPost extends React.Component {
   let comments;                    
   if (this.props.post.comments) {
     if (Object.values(this.props.comments).length > 0) { 
-      if (Object.values(this.props.comments)[0].postId === this.props.post.id) { 
-        comments = merge({}, this.props.comments, this.props.post.comments)
-    } 
+       for (let i=0; i < Object.values(this.props.comments).length; i++) 
+       if (Object.values(this.props.comments)[i].postId === this.props.post.id) {
+          comments = merge({}, {[Object.values(this.props.comments)[i].id] : Object.values(this.props.comments)[i]}, this.props.post.comments)
+          debugger 
+       }
+  
     
   }
     comments = Object.values(comments ? comments : this.props.post.comments).map((comment, idx) => {  

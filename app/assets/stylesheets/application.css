@@ -341,7 +341,7 @@ input:focus {
     width: 310px;
     height: 90px;
     background-color: white;
-    margin-top: 17px;
+    margin-top: 6px;
     border: 1px solid #dddfe2;
     display: flex;
     flex-direction: column;
@@ -373,9 +373,10 @@ input:focus {
 
 .request-tab {
     width: 310px;
-    height: auto; 
-    margin-left: 7px;
-    margin-right: 201px;
+    height: auto;
+    margin-left: 12px;
+    
+    margin-top: 6px;
 }
 
 .picklecostume {
@@ -418,4 +419,5 @@ input:focus {
 .cont-wall { 
     display: flex;
     flex-direction: column;
+    margin-left: 12px;
 }
