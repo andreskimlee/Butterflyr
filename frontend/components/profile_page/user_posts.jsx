@@ -352,7 +352,7 @@ class UsersPost extends React.Component {
             {comments}
             </div>
           <div className="write-comm">
-            <img className="write-comm-prof" src={profPhoto}/>
+            <img className="write-comm-prof" src={this.props.currentUser.profPhoto ? this.props.currentUser.profPhoto : window.profPhoto}/>
             <input className="write-comment-box" type="text" placeholder="Write a comment..." onChange={this.update("body").bind(this)} onKeyPress={this.keyPressed.bind(this)}/>
           </div>
       </div>
