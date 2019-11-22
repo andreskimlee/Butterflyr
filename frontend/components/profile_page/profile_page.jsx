@@ -99,7 +99,7 @@ class ProfilePage extends React.Component {
             <div className="TopBox">
                  <img className="CoverPhoto" src={coverPhoto}/>
                                 
-                    <div>
+                    <div className="divisi">
                     <div className="upload-cover-photo hvr-pulse-grow">
                         <div className="container-up">
                             <input onChange={this.handleSubmitCover.bind(this)} className= "hoo" type="file"/>
@@ -114,6 +114,7 @@ class ProfilePage extends React.Component {
 
                     </div> 
                     <div className="sectional">
+                        <div className="invisi">
                         <div className="outerborder"></div>
                         <img className="main-prof-pic" src={profPhoto}/>    
                         <div className="update-prof-pic">
@@ -122,7 +123,7 @@ class ProfilePage extends React.Component {
                             <input className="heo" type="file" onChange={this.handleFile.bind(this)}/> 
 
                         </div>
-                    
+                        </div>
                         <div className="prof-links">
                         <Link className="timeline hvr-pop" to={`/users/${this.props.match.params.userId}`}>Timeline</Link>
                         <Link className="about hvr-pop"to={`/users/${this.props.match.params.userId}/about/overview`}>About</Link>   

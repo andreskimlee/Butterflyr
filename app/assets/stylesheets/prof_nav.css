@@ -12,7 +12,7 @@
     display: flex;
     justify-content: flex-end;
     width: 850px;
-    height: 40px;
+    min-height: 45px;
     background-color: white;
     
     font-family: SF Pro Display;
@@ -24,7 +24,7 @@
     color: #319a81;
     border-left: 1px solid #d6e8e6;
     padding-left: 18px;
-    padding-top: 10px;
+    padding-top: 13px;
     padding-right: 17px;
     font-weight: 500;
     font-size: 15px;
@@ -42,7 +42,8 @@
 
 .prof-links {
     display: flex; 
-    margin-right: 184px;
+    margin-right: 215px;
+
     height: auto;
 }
 
@@ -52,23 +53,17 @@
     width: 160px;
     border-radius: 50%;
     position: relative;
-    top: -144px;
-    left: -50px;
+    top: -143px;
+    left: -671px;
     border: 5px solid white;
+    box-shadow: 2px 2px 5px 2px #888888;
+
+
 }
 
 
 
-  .outerborder {
-    height: 160px;
-    border-radius: 50%;
-    background-color: black;
-    position: absolute;
-    top: 211px;
-    left: 313px;
-    border: 7px solid #dadada;
-    width: 160px;
-}
+
 
 .update-prof-pic {
     border-bottom-left-radius: 80px;
@@ -77,9 +72,9 @@
     text-align: center;
     background-color: black;
     width: 160px;
-    position: absolute;
-    top: 298px;
-    left: 320px;
+    position: relative;
+    top: -232px;
+    left: -666px;
     opacity: 0;
     
 }
@@ -270,4 +265,25 @@
     font-size: 11px;
     margin-left: 7px;
     margin-top: 3px;;
+}
+
+.invisi {
+    position: absolute;
+
+}
+
+.divisi {
+    position: absolute;
+    
+        position: absolute;
+        margin-left: -292px;
+        /* margin-bottom: 10px; */
+        top: 1px;
+    
+}
+
+.more {
+    border-right: 1px solid #d6e8e6;
+}
+
 }
