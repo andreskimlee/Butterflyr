@@ -46,7 +46,13 @@ class FriendIndex extends React.Component {
                             <img className="photo-of-friend"src={profPhoto} />
                             </Link>
                             <div className="friend-index-name">{(user.first_name[0].toUpperCase() + user.first_name.slice(1)) + " " + (user.last_name[0].toUpperCase() + user.last_name.slice(1))}</div>
+                            <div className="cont-friend-stat">
                             <div className="friend-status-btn"> ✓ Friends</div>
+                            <div className="drp-dwn-frnd">
+                                <div className="unfrnd-txt">Unfriend</div>
+                                
+                            </div>
+                            </div>
                         </div>
                     )
                 })
