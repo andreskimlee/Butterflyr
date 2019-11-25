@@ -2,11 +2,18 @@ import React from 'react'
 import {withRouter, Route} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { Link } from 'react-router-dom'
+import {denyFriendship} from '../../actions/friendship_actions'
 
 class FriendIndex extends React.Component {
     constructor(props) {
         super(props) 
        
+    }
+
+    handleClick(e) {
+        e.preventDefault(); 
+        debugger 
+        
     }
 
     render () {
@@ -34,12 +41,16 @@ class FriendIndex extends React.Component {
                         })
                     })
 
-
+                
                 friendlist = friendlist.map(user => {               
                      var profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
                      if (user.id === this.props.currentUser.id) {
                         var profPhoto = this.props.currentUser.prof_photo
-                    }                      
+                    }
+                    
+                    
+                    
+                    debugger
                     return (
                         <div className="user-friendsindex">
                             <Link className="linkund" to={`/users/${user.id}`}>
@@ -49,7 +60,7 @@ class FriendIndex extends React.Component {
                             <div className="cont-friend-stat">
                             <div className="friend-status-btn"> ✓ Friends</div>
                             <div className="drp-dwn-frnd">
-                                <div className="unfrnd-txt">Unfriend</div>
+                                <div onClick={this.props.friend_requests ? this.props.denyFriendship(friendshipId) : ""} className="unfrnd-txt">Unfriend</div>
                                 
                             </div>
                             </div>
@@ -88,7 +99,7 @@ const mapStateToProps = (state, ownProps) => {
 
   
   const mapDispatchToProps = dispatch => ({
- 
+    denyFriendship: (friendshipId) => dispatch(denyFriendship(friendshipId))
   })
   
   export default withRouter(connect(mapStateToProps,mapDispatchToProps)(FriendIndex))

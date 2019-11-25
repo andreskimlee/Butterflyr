@@ -160,4 +160,8 @@
 .friend-status-btn:hover {
     background-color: #d8d8d8;
     cursor: pointer;
-}   
+}  
+
+.unfrnd-txt:hover {
+    cursor: pointer;
+}

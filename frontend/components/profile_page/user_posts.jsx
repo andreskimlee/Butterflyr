@@ -153,17 +153,19 @@ class UsersPost extends React.Component {
                     
   
   let comments;                    
-  if (this.props.post.comments) {
+  if (this.props.post.comments || (!this.props.comments instanceof Array) ) {
+    debugger 
     if (Object.values(this.props.comments).length > 0) { 
        for (let i=0; i < Object.values(this.props.comments).length; i++) 
        if (Object.values(this.props.comments)[i].postId === this.props.post.id) {
           comments = merge({}, {[Object.values(this.props.comments)[i].id] : Object.values(this.props.comments)[i]}, this.props.post.comments)
-          debugger 
+           
        }
   
     
   }
-    comments = Object.values(comments ? comments : this.props.post.comments).map((comment, idx) => {  
+  
+    comments = Object.values(comments ? comments : merge({}, this.props.comments, this.props.post.comments)).map((comment, idx) => {  
       return (
       <div>
         <div className="comment-head" key={idx}>
