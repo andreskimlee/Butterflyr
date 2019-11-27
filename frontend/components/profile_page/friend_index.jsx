@@ -18,6 +18,9 @@ class FriendIndex extends React.Component {
 
     render () {
         let friendlist = [] 
+            if (!this.props.user.friend_requests) {
+                return null 
+            }
             if (this.props.user.friends) {
             let friendrequests = Object.values(this.props.user.friends)
             friendrequests = friendrequests.map((friendships, idx) => { 
@@ -36,7 +39,7 @@ class FriendIndex extends React.Component {
                         return requestedFriend.map(element => { 
                             if (friendships.id === element.requested_id) { 
                                 friendlist.push(friendships) 
-                          
+                                
                             }
                         })
                     })
@@ -44,8 +47,16 @@ class FriendIndex extends React.Component {
                 
                 friendlist = friendlist.map(user => {               
                      var profPhoto = user.prof_photo ? user.prof_photo : window.profPhoto
+                     var friendShipId; 
                      if (user.id === this.props.currentUser.id) {
                         var profPhoto = this.props.currentUser.prof_photo
+                    }
+                    if (this.props.user.friend_requests) {
+                        this.props.user.friend_requests.forEach(friendship => {
+                            if (friendship.requester_id === user.id || friendship.requested_id === user.id ) {
+                                friendShipId = friendship.id 
+                            }
+                        })
                     }
                     
                     
@@ -60,7 +71,7 @@ class FriendIndex extends React.Component {
                             <div className="cont-friend-stat">
                             <div className="friend-status-btn"> ✓ Friends</div>
                             <div className="drp-dwn-frnd">
-                                <div onClick={this.props.friend_requests ? this.props.denyFriendship(friendshipId) : ""} className="unfrnd-txt">Unfriend</div>
+                                <div onClick={() => this.props.denyFriendship(friendShipId)} className="unfrnd-txt">Unfriend</div>
                                 
                             </div>
                             </div>
