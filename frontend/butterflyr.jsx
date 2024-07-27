@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import Root from './components/root';
 import configureStore from './store/store';
 
-console.log('hello world')
+console.log('hello world 123')
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
